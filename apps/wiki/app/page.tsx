@@ -3,11 +3,10 @@ import { marked } from 'marked'
 import fs from 'node:fs/promises'
 import { parse } from 'parser-vimwiki'
 
+export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
-  console.debug({ props })
-
   try {
-    const markdown = await fs.readFile(`/mnt/data/index.md`)
+    const markdown = await fs.readFile('/mnt/data/index.md')
       .then((buffer) => buffer.toString())
       .then(parse)
     const html = marked(markdown)
