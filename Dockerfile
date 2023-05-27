@@ -10,8 +10,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN cd apps/wiki
-
 WORKDIR /app/apps/wiki
 
 CMD pnpm start
