@@ -13,14 +13,18 @@ importers:
       '@types/node': '18'
       '@types/react': ^18.2.5
       '@types/react-dom': ^18.2.3
+      marked: ^5.0.3
       next: ^13.4.1
+      parser-vimwiki: workspace:^0.0.0
       react: ^18.2.0
       react-dom: ^18.2.0
       tsconfig: workspace:*
       typescript: ^5.0.4
       ui: workspace:*
     dependencies:
+      marked: 5.0.3
       next: 13.4.1_biqbaboplfbrettd7655fr4n2y
+      parser-vimwiki: link:../../packages/parser-vimwiki
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       ui: link:../../packages/ui
@@ -29,6 +33,12 @@ importers:
       '@types/react': 18.2.5
       '@types/react-dom': 18.2.3
       tsconfig: link:../../packages/tsconfig
+      typescript: 5.0.4
+
+  packages/parser-vimwiki:
+    specifiers:
+      typescript: ^5.0.4
+    devDependencies:
       typescript: 5.0.4
 
   packages/tsconfig:
@@ -194,6 +204,12 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+
+  /marked/5.0.3:
+    resolution: {integrity: sha512-KUONa43Uk74uUNWMxh6lfaNYmSAsRMiDAaX8QBCCRVXzEufR0zX6T33vrGbvTnQLL02ungDM3KSzZtO+chJaHg==}
+    engines: {node: '>= 18'}
+    hasBin: true
+    dev: false
 
   /nanoid/3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
