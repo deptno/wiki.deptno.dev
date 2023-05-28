@@ -1,12 +1,13 @@
 import React from 'react'
-import { marked } from 'marked'
 import fs from 'node:fs/promises'
 import { parse } from 'parser-vimwiki'
+import { DIR_WIKI } from '../../constant'
+import { marked } from '../../lib/marked'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
   try {
-    const markdown = await fs.readFile('/mnt/data/index.md')
+    const markdown = await fs.readFile(`${DIR_WIKI}/index.md`)
       .then((buffer) => buffer.toString())
       .then(parse)
     const html = marked(markdown)

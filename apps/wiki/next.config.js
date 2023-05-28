@@ -1,4 +1,13 @@
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ["ui"],
-};
+  transpilePackages: ['ui'],
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/wiki',
+        permanent: false,
+      }
+    ]
+  }
+}
