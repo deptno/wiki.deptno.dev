@@ -1,8 +1,8 @@
 import React from 'react'
-import { marked } from 'marked'
 import fs from 'node:fs/promises'
 import { parse } from 'parser-vimwiki'
 import { DIR_WIKI } from '../../constant'
+import { marked } from '../../lib/marked'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
