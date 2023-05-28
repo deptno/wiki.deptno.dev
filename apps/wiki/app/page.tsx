@@ -2,12 +2,14 @@ import React, { cache } from 'react'
 import { marked } from '../lib/marked'
 import { getAllMd } from '../lib/getAllMd'
 import { DIR_WIKI } from '../constant'
-import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
   const list = getData(DIR_WIKI)
   const markdown = `
+# wikis
+[/wiki](/)
+
 # files
 
 ${list}
@@ -17,9 +19,6 @@ ${list}
 
     return (
       <>
-        <Link href="/wiki">
-          인덱스로 이동
-        </Link>
         <pre dangerouslySetInnerHTML={{ __html: html }}/>
       </>
     )
