@@ -4,6 +4,7 @@ import { createRelativeLinkReplacer, parse } from 'parser-vimwiki'
 import { DIR_WIKI } from '../../../constant'
 import { marked } from '../../../lib/marked'
 import { Breadcrumbs } from '../../../component/Breadcrumbs'
+import { redirect } from 'next/navigation'
 
 export default async (props: Props) => {
   const { md } = props.params
@@ -30,9 +31,10 @@ export default async (props: Props) => {
       </>
     )
   } catch (err) {
-    console.error(err)
-
-    throw err
+    if (path.endsWith('index')) {
+      throw new Error(`unknown path: ${path}`)
+    }
+    return redirect(decodeURIComponent(`/wiki/${path}/index`))
   }
 }
 
