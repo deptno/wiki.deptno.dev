@@ -4,6 +4,13 @@ vimwiki <https://deptno.dev> 의 웹 서빙
 
 런타임에 /mnt/data 에 vimwiki 가 마운트 되어 있어야 실행 가능
 
+## 환경 변수
+`value` 는 설정 예제
+```yaml
+- name: DIR_WIKI
+  value: /mnt/data
+```
+
 ## 실행
 ### 로컬 실행
 ```shell
