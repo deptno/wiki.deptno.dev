@@ -1,4 +1,4 @@
-FROM node:18-bullseye
+FROM node:20-bullseye
 LABEL authors="deptno"
 
 ENV NEXT_TELEMETRY_DISABLED 1
