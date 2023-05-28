@@ -18,8 +18,9 @@ DIR_WIKI=/path/to/vimwiki pnpm dev
 ```
 ### 다커 테스트
 ```sh
+pnpm build
 docker build -t wiki .
-docker -v my-wiki-directory:/mnt/data -p 3000:3000 wiki
+docker -e WIKI_DIR=/mnt/data -v my-wiki-directory:/mnt/data -p 3000:3000 wiki
 ```
 ### 다커 테스트
 ## 쿠버네티스
