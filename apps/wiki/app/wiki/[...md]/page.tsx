@@ -3,6 +3,7 @@ import fs from 'node:fs/promises'
 import { createRelativeLinkReplacer, parse } from 'parser-vimwiki'
 import { DIR_WIKI } from '../../../constant'
 import { marked } from '../../../lib/marked'
+import { Breadcrumbs } from '../../../component/Breadcrumbs'
 
 export default async (props: Props) => {
   const { md } = props.params
@@ -22,7 +23,12 @@ export default async (props: Props) => {
       .then(parse)
     const html = marked(markdown)
 
-    return <pre dangerouslySetInnerHTML={{ __html: html }}/>
+    return (
+      <>
+        <Breadcrumbs/>
+        <pre dangerouslySetInnerHTML={{ __html: html }}/>
+      </>
+    )
   } catch (err) {
     console.error(err)
 
