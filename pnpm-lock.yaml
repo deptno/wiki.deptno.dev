@@ -10,7 +10,7 @@ importers:
 
   apps/wiki:
     specifiers:
-      '@types/node': '18'
+      '@types/node': '20'
       '@types/react': ^18.2.5
       '@types/react-dom': ^18.2.3
       marked: ^5.0.3
@@ -29,7 +29,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       ui: link:../../packages/ui
     devDependencies:
-      '@types/node': 18.16.16
+      '@types/node': 20.2.5
       '@types/react': 18.2.5
       '@types/react-dom': 18.2.3
       tsconfig: link:../../packages/tsconfig
@@ -151,8 +151,8 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@types/node/18.16.16:
-    resolution: {integrity: sha512-NpaM49IGQQAUlBhHMF82QH80J08os4ZmyF9MkpCzWAGuOHqE4gTEbhzd7L3l5LmWuZ6E0OiC1FweQ4tsiW35+g==}
+  /@types/node/20.2.5:
+    resolution: {integrity: sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==}
     dev: true
 
   /@types/prop-types/15.7.5:
