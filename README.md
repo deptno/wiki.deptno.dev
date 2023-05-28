@@ -4,12 +4,17 @@ vimwiki <https://deptno.dev> 의 웹 서빙
 
 런타임에 /mnt/data 에 vimwiki 가 마운트 되어 있어야 실행 가능
 
-## 실행 테스트
+## 실행
+### 로컬 실행
+```shell
+DIR_WIKI=/path/to/vimwiki pnpm dev
+```
+### 다커 테스트
 ```sh
 docker build -t wiki .
 docker -v my-wiki-directory:/mnt/data -p 3000:3000 wiki
 ```
-
+### 다커 테스트
 ## 쿠버네티스
 initContainer 등을 통해서 `/mnt/data` 에 git clone 후 사용
 
