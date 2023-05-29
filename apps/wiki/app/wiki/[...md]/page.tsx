@@ -4,8 +4,9 @@ import { createRelativeLinkReplacer, parse } from 'parser-vimwiki'
 import { DIR_WIKI } from '../../../constant'
 import { marked } from '../../../lib/marked'
 import { redirect } from 'next/navigation'
-import { Markdown } from '../../../component/Markdown'
 import { Header } from '../../../component/Header'
+import { NoPage } from '../../../component/NoPage'
+import { Markdown } from '../../../component/Markdown'
 
 export default async (props: Props) => {
   const { md } = props.params
@@ -32,10 +33,11 @@ export default async (props: Props) => {
       </>
     )
   } catch (err) {
-    if (path.endsWith('index')) {
-      throw new Error(`unknown path: ${path}`)
+    if (!path.endsWith('index')) {
+      return redirect(decodeURIComponent(`/wiki/${path}/index`))
     }
-    return redirect(decodeURIComponent(`/wiki/${path}/index`))
+
+    return <NoPage name={path}/>
   }
 }
 
