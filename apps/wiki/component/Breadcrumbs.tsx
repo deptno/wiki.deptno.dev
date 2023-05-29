@@ -8,14 +8,14 @@ export const Breadcrumbs: FC<Props> = (props) => {
 
   return (
     <div className="text-sm breadcrumbs">
-      <ul>
+      <ul className="flex">
         {pathname.map((p, i, a) => {
           const href = '/' + pathname.slice(0, i).join('/')
 
           return (
             <li key={href}>
-              <Link href={href}>
-                { href }
+              <Link  className="underline px-1" href={href}>
+                {pathname[i-1] ?? ''}/
               </Link>
             </li>
           )

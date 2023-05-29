@@ -3,9 +3,9 @@ import fs from 'node:fs/promises'
 import { createRelativeLinkReplacer, parse } from 'parser-vimwiki'
 import { DIR_WIKI } from '../../../constant'
 import { marked } from '../../../lib/marked'
-import { Breadcrumbs } from '../../../component/Breadcrumbs'
 import { redirect } from 'next/navigation'
-import { SearchBar } from '../../../component/SearchBar'
+import { Markdown } from '../../../component/Markdown'
+import { Header } from '../../../component/Header'
 
 export default async (props: Props) => {
   const { md } = props.params
@@ -27,9 +27,8 @@ export default async (props: Props) => {
 
     return (
       <>
-        <SearchBar />
-        <Breadcrumbs/>
-        <pre dangerouslySetInnerHTML={{ __html: html }}/>
+        <Header/>
+        <Markdown data={html}/>
       </>
     )
   } catch (err) {
