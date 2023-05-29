@@ -2,26 +2,21 @@ import React, { cache } from 'react'
 import { marked } from '../lib/marked'
 import { getAllMd } from '../lib/getAllMd'
 import { DIR_WIKI } from '../constant'
-import { SearchBar } from '../component/SearchBar'
+import { Header } from '../component/Header'
+import { Markdown } from '../component/Markdown'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
   const list = getData(DIR_WIKI)
-  const markdown = `
-# wikis
-[/wiki](/)
 
-# files
-
-${list}
-  `.trim()
   try {
-    const html = marked(markdown)
-
     return (
       <>
-        <SearchBar />
-        <pre dangerouslySetInnerHTML={{ __html: html }}/>
+        <Header/>
+        <div className="p-4 text-lg">wikis</div>
+        <Markdown data={marked('- [/wiki](/)')}/>
+        <div className="p-4 text-lg">files</div>
+        <Markdown data={marked(list)}/>
       </>
     )
   } catch (err) {
@@ -44,7 +39,7 @@ const getData = cache((dir) => {
     .reduce((markdowns, file) => {
       return [
         ...markdowns,
-        `[${file}](${file})`,
+        `- [${file}](${file})`,
       ]
     }, [])
     .join('\n')
