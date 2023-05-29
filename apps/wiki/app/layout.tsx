@@ -1,3 +1,4 @@
+import './global.css'
 import React from 'react'
 import Script from 'next/script'
 import { GOOGLE_ANALYTICS_ID, MS_CLARITY_ID } from '../constant'
