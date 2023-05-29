@@ -9,12 +9,14 @@ vimwiki <https://deptno.dev> 의 웹 서빙
 ```yaml
 - name: DIR_WIKI
   value: /mnt/data
+- name: MEILISEARCH_HOST #meilisearch-updater 에서만 사용
+  value: localhost:7700
 ```
 
 ## 실행
 ### 로컬 실행
 ```shell
-DIR_WIKI=/path/to/vimwiki pnpm dev
+MEILISEARCH_HOST=localhost:7700 DIR_WIKI=/path/to/vimwiki pnpm dev
 ```
 ### 다커 테스트
 ```sh
