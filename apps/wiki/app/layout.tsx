@@ -39,7 +39,7 @@ export default function RootLayout({ children }: {
   `,
         }}
       />
-      <body>{children}</body>
+      <body className="text-xs md:text-md lg:text-lg">{children}</body>
     </html>
   )
 }
