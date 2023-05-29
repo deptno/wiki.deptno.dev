@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.markdown {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  color: #3c3735;
+}
+
+.markdown a {
+  color: #448488;
+  text-decoration: underline;
+}
+.markdown code {
+  font-weight: 100;
+  display: block;
+  background-color: #272727;
+  color: #bdad93;
+  line-height: 1rem;
+  font-size: 1rem;
+  padding: 1rem;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.markdown h1 {
+  line-height: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.markdown h2 {
+  line-height: 1.75rem;
+  font-size: 1.75rem;
+}
+
+.markdown h3 {
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.markdown h4 {
+  line-height: 1.25rem;
+  font-size: 1.25rem;
+}
+
+.markdown h5 {
+  line-height: 1rem;
+  font-size: 1rem;
+}
+
+.markdown h6 {
+  line-height: 1rem;
+  font-size: 1rem;
+}
+
+.markdown ul {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  line-height: 1.25rem;
+}
