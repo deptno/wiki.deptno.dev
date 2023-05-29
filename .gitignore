@@ -3,6 +3,7 @@
 deploy.sh
 .idea/
 tsconfig.tsbuildinfo
+dist/
 
 # dependencies
 node_modules

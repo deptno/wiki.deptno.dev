@@ -2,6 +2,7 @@ import React, { cache } from 'react'
 import { marked } from '../lib/marked'
 import { getAllMd } from '../lib/getAllMd'
 import { DIR_WIKI } from '../constant'
+import { SearchBar } from '../component/SearchBar'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
@@ -19,6 +20,7 @@ ${list}
 
     return (
       <>
+        <SearchBar />
         <pre dangerouslySetInnerHTML={{ __html: html }}/>
       </>
     )
