@@ -11,6 +11,10 @@ vimwiki <https://deptno.dev> 의 웹 서빙
   value: /mnt/data
 - name: MEILISEARCH_HOST #meilisearch-updater 에서만 사용
   value: localhost:7700
+- name: NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+  value: G-XXXXXXXXXX
+- name: NEXT_PUBLIC_MS_CLARITY_ID
+  value: xxxxxxxxxx
 ```
 
 ## 실행
