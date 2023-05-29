@@ -6,7 +6,7 @@ import { code } from './code'
 
 export const renderer = {
   code,
-  heading,
+  // heading,
   link,
   list,
   listitem,
