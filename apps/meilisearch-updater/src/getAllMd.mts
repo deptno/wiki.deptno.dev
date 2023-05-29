@@ -2,6 +2,7 @@ import { readdirSync } from 'node:fs'
 import { join, extname } from 'node:path'
 
 export function getAllMd(rootDir: string) {
+  console.log({rootDir})
   const files = readdirSync(rootDir, {
     withFileTypes: true,
   })
