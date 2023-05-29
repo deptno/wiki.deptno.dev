@@ -2,6 +2,7 @@
 
 deploy.sh
 .idea/
+tsconfig.tsbuildinfo
 
 # dependencies
 node_modules
