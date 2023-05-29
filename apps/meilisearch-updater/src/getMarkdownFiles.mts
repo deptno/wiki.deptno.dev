@@ -1,11 +1,12 @@
 import { readFileSync } from 'node:fs'
-import { basename } from 'node:path'
 import { getAllMd } from './getAllMd.mjs'
 
 export const getMarkdownFiles = async (dir: string) => {
   const files = getAllMd(dir)
   const contents = files.map((md) => {
-    const name = basename(md, '.md')
+    const name = md
+      .replace(`${dir}/`, '')
+      .slice(0, -3)
     const id = Buffer.from(name).toString('hex')
 
     return {
@@ -13,8 +14,6 @@ export const getMarkdownFiles = async (dir: string) => {
       content: readFileSync(md).toString()
     }
   })
-
-  console.dir(contents, { maxArrayLength: 1, depth: null })
 
   return contents
 }
