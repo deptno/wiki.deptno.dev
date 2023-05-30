@@ -1,0 +1,10 @@
+@media (min-width: theme('screens.3xl')) {
+  aside {
+    z-index: 10;
+    position: fixed;
+    min-width: 384px;
+    left: calc(50vw + 512px);
+    overflow-y: scroll;
+    height: 100vh;
+  }
+}

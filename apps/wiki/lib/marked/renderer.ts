@@ -8,10 +8,10 @@ import { codespan } from './codespan'
 
 export const renderer = {
   blockquote,
-  code,
+  // code,
   codespan,
   // heading,
   link,
-  list,
+  // list,
   listitem
 }

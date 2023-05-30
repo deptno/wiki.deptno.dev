@@ -7,7 +7,7 @@ export const Breadcrumbs: FC<Props> = (props) => {
   const pathname = usePathname().split('/').slice(1)
 
   return (
-    <div className="text-sm breadcrumbs">
+    <div className="breadcrumbs">
       <ul className="flex">
         {pathname.map((p, i, a) => {
           const href = '/' + pathname.slice(0, i).join('/')
