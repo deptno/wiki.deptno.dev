@@ -1,5 +1,2 @@
 @media (min-width: theme('screens.2xl')) {
-  .markdown h1 {
-    background-color: theme('colors.red.900');
-  }
 }

@@ -1,7 +1,4 @@
 @media (min-width: theme('screens.sm')) {
-  .markdown h1 {
-    background-color: theme('colors.red.100');
-  }
   .markdown ol {
     padding-left: 2rem;
   }
