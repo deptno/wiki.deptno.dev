@@ -5,16 +5,19 @@
 .markdown {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
   color: #3c3735;
 }
 
 .markdown a {
   background-color: #ebdbb2;
-  color: #d79920;
   color: #448488;
   padding: 0 0.25rem;
   text-decoration: underline;
+}
+
+.markdown strong {
+  background-color: #ebdbb2;
+  color: #cc231c;
 }
 
 .markdown blockquote {
@@ -91,11 +94,16 @@
   line-height: 1rem;
 }
 
+.markdown ul>li {
+  line-height: 0;
+}
+
 .markdown ol {
   list-style-type: decimal;
   padding-left: 2rem;
   line-height: 1rem;
 }
+
 
 /* 사용편의성을 위한 팔레트 */
 .palette {
