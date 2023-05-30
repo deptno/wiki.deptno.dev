@@ -33,7 +33,7 @@ export const SearchBar = () => {
       indexName="wiki"
       searchClient={searchClient}
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col text-gray-800">
         <SearchBox/>
         <SubContentPortal>
           <div
