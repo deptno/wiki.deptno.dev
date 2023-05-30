@@ -21,7 +21,7 @@
   background-color: #989719;
   color: #ebdbb2;
   padding: 1rem;
-  line-height: 1rem;
+  line-height: 1.5rem;
   margin: 0;
 }
 .markdown blockquote > p {
@@ -34,8 +34,6 @@
   display: block;
   background-color: #272727;
   color: #bdad93;
-  line-height: .75rem;
-  font-size: .75rem;
   padding: 1rem;
   overflow-x: scroll;
   word-break: keep-all;
@@ -44,11 +42,9 @@
 }
 
 .markdown code.span {
-  font-weight: 100;
   display: inline;
-  color: #989719;
-  line-height: .75rem;
-  font-size: .75rem;
+  background-color: #b16185;
+  color: #3c3735;
   word-break: initial;
   padding: 0 .25rem;
 }
@@ -56,18 +52,21 @@
 .markdown h1 {
   line-height: 2rem;
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 900;
   padding: 1rem 0;
 }
 
 .markdown h2 {
   line-height: 1.75rem;
   font-size: 1.75rem;
+  font-weight: 700;
+  padding: .75rem 0;
 }
 
 .markdown h3 {
   line-height: 1.5rem;
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .markdown h4 {
