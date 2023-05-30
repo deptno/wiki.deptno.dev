@@ -94,10 +94,6 @@
   line-height: 1rem;
 }
 
-.markdown ul>li {
-  line-height: 0;
-}
-
 .markdown ol {
   list-style-type: decimal;
   padding-left: 2rem;
