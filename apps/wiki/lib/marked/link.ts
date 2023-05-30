@@ -1,6 +1,7 @@
 export function link(href: string, title: string, text: string) {
   try {
-    const {protocol} = new URL(href)
+    const url = new URL(href)
+    const { protocol } = url
     const protocolName = protocol.slice(0, -1)
 
     switch (protocol) {
@@ -9,7 +10,13 @@ export function link(href: string, title: string, text: string) {
       case 'https:':
       // fall through
       case 'http:':
-        return `<a href="${href}" target="_blank">[URL] ${text}</a>`
+        const decoded = [
+          url.origin,
+          url.pathname,
+          decodeURIComponent(url.search),
+          decodeURIComponent(url.hash),
+        ].join('')
+        return `<a href="${href}" target="_blank">[URL] ${decoded}</a>`
       default:
         return `<strike href=${href}>[${protocolName}] ${text}</strike>`
     }
