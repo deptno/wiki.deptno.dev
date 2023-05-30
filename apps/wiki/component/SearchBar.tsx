@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { InstantSearch, SearchBox, Hits, Highlight } from 'react-instantsearch-hooks-web'
 import { instantMeiliSearch, InstantMeiliSearchInstance } from '@meilisearch/instant-meilisearch'
 import Link from 'next/link'
+import { SubContentPortal } from './SubContentPortal'
 
 
 export const SearchBar = () => {
@@ -34,12 +35,14 @@ export const SearchBar = () => {
     >
       <div className="flex flex-col">
         <SearchBox/>
-        <div
-          className="absolute top-7 left-0 bg-stone-400 w-full whitespace-pre-wrap break-words break-all text-xs overflow-x-hidden">
-          <div className="overflow-x-scroll">
-            <Hits hitComponent={Hit}/>
+        <SubContentPortal>
+          <div
+            className="whitespace-pre-wrap break-words break-all overflow-hidden">
+            <div className="overflow-scroll">
+              <Hits hitComponent={Hit}/>
+            </div>
           </div>
-        </div>
+        </SubContentPortal>
       </div>
     </InstantSearch>
   )
