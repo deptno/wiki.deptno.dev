@@ -10,25 +10,54 @@
 }
 
 .markdown a {
+  background-color: #ebdbb2;
+  color: #d79920;
   color: #448488;
+  padding: 0 0.25rem;
   text-decoration: underline;
 }
+
+.markdown blockquote {
+  background-color: #989719;
+  color: #ebdbb2;
+  padding: 1rem;
+  line-height: 1rem;
+  margin: 0;
+}
+.markdown blockquote > p {
+  border-left: 4px solid #ebdbb2;;
+  padding-left: 0.5rem;
+}
+
 .markdown code {
   font-weight: 100;
   display: block;
   background-color: #272727;
   color: #bdad93;
-  line-height: 1rem;
-  font-size: 1rem;
+  line-height: .75rem;
+  font-size: .75rem;
   padding: 1rem;
-  word-break: break-all;
-  white-space: pre-wrap;
+  overflow-x: scroll;
+  word-break: keep-all;
+  line-break: normal;
+  white-space: pre;
+}
+
+.markdown code.span {
+  font-weight: 100;
+  display: inline;
+  color: #989719;
+  line-height: .75rem;
+  font-size: .75rem;
+  word-break: initial;
+  padding: 0 .25rem;
 }
 
 .markdown h1 {
   line-height: 2rem;
   font-size: 2rem;
   font-weight: bold;
+  padding: 1rem 0;
 }
 
 .markdown h2 {
