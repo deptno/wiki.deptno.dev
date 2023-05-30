@@ -1,0 +1,5 @@
+@media (min-width: theme('screens.3xl')) {
+  aside.main {
+    left: calc(50vw + 512px)
+  }
+}

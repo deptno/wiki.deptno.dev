@@ -4,6 +4,7 @@ import './md.css'
 import './lg.css'
 import './xl.css'
 import './2xl.css'
+import './3xl.css'
 import React from 'react'
 import Script from 'next/script'
 import { GOOGLE_ANALYTICS_ID, MS_CLARITY_ID } from '../constant'
@@ -44,11 +45,11 @@ export default function RootLayout({ children }: {
   `,
       }}
     />
-    <body className="text-xs md:text-lg md:flex justify-center m-0 md:min-w-md bg-gray-100">
-      <main className="w-full max-w-screen-md md:border border-gray-800 min-h-screen">
+    <body className="text-xs md:text-lg lg:flex justify-center m-0 md:min-w-lg bg-gray-100">
+      <main className="w-full max-w-screen-lg lg:border border-gray-800 min-h-screen">
         {children}
       </main>
-      <aside className="main fixed hidden 2xl:block w-96 p-2 break-words">
+      <aside className="main fixed hidden 3xl:block w-96 p-2 break-words">
         sidebar
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta, earum excepturi iure maiores quibusdam repellat vitae. Accusamus dolorem earum eos, id minus mollitia nisi omnis repellendus sed vel voluptates?
       </aside>
