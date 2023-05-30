@@ -6,7 +6,7 @@ export function link(href: string, title: string, text: string) {
 
     switch (protocol) {
       case 'diary:':
-        return `<a href="/wiki/${href}">[${protocolName}] ${text}</a>`
+        return `<a href="/wiki/${href.replace(':', '/')}">[${protocolName}] ${text}</a>`
       case 'https:':
       // fall through
       case 'http:':
