@@ -1,3 +1,3 @@
 export function blockquote(str) {
-  return `<blockquote>${str}</blockquote>`
+  return `<blockquote>${str.trim()}</blockquote>`
 }
