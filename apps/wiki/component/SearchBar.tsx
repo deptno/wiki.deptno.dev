@@ -51,6 +51,11 @@ const Hit = (props) => {
   const { hit } = props
   const id = Buffer.from(hit.id, 'hex').toString()
 
+  props.hit._highlightResult.content.value = props.hit._highlightResult.content.value
+    .split('\n')
+    .filter((v) => /<mark>/.exec(v))
+    .join('\n')
+
   return (
     <div className="grid grid-cols-[100px_1fr] border-b-2">
       <Link className="font-bold underline text-blue-800" href={`/wiki/${id}`}>
