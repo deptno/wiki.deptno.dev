@@ -90,3 +90,29 @@
   padding-left: 1.25rem;
   line-height: 1.25rem;
 }
+
+/* 사용편의성을 위한 팔레트 */
+.palette {
+  background-color: #ebdbb2;
+  background-color: #272727;
+  background-color: #ebdbb2;
+  background-color: #3c3735;
+  background-color: #bdad93;
+  background-color: #689d69;
+  background-color: #989719;
+  background-color: #d79920;
+  background-color: #b16185;
+  background-color: #448488;
+  background-color: #cc231c;
+  color: #ebdbb2;
+  color: #272727;
+  color: #ebdbb2;
+  color: #3c3735;
+  color: #bdad93;
+  color: #689d69;
+  color: #989719;
+  color: #d79920;
+  color: #b16185;
+  color: #448488;
+  color: #cc231c;
+}
