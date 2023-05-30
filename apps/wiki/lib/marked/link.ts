@@ -12,10 +12,11 @@ export function link(href: string, title: string, text: string) {
       case 'http:':
         const decoded = [
           url.origin,
-          url.pathname,
+          decodeURI(url.pathname),
           decodeURIComponent(url.search),
           decodeURIComponent(url.hash),
         ].join('')
+
         return `<a href="${href}" target="_blank">[URL] ${decoded}</a>`
       default:
         return `<strike href=${href}>[${protocolName}] ${text}</strike>`
