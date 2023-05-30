@@ -1,0 +1,9 @@
+@media (min-width: theme('screens.2xl')) {
+  aside.main {
+    left: calc(50vw + 384px)
+  }
+
+  .markdown h1 {
+    background-color: theme('colors.red.900');
+  }
+}
