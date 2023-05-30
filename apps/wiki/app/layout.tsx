@@ -49,10 +49,6 @@ export default function RootLayout({ children }: {
       <main className="w-full max-w-screen-lg lg:border border-gray-800 min-h-screen">
         {children}
       </main>
-      <aside className="main fixed hidden 3xl:block w-96 p-2 break-words">
-        sidebar
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta, earum excepturi iure maiores quibusdam repellat vitae. Accusamus dolorem earum eos, id minus mollitia nisi omnis repellendus sed vel voluptates?
-      </aside>
     </body>
     </html>
   )
