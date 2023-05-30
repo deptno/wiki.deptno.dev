@@ -3,7 +3,9 @@
     background-color: theme('colors.red.300');
   }
   .markdown ul {
-    padding-left: 1.25rem;
+    line-height: 1.25rem;
+  }
+  .markdown ol {
     line-height: 1.25rem;
   }
 }
