@@ -8,6 +8,7 @@ import './3xl.css'
 import React from 'react'
 import Script from 'next/script'
 import { GOOGLE_ANALYTICS_ID, MS_CLARITY_ID } from '../constant'
+import 'highlight.js/styles/rainbow.css'
 
 export default function RootLayout({ children }: {
   children: React.ReactNode;

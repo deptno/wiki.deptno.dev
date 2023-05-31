@@ -36,8 +36,6 @@
 .markdown code {
   font-weight: 100;
   display: block;
-  background-color: #272727;
-  color: #bdad93;
   padding: 1rem;
   overflow-x: scroll;
   word-break: keep-all;
