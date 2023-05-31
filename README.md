@@ -7,6 +7,8 @@ vimwiki <https://deptno.dev> 의 웹 서빙
 ## 환경 변수
 `value` 는 설정 예제
 ```yaml
+- name: URI_WIKI
+  value: https://github.com/deptno/deptno.github.io/wiki
 - name: DIR_WIKI
   value: /mnt/data
 - name: MEILISEARCH_HOST #meilisearch-updater 에서만 사용

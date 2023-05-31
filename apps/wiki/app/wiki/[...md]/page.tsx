@@ -29,7 +29,7 @@ export default async (props: Props) => {
     return (
       <>
         <Header/>
-        <Markdown data={html}/>
+        <Markdown path={path} data={html}/>
       </>
     )
   } catch (err) {
