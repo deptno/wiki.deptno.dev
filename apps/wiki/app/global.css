@@ -36,7 +36,7 @@
 .markdown code {
   font-weight: 100;
   display: block;
-  padding: 1rem;
+  padding: 0 0.25rem !important;
   overflow-x: scroll;
   word-break: keep-all;
   line-break: normal;
