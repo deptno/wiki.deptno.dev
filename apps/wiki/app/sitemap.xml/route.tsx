@@ -6,16 +6,19 @@ import { getAllMd } from '../../lib/getAllMd'
 export const revalidate = 3600
 export async function GET(req, res) {
   console.info({ ua: req.headers.get('user-agent') })
+
   const list = getAllMd(DIR_WIKI)
-    .map((f) => f.replace(DIR_WIKI, ''))
+    .map((f) => f
+      .replace(DIR_WIKI, '')
+      .slice(0, -3)
+    )
   const stream = new SitemapStream({
     hostname: 'https://deptno.dev',
   })
-
   console.info({ count: list.length })
 
   for (const url of list) {
-    stream.write({ changefreq: 'weekly', url: `/wiki${url}` })
+    stream.write({ changefreq: 'daily', url: `/wiki${url}` })
   }
   stream.end()
 
@@ -24,7 +27,8 @@ export async function GET(req, res) {
   return new Response(sitemap, {
     status: 200,
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
+      'content-type': 'application/xml; charset=utf-8',
+      'cache-control': 'public, max-age=3600',
     },
   })
 }
