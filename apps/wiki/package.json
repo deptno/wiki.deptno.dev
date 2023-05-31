@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@meilisearch/instant-meilisearch": "^0.13.1",
+    "dompurify": "^3.0.3",
+    "jsdom": "^22.1.0",
     "marked": "^5.0.3",
     "next": "^13.4.4",
     "parser-vimwiki": "workspace:^0.0.0",
