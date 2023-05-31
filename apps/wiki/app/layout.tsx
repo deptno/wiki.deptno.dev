@@ -45,7 +45,7 @@ export default function RootLayout({ children }: {
   `,
       }}
     />
-    <body className="text-xs md:text-lg lg:flex justify-center m-0 md:min-w-lg bg-gray-100">
+    <body className="md:text-lg lg:flex justify-center m-0 md:min-w-lg bg-gray-100">
       <main className="w-full max-w-screen-lg lg:border border-gray-800 min-h-screen">
         {children}
       </main>

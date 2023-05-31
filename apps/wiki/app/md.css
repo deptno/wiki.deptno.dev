@@ -1,8 +1,2 @@
 @media (min-width: theme('screens.md')) {
-  .markdown ul {
-    line-height: 1.25rem;
-  }
-  .markdown ol {
-    line-height: 1.25rem;
-  }
 }
