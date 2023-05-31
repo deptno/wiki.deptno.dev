@@ -18,6 +18,8 @@ export async function GET(req, res) {
   console.info({ count: list.length })
 
   for (const url of list) {
+    // @see: https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
+    // TODO: lastModified 추가
     stream.write({ changefreq: 'daily', url: `/wiki${url}` })
   }
   stream.end()
