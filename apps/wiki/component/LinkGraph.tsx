@@ -1,32 +1,46 @@
-import React, { FC } from 'react'
-import { DIR_WIKI } from '../constant'
-import { getGraph } from '../getGraph'
+'use client'
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import ForceGraph, { ForceGraphInstance } from 'force-graph'
 
-// @ts-expect-error
-export const LinkGraph: FC<Props> = async (props) => {
-  const { path  } = props
-  const graph = await getGraph(DIR_WIKI)
-  const ie = graph.getIncomingEdges(path)
-  const oe = graph.getOutgoingEdges(path)
+export const LinkGraph: FC<Props> = (props) => {
+  const { graphData } = props
+  const ref = useRef()
+  const [xl3, setXl3] = useState(globalThis.offsetWidth > 1792)
+  const refGraph = useRef<ForceGraphInstance>(null)
+
+  useLayoutEffect(() => {
+    function updateScaleState() {
+      setXl3(globalThis.innerWidth > 1792)
+    }
+
+    refGraph.current = ForceGraph()
+    updateScaleState()
+    window.addEventListener('resize', updateScaleState)
+
+    return () => {
+      window.removeEventListener('resize', updateScaleState)
+    }
+  }, [])
+  useEffect(() => {
+    if (refGraph.current) {
+      const [width, height] = xl3
+        ? [384, 384]
+        : [1024, 384]
+      refGraph.current(ref.current)
+        .graphData(graphData)
+        .width(width)
+        .height(height)
+    }
+  }, [xl3, refGraph.current])
 
   return (
-    <div className="w-full overflow-x-hidden">
-      <div>from</div>
-      {
-        ie.map((e) => {
-          return <div key={e.target}>{e.source} to {e.target}</div>
-        })
-      }
-      <div>to</div>
-      {
-        oe.map((e) => {
-          return <div key={e.target}>{e.source} to {e.target}</div>
-        })
-      }
+    <div style={{ width: '300px', height: '400px' }} className="w-96 h-80">
+      <div ref={ref}/>
     </div>
+
   )
 }
 
 type Props = {
-  path: string
+  graphData: any
 }
