@@ -1,4 +1,3 @@
-
 export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
   const nodes: Set<N> = new Set()
   const edges: Edge<N>[] = []
@@ -27,7 +26,39 @@ export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
         nodeCount: nodes.size,
         edgeCount: edges.length,
       }
-    }
+    },
+    getLinkGraphData(nodeId: N) {
+      const oe = this.getOutgoingEdges(nodeId)
+      const ie = this.getIncomingEdges(nodeId)
+      const nodes = Array.from(new Set([
+        nodeId,
+        ...oe.map((e) => e.target),
+        ...ie.map((e) => e.source),
+      ]))
+        .map((id) => {
+          if (id === nodeId) {
+            return {
+              id,
+              name: id,
+              val: 10,
+            }
+          }
+
+          return {
+            id,
+            name: id,
+            val: 1,
+          }
+        })
+
+      return {
+        nodes,
+        links: [
+          ...oe,
+          ...ie
+        ],
+      }
+    },
   }
 }
 
@@ -37,7 +68,8 @@ export type Graph<N> = {
   getOutgoingEdges(nodeId: N): readonly Edge<N>[]
   getIncomingEdges(nodeId: N): readonly Edge<N>[]
   getNodes(): readonly N[]
-  getStats(): { nodeCount: number, edgeCount: number}
+  getStats(): { nodeCount: number, edgeCount: number }
+  getLinkGraphData(node: N): { nodes, links }
 }
 type Edge<N> = {
   source: N
