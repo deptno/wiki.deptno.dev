@@ -1,6 +1,6 @@
 import React from 'react'
 import fs from 'node:fs/promises'
-import { createRelativeLinkReplacer, parse } from 'parser-vimwiki'
+import { createRelativeLinkReplacer } from 'parser-vimwiki'
 import { DIR_WIKI } from '../../../constant'
 import { marked } from '../../../lib/marked'
 import { redirect } from 'next/navigation'
@@ -10,20 +10,14 @@ import { Markdown } from '../../../component/Markdown'
 
 export default async (props: Props) => {
   const { md } = props.params
-  const nested = Array.isArray(md)
-  const path = nested
-    ? md.join('/')
-    : md
-  const currentPath = nested
-    ? md.slice(0, -1).join('/')
-    : undefined
-  const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
+  const path = md.join('/')
+  const currentPath = md.slice(0, -1).join('/')
 
   try {
+    const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
     const markdown = await fs.readFile(file)
       .then((buffer) => buffer.toString())
       .then(createRelativeLinkReplacer(currentPath))
-      .then(parse)
     const html = marked(markdown)
 
     return (
@@ -40,9 +34,20 @@ export default async (props: Props) => {
     return <NoPage name={path}/>
   }
 }
-
 type Props = {
   params: {
-    md: string | string[]
+    md: string[]
+  }
+}
+
+export async function generateMetadata({ params }: Props) {
+  const path = params.md.join('/')
+
+  return {
+    openGraph: {
+      locale: 'ko',
+      siteName: 'https://deptno.dev',
+      url: 'https://deptno.dev/wiki/' + path,
+    },
   }
 }
