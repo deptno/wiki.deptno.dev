@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { URL_WIKI } from '../constant'
 import { TOC } from '../lib/TOC'
+import { LinkGraph } from './LinkGraph'
 
 export const Markdown: FC<Props> = (props) => {
   const { data, path = '' } = props
@@ -14,6 +15,7 @@ export const Markdown: FC<Props> = (props) => {
             <a className="underline border-l-blue-800" href={`${URL_WIKI}/${path}/_history`} target="_blank">기록</a>
           </div>}
           <TOC html={data}/>
+          <LinkGraph path={path}/>
         </aside>
       </div>
       <pre
