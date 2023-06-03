@@ -41,7 +41,6 @@ export function useForceGraphLayoutEffect(elementRef: RefObject<HTMLElement>, gr
 
 
     const options = getOptions()
-    console.log('draw')
     draw({ element, graphData, options }).then((instance) => {
       refGraph = instance
 
