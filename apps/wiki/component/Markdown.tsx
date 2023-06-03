@@ -3,6 +3,7 @@ import { URL_WIKI } from '../constant'
 import { TOC } from '../lib/TOC'
 import { LinkGraph } from './LinkGraph'
 import { getGraph } from '../getGraph'
+import { LinkList } from './LinkList'
 
 // @ts-ignore
 export const Markdown: FC<Props> = async (props) => {
@@ -19,6 +20,7 @@ export const Markdown: FC<Props> = async (props) => {
             <a className="underline border-l-blue-800" href={`${URL_WIKI}/${path}/_history`} target="_blank">기록</a>
           </div>}
           <TOC html={data}/>
+          <LinkList graphData={g}/>
           <LinkGraph graphData={g}/>
         </aside>
       </div>

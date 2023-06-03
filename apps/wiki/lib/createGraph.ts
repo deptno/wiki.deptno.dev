@@ -1,15 +1,23 @@
 export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
   const nodes: Set<N> = new Set()
+  const nodeMap: Map<N, number> = new Map()
   const edges: Edge<N>[] = []
 
   return {
     addNode(node: N) {
+      if (!nodeMap.get(node)) {
+        nodeMap.set(node, 1)
+      }
+
       if (nodes.has(node)) {
         return
       }
       nodes.add(node)
     },
     addEdge(edge: Edge<N>) {
+      const n = nodeMap.get(edge.source) ?? 0
+      nodeMap.set(edge.source, n + 1)
+
       edges.push(edge)
     },
     getOutgoingEdges(nodeId: N): readonly Edge<N>[] {
@@ -40,14 +48,14 @@ export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
             return {
               id,
               name: id,
-              val: 10,
+              val: nodeMap.get(id),
             }
           }
 
           return {
             id,
             name: id,
-            val: 1,
+            val: nodeMap.get(id),
           }
         })
 
