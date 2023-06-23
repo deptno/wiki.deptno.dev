@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation'
 import { Header } from '../../../component/Header'
 import { NoPage } from '../../../component/NoPage'
 import { Markdown } from '../../../component/Markdown'
+import { MarkdownAside } from '../../../component/MarkdownAside'
 
 export default async (props: Props) => {
   const { md } = props.params
@@ -23,7 +24,9 @@ export default async (props: Props) => {
     return (
       <>
         <Header/>
-        <Markdown path={path} data={html}/>
+        <Markdown data={html}>
+          <MarkdownAside data={html} path={path} />
+        </Markdown>
       </>
     )
   } catch (err) {
