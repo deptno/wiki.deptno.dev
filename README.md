@@ -21,8 +21,9 @@ vimwiki <https://deptno.dev> 의 웹 서빙
 
 ## 실행
 ### 로컬 실행
+kubernetes 에서 port-forward 를 해두어야한다
 ```shell
-MEILISEARCH_HOST=localhost:7700 DIR_WIKI=/path/to/vimwiki pnpm dev
+NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 DIR_WIKI=/path/to/vimwiki pnpm dev
 ```
 ### 다커 테스트
 ```sh
