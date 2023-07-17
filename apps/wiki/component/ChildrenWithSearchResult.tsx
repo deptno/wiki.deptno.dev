@@ -1,6 +1,5 @@
 import React, { FC, ReactNode } from 'react'
 
-// @ts-ignore
 export const ChildrenWithSearchResult: FC<Props> = (props) => {
   const { children } = props
 
