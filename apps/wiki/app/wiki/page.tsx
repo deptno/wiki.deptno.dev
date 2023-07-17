@@ -5,7 +5,7 @@ import { DIR_WIKI } from '../../constant'
 import { marked } from '../../lib/marked'
 import { Markdown } from '../../component/Markdown'
 import { Header } from '../../component/Header'
-import { MarkdownAside } from '../../component/MarkdownAside'
+import { ChildrenWithSearchResult } from '../../component/ChildrenWithSearchResult'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
@@ -18,6 +18,7 @@ export default async (props: Props) => {
     return (
       <>
         <Header />
+        <ChildrenWithSearchResult/>
         <Markdown data={html}/>
       </>
     )

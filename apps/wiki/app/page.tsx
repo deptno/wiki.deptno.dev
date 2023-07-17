@@ -4,6 +4,7 @@ import { getAllMd } from '../lib/getAllMd'
 import { DIR_WIKI } from '../constant'
 import { Header } from '../component/Header'
 import { Markdown } from '../component/Markdown'
+import { ChildrenWithSearchResult } from '../component/ChildrenWithSearchResult'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
@@ -13,6 +14,7 @@ export default async (props: Props) => {
     return (
       <>
         <Header/>
+        <ChildrenWithSearchResult/>
         <div className="p-4 text-lg">wikis</div>
         <Markdown data={marked('- [/wiki](/)')}/>
         <div className="p-4 text-lg">files</div>
