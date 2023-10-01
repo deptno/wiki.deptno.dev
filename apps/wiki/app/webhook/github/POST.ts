@@ -7,7 +7,10 @@ export async function POST(request: NextRequest, { params }: Params) {
     .then((payload) => {
       console.debug('json', payload)
 
-      if (payload.ref === 'refs/heads/main') {
+      if (
+        payload.ref === 'refs/heads/main'
+        || payload.ref === 'refs/heads/master'
+      ) {
         restart()
       }
     })
