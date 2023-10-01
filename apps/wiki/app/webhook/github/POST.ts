@@ -5,13 +5,15 @@ export async function POST(request: NextRequest, { params }: Params) {
   console.debug({ file, params })
   request.json()
     .then((payload) => {
-      console.debug('json', payload)
+      if (payload) {
+        console.debug('github webhook payload: ', payload)
 
-      if (
-        payload.ref === 'refs/heads/main'
-        || payload.ref === 'refs/heads/master'
-      ) {
-        restart()
+        if (payload.ref === 'refs/heads/main') { // push deptno
+          restart()
+        }
+        if (payload.pages) { // push wiki
+          restart()
+        }
       }
     })
 
