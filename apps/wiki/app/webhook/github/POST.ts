@@ -36,7 +36,7 @@ NAMESPACE=\$(cat \${SERVICEACCOUNT}/namespace) \
 TOKEN=\$(cat \${SERVICEACCOUNT}/token) \
 CACERT=\${SERVICEACCOUNT}/ca.crt \
 DEPLOYMENT=deptno-dev \
-; curl -s --cacert \${CACERT} -X PATCH -H "Authorization: Bearer \${TOKEN}" -H "Content-Type: application/strategic-merge-patch+json" --data "{\\"spec\\":{\\"template\\":{\\"metadata\\":{\\"annotations\\":{\\"kubectl.kubernetes.io/restartedAt\\":\\"\\$(date '+%Y-%m-%dT%H:%M:%S%:z')\\"}}}}}" \${APISERVER}/apis/apps/v1/namespaces/\${NAMESPACE}/deployments/\${DEPLOYMENT}`, (error, stdout, stderr) => {
+; curl -s --cacert \${CACERT} -X PATCH -H "Authorization: Bearer \${TOKEN}" -H "Content-Type: application/strategic-merge-patch+json" --data "{\\"spec\\":{\\"template\\":{\\"metadata\\":{\\"annotations\\":{\\"kubectl.kubernetes.io/restartedAt\\":\\"\$(date '+%Y-%m-%dT%H:%M:%S%:z')\\"}}}}}" \${APISERVER}/apis/apps/v1/namespaces/\${NAMESPACE}/deployments/\${DEPLOYMENT}`, (error, stdout, stderr) => {
       if (error) {
         return console.error(`command error: ${error}`);
       }
