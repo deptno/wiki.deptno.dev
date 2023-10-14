@@ -7,7 +7,7 @@
 `value` 는 설정 예제
 ```yaml
 - name: URI_WIKI
-  value: https://github.com/deptno/deptno.github.io/wiki
+  value: https://github.com/deptno/public-wiki
 - name: DIR_WIKI
   value: /mnt/data
 - name: NEXT_PUBLIC_MEILISEARCH_HOST #meilisearch-updater 에서만 사용
