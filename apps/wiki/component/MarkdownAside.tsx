@@ -6,8 +6,7 @@ import { getGraph } from '../getGraph'
 import { LinkList } from './LinkList'
 import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 
-// @ts-ignore
-export const MarkdownAside: FC<Props> = async (props) => {
+export const MarkdownAside: FC<Props> = (props) => {
   const { data, path = '' } = props
   const graph = getGraph()
   const g = graph.getLinkGraphData(path)
