@@ -9,7 +9,7 @@ import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 // @ts-ignore
 export const MarkdownAside: FC<Props> = async (props) => {
   const { data, path = '' } = props
-  const graph = await getGraph()
+  const graph = getGraph()
   const g = graph.getLinkGraphData(path)
   const branch = GIT_BRANCH
 
