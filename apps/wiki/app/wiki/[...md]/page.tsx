@@ -10,7 +10,7 @@ import { Markdown } from '../../../component/Markdown'
 import { MarkdownAside } from '../../../component/MarkdownAside'
 
 export default async (props: Props) => {
-  const { md } = props.params
+  const md = props.params.md.map(decodeURIComponent)
   const path = md.join('/')
   const currentPath = md.slice(0, -1).join('/')
 
@@ -44,7 +44,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const path = params.md.join('/')
+  const path = params.md.map(decodeURIComponent).join('/')
 
   return {
     openGraph: {
