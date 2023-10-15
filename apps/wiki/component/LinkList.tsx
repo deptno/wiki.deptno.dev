@@ -9,11 +9,11 @@ export const LinkList: FC<Props> = (props) => {
       {graphData.nodes.map((n) => {
         return (
           <span>
-              <Link className="text-blue-600" key={n.id} href={`/wiki/${n.id}`}>
-                <span className="underline">{n.name}</span>
-                <sup>{n.val}</sup>
-              </Link>
-            </span>
+            <Link className="text-blue-600" key={n.id} href={`/wiki/${n.id}`}>
+              <span className="underline">{n.name}</span>
+              <sup>{n.val}</sup>
+            </Link>
+          </span>
         )
       })}
     </div>
