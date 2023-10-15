@@ -3,3 +3,4 @@ export const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
 export const MS_CLARITY_ID = process.env.NEXT_PUBLIC_MS_CLARITY_ID
 export const URL_WIKI = process.env.URL_WIKI
 export const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT
+export const GIT_BRANCH = process.env.GIT_BRANCH ?? 'main'
