@@ -3,7 +3,7 @@ import { getAllMd } from './getAllMd.mjs'
 
 export const getMarkdownFiles = async (dir: string) => {
   const files = getAllMd(dir)
-  const contents = files.map((md) => {
+  const contents = files.map((md: string) => {
     const name = md
       .replace(`${dir}/`, '')
       .slice(0, -3)
