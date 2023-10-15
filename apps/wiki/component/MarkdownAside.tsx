@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { URL_WIKI } from '../constant'
+import { GIT_BRANCH, URL_WIKI } from '../constant'
 import { TOC } from '../lib/TOC'
 import { LinkGraph } from './LinkGraph'
 import { getGraph } from '../getGraph'
@@ -11,6 +11,7 @@ export const MarkdownAside: FC<Props> = async (props) => {
   const { data, path = '' } = props
   const graph = await getGraph()
   const g = graph.getLinkGraphData(path)
+  const branch = GIT_BRANCH
 
   return (
     <div className="p-2">

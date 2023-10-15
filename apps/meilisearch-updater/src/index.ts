@@ -1,10 +1,10 @@
 import { MeiliSearch } from 'meilisearch'
 import { getMarkdownFiles } from './getMarkdownFiles.mjs'
-import { INDEX } from './constant.mjs'
+import { DIR_WIKI, INDEX, NEXT_PUBLIC_MEILISEARCH_HOST } from './constant.mjs'
 
 try {
-  const contents = await getMarkdownFiles(process.env.DIR_WIKI)
-  const ms = new MeiliSearch({ host: process.env.NEXT_PUBLIC_MEILISEARCH_HOST })
+  const contents = await getMarkdownFiles(DIR_WIKI)
+  const ms = new MeiliSearch({ host: NEXT_PUBLIC_MEILISEARCH_HOST })
   await ms.deleteIndexIfExists(INDEX)
     .then((task) => console.info({ task }, 'deleteIndexIfExists'))
   await ms
