@@ -1,23 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { exec } from 'node:child_process'
+import { GIT_BRANCH } from '../../../constant'
 
 export async function POST(request: NextRequest, { params }: Params) {
   console.debug({ file, params })
-  request.json()
+
+  return request.json()
     .then((payload) => {
       if (payload) {
         console.debug('github webhook payload: ', payload)
 
-        if (payload.ref === 'refs/heads/main') { // push deptno
-          restart()
-        }
-        if (payload.pages) { // push wiki
+        if (payload.ref === `refs/heads/${GIT_BRANCH}`) { // push deptno
           restart()
         }
       }
     })
-
-  return NextResponse.json({ message: 'ok' }, { status: 200 })
+    .catch((e) => {
+      console.error('error: ', e)
+    })
+    .then(() => {
+      return NextResponse.json({ message: 'ok' }, { status: 200 })
+    })
 }
 
 type Params = {
