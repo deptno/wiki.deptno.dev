@@ -10,7 +10,7 @@
   value: https://github.com/deptno/public-wiki
 - name: DIR_WIKI
   value: /mnt/data
-- name: NEXT_PUBLIC_MEILISEARCH_HOST #meilisearch-updater 에서만 사용
+- name: NEXT_PUBLIC_MEILISEARCH_HOST # meilisearch-updater 에서만 사용
   value: localhost:7700
 - name: NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
   value: G-XXXXXXXXXX
@@ -21,9 +21,12 @@
 ## 실행
 
 ### 로컬 실행
-kubernetes 에서 port-forward 를 해두어야한다
-```shell
-NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 DIR_WIKI=/path/to/vimwiki pnpm dev
+```sh
+# kubernetes 에서 port-forward 를 해두어야한다
+NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 \
+URL_WIKI=https://github.com/deptno/public-wiki \
+DIR_WIKI=/path/to/vimwiki \
+pnpm dev
 ```
 
 ### 다커 테스트
