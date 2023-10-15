@@ -4,25 +4,23 @@
 - 런타임에 `/mnt/data` 에 vimwiki 가 마운트 되어 있어야 실행 가능
 
 ## 환경 변수
-`value` 는 설정 예제
-```yaml
-- name: URI_WIKI
-  value: https://github.com/deptno/public-wiki
-- name: DIR_WIKI
-  value: /mnt/data
-- name: NEXT_PUBLIC_MEILISEARCH_HOST # meilisearch-updater 에서만 사용
-  value: localhost:7700
-- name: NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
-  value: G-XXXXXXXXXX
-- name: NEXT_PUBLIC_MS_CLARITY_ID
-  value: xxxxxxxxxx
-```
+> 필수: m
+> 선택: o
+| env                             | 설명             | wiki | meilisearch-updater |
+|---------------------------------|------------------|------|---------------------|
+| URI_WIKI                        | github url       | o    |                     |
+| DIR_WIKI                        | /path/to/vimwiki | m    | m                   |
+| NEXT_PUBLIC_GIT_BRANCH          | default 'main'   | o    |                     |
+| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX     | o    |                     |
+| NEXT_PUBLIC_MEILISEARCH_HOST    | localhost:7700   | o    | m                   |
+| NEXT_PUBLIC_MS_CLARITY_ID       | xxxxxxxxxx       | o    |                     |
 
 ## 실행
 
 ### 로컬 실행
 ```sh
-# kubernetes 에서 port-forward 를 해두어야한다
+# NEXT_PUBLIC_MEILISEARCH_HOST: 실행되는 서버의 위치 지정
+# DIR_WIKI: 는 URL_WIKI 의 클론된 위치를 지정한다
 NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 \
 URL_WIKI=https://github.com/deptno/public-wiki \
 DIR_WIKI=/path/to/vimwiki \
