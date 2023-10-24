@@ -33,12 +33,12 @@ type Props = {
   }
 }
 
-const getData = cache((dir) => {
+const getData = cache((dir: string) => {
   const files = getAllMd(dir)
 
   return files
-    .map((f) => f.replace(dir, '').slice(0, -3))
-    .reduce((markdowns, file) => {
+    .map((f: string) => f.replace(dir, '').slice(0, -3))
+    .reduce((markdowns: string[], file: string) => {
       return [
         ...markdowns,
         `- [${file}](${file})`,

@@ -40,8 +40,8 @@ export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
       const ie = this.getIncomingEdges(nodeId)
       const nodes = Array.from(new Set([
         nodeId,
-        ...oe.map((e) => e.target),
-        ...ie.map((e) => e.source),
+        ...oe.map((e: Edge<N>) => e.target),
+        ...ie.map((e: Edge<N>) => e.source),
       ]))
         .map((id) => {
           if (id === nodeId) {
