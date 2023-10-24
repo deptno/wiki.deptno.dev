@@ -20,9 +20,9 @@ export const MarkdownAside: FC<Props> = (props) => {
           <a className="underline border-l-blue-800" href={`${URL_WIKI}/commits/${branch}/${path}.md`} target="_blank">기록</a>
           <a className="underline border-l-blue-800" href={`${URL_WIKI}/blame/${branch}/${path}.md`} target="_blank">추적</a>
         </div>}
+        <LinkGraph graphData={g}/>
         <TOC html={data}/>
         <LinkList graphData={g}/>
-        <LinkGraph graphData={g}/>
       </ChildrenWithSearchResult>
     </div>
   )
