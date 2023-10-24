@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import { join, extname } from 'node:path'
 
-export function getAllMd(rootDir: string) {
+export function getAllMd(rootDir: string): string[] {
   const files = fs.readdirSync(rootDir, {
     withFileTypes: true,
   })
