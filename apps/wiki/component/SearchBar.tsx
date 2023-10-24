@@ -5,7 +5,6 @@ import { instantMeiliSearch, InstantMeiliSearchInstance } from '@meilisearch/ins
 import Link from 'next/link'
 import { SubContentPortal } from './SubContentPortal'
 
-
 export const SearchBar = () => {
   const [searchClient, setSearchClient] = useState<InstantMeiliSearchInstance>()
 
@@ -57,11 +56,11 @@ const Hit = (props) => {
     .join('\n')
 
   return (
-    <div className="grid grid-cols-[100px_1fr] border-b-2">
-      <Link className="font-bold underline text-blue-800" href={`/wiki/${id}`}>
+    <div className="grid grid-cols-1 md:grid-cols-[150px_1fr] border-b-2" key={id}>
+      <Link className="underline text-blue-800" href={`/wiki/${id}`}>
         {id}
       </Link>
-      <div className="flex-1">
+      <div className="flex-1 italic">
         <Highlight attribute="content" hit={hit}/>
       </div>
     </div>
