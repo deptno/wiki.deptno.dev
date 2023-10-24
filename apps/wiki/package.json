@@ -17,7 +17,7 @@
     "marked": "^5.0.3",
     "marked-gfm-heading-id": "^3.0.3",
     "marked-highlight": "^2.0.1",
-    "next": "^13.4.4",
+    "next": "^13.5.6",
     "parser-vimwiki": "workspace:^0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,7 +25,6 @@
     "ui": "workspace:*"
   },
   "devDependencies": {
-    "@types/force-graph": "^1.26.1",
     "@types/jsdom": "^21.1.1",
     "@types/node": "20",
     "@types/react": "^18.2.5",

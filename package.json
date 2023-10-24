@@ -6,7 +6,7 @@
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "turbo": "^1.9.7"
+    "turbo": "^1.10.16"
   },
   "packageManager": "pnpm@7.15.0",
   "name": "deptno.dev"
