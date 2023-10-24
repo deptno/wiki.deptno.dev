@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllMd } from '../lib/getAllMd'
-import { DIR_WIKI } from '../constant'
+import { DIR_WIKI, ENDPOINT } from '../constant'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return getAllMd(DIR_WIKI)
@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
     .map((url) => {
       return {
-        url: `https://deptno.dev/wiki${url}`,
+        url: `${ENDPOINT}/wiki${url}`,
         lastModified: new Date(),
       }
     })

@@ -17,14 +17,15 @@
 
 ## 실행
 
-### 로컬 실행
+### 로컬 실행 및 빌드
 ```sh
 # NEXT_PUBLIC_MEILISEARCH_HOST: 실행되는 서버의 위치 지정
 # DIR_WIKI: 는 URL_WIKI 의 클론된 위치를 지정한다
 NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 \
+NEXT_PUBLIC_ENDPOINT=https://deptno.dev \
 URL_WIKI=https://github.com/deptno/public-wiki \
 DIR_WIKI=/path/to/vimwiki \
-pnpm dev
+pnpm dev # or pnpm build
 ```
 
 ### 다커 테스트
