@@ -7,6 +7,7 @@ import { DIR_WIKI } from './constant'
 import { getNameFromLink } from './lib/getNameFromLink'
 import { getVimwikiLinkBaseName } from './lib/getVimwikiLinkBaseName'
 import { getMakrdownLinkBaseName } from './lib/getMarkdownLinkBaseName'
+import { handleVimwikiPrefix } from './lib/handleVimwikiPrefix'
 
 export const getGraph = () => {
   if (_cache.current) {
@@ -36,6 +37,8 @@ export const getGraph = () => {
         ...vimwikiLinks,
         ...markdownLinks,
       ]
+        .map(handleVimwikiPrefix)
+        .filter(Boolean)
 
       return {
         source,
