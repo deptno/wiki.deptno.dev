@@ -1,10 +1,12 @@
 import { createGraph, Graph } from './lib/createGraph'
-import { dirname, join } from 'node:path'
+import { join } from 'node:path'
 import { getAllMd } from './lib/getAllMd'
 import { RE_MARKDOWN_LINK, RE_VIMWIKI_LINK } from 'parser-vimwiki/constant'
 import { readFileSync } from 'fs'
 import { DIR_WIKI } from './constant'
 import { getNameFromLink } from './lib/getNameFromLink'
+import { getVimwikiLinkBaseName } from './lib/getVimwikiLinkBaseName'
+import { getMakrdownLinkBaseName } from './lib/getMarkdownLinkBaseName'
 
 export const getGraph = () => {
   if (_cache.current) {
@@ -17,11 +19,19 @@ export const getGraph = () => {
       const markdown = readFileSync(filepath).toString()
       const source = filepath.replace(`${DIR_WIKI}/`, '').slice(0, -3)
       const vimwikiLinks = (markdown.match(RE_VIMWIKI_LINK) ?? [])
-        .map((l: string) => l.replace(RE_VIMWIKI_LINK, getNameFromLink))
-        .map((l) => join(dirname(source), l))
+        .map((l: string) => {
+          return join(
+            getVimwikiLinkBaseName(source, l),
+            l.replace(RE_VIMWIKI_LINK, getNameFromLink)
+          )
+        })
       const markdownLinks = (markdown.match(RE_MARKDOWN_LINK) ?? [])
-        .map((l: string) => l.replace(RE_MARKDOWN_LINK, getNameFromLink))
-        .map((l) => join(dirname(source), l))
+        .map((l: string) => {
+          return join(
+            getMakrdownLinkBaseName(source, l),
+            l.replace(RE_MARKDOWN_LINK, getNameFromLink)
+          )
+        })
       const links = [
         ...vimwikiLinks,
         ...markdownLinks,
