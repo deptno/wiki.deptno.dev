@@ -21,8 +21,8 @@ export const MarkdownAside: FC<Props> = (props) => {
           <a className="underline border-l-blue-800" href={`${URL_WIKI}/blame/${branch}/${path}.md`} target="_blank">추적</a>
         </div>}
         <LinkGraph graphData={g}/>
-        <TOC html={data}/>
         <LinkList graphData={g}/>
+        <TOC html={data}/>
       </ChildrenWithSearchResult>
     </div>
   )
