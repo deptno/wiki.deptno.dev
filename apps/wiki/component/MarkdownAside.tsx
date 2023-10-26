@@ -15,11 +15,11 @@ export const MarkdownAside: FC<Props> = (props) => {
   return (
     <div className="p-2">
       <ChildrenWithSearchResult>
-        {!path.includes('/') && <div className="flex justify-end gap-2 border-b-2">
+        <div className="flex justify-end gap-2 border-b-2">
           <a className="underline border-l-blue-400" href={`${URL_WIKI}/edit/${branch}/${path}.md`} target="_blank">수정</a>
           <a className="underline border-l-blue-800" href={`${URL_WIKI}/commits/${branch}/${path}.md`} target="_blank">기록</a>
           <a className="underline border-l-blue-800" href={`${URL_WIKI}/blame/${branch}/${path}.md`} target="_blank">추적</a>
-        </div>}
+        </div>
         <LinkGraph graphData={g}/>
         <LinkList graphData={g}/>
         <TOC html={data}/>
