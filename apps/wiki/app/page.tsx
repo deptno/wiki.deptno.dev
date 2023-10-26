@@ -5,20 +5,23 @@ import { DIR_WIKI } from '../constant'
 import { Header } from '../component/Header'
 import { Markdown } from '../component/Markdown'
 import { ChildrenWithSearchResult } from '../component/ChildrenWithSearchResult'
+import { getLastModifiedFiles } from '../lib/getLastModifiedFiles'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
-  const list = getData(DIR_WIKI)
+  const { files, lastModified } = getData(DIR_WIKI)
 
   try {
     return (
       <>
         <Header/>
         <ChildrenWithSearchResult/>
-        <div className="p-4 text-lg">wikis</div>
-        <Markdown data={marked('- [/wiki](/)')}/>
+        <div className="p-4 text-lg">위키</div>
+        <Markdown data={marked('- [public-wiki](/)')}/>
+        <div className="p-4 text-lg">최근 수정</div>
+        <Markdown data={marked(lastModified)}/>
         <div className="p-4 text-lg">files</div>
-        <Markdown data={marked(list)}/>
+        <Markdown data={marked(files)}/>
       </>
     )
   } catch (err) {
@@ -34,15 +37,22 @@ type Props = {
 }
 
 const getData = cache((dir: string) => {
+  const toMarkdown = (files: string[]) => {
+    return files
+      .map((f: string) => f.replace(dir, '').slice(0, -3))
+      .reduce((markdowns: string[], file: string) => {
+        return [
+          ...markdowns,
+          `- [${file}](${file})`,
+        ]
+      }, [])
+      .join('\n')
+  }
   const files = getAllMd(dir)
+  const lastModified = getLastModifiedFiles({ rootDir: dir }).slice(0, 40)
 
-  return files
-    .map((f: string) => f.replace(dir, '').slice(0, -3))
-    .reduce((markdowns: string[], file: string) => {
-      return [
-        ...markdowns,
-        `- [${file}](${file})`,
-      ]
-    }, [])
-    .join('\n')
+  return {
+    files: toMarkdown(files),
+    lastModified: toMarkdown(lastModified),
+  }
 })
