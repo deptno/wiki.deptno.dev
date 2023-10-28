@@ -1,45 +1,23 @@
-import fs from 'node:fs'
-import { join, extname } from 'node:path'
+import { execSync } from 'node:child_process'
+import { DIR_DIARY, DIR_WIKI } from '../constant'
 
-export function getLastModifiedFiles(args: Args): string[] {
-  const { rootDir, subDir, _inLoop } = args
-  const all = fs.readdirSync(rootDir, { withFileTypes: true })
-  const md = all
-    .filter((f) => f.isFile())
-    .filter((f) => extname(f.name) === '.md')
-    .map((f) => `${rootDir}/${f.name}`)
-  const subDirAllMd = subDir
-    ? all
-        .filter((f) => f.isDirectory())
-        .filter((f) => !f.name.startsWith('.'))
-        .flatMap((d) => getLastModifiedFiles({
-          rootDir: join(rootDir, d.name),
-          _inLoop: true,
-          subDir,
-        }))
-    : []
-  const ret = [
-    ...md,
-    ...subDirAllMd
-  ]
+export function getLastModifiedFiles(): string[] {
+  const command = `
+git -C ${DIR_WIKI} diff $(git -C ${DIR_WIKI} log --since="30 days ago" --pretty=format:"%H" | tail -1).. --stat |
+sed '$d' |
+awk -F'|' '{ print $2 $1 }' |
+sort -nr |
+awk '{ print $1 " " $3 " " $4 " " $5 }'`
+  const result = execSync(command).toString()
+  const handleAwkResult = (l: string): [number, string] => {
+    const [modifiedLineCount, ...rest] = l.split(' ')
 
-  if (_inLoop) {
-    return ret
+    return [ Number(modifiedLineCount), rest.reverse().find(Boolean) ]
   }
 
-  return ret
-    .map((name) => {
-      return {
-        name,
-        time: fs.statSync(name).mtime.getTime(),
-      }
-    })
-    .sort((a, b) => b.time - a.time)
-    .map((f) => f.name)
-}
-
-type Args = {
-  rootDir: string
-  subDir?: boolean
-  _inLoop?: boolean
+  return result.split('\n')
+    .map(handleAwkResult)
+    .filter((v) => v[0] > 0)
+    .map((v) => v[1])
+    .filter((v) => !v.startsWith(`${DIR_DIARY}/`))
 }

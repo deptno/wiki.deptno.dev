@@ -49,7 +49,7 @@ const getData = cache((dir: string) => {
       .join('\n')
   }
   const files = getAllMd(dir)
-  const lastModified = getLastModifiedFiles({ rootDir: dir }).slice(0, 40)
+  const lastModified = getLastModifiedFiles()
 
   return {
     files: toMarkdown(files),
