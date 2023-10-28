@@ -26,7 +26,13 @@ export const getGraph = () => {
             l.replace(RE_VIMWIKI_LINK, getNameFromLink)
           )
         })
-      const markdownLinks = (markdown.match(RE_MARKDOWN_LINK) ?? [])
+      const markdownLinks = (
+        markdown
+           // vimwiki markdown 설정에서 enter 를 치면 `-` 대신 space가 이름에 입력됨
+          .replace(/ /g, '-')
+          .match(RE_MARKDOWN_LINK)
+        ?? []
+      )
         .map((l: string) => {
           return join(
             getMakrdownLinkBaseName(source, l),
