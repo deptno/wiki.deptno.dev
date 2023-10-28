@@ -1,4 +1,5 @@
 export const DIR_WIKI = process.env.DIR_WIKI
+export const DIR_DIARY = process.env.DIR_DIARY ?? 'diary'
 export const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT
 export const GIT_BRANCH = process.env.NEXT_PUBLIC_GIT_BRANCH ?? 'main'
 export const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
