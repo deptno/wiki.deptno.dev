@@ -10,6 +10,7 @@
 |---------------------------------|------------------|------|---------------------|
 | URI_WIKI                        | github url       | o    |                     |
 | DIR_WIKI                        | /path/to/vimwiki | m    | m                   |
+| DIR_DIARY                       | diary dirrectory | o    |                     |
 | NEXT_PUBLIC_GIT_BRANCH          | default 'main'   | o    |                     |
 | NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX     | o    |                     |
 | NEXT_PUBLIC_MEILISEARCH_HOST    | localhost:7700   | o    | m                   |
@@ -21,6 +22,7 @@
 ```sh
 # NEXT_PUBLIC_MEILISEARCH_HOST: 실행되는 서버의 위치 지정
 # DIR_WIKI: 는 URL_WIKI 의 클론된 위치를 지정한다
+# DIR_DIARY: custom diary path 를 사용하는 경우 입력한다. default = diary
 NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 \
 NEXT_PUBLIC_ENDPOINT=https://deptno.dev \
 URL_WIKI=https://github.com/deptno/public-wiki \
