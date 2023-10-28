@@ -1,11 +1,11 @@
 import { MetadataRoute } from 'next'
 import { getAllMd } from '../lib/getAllMd'
-import { DIR_WIKI, ENDPOINT } from '../constant'
+import { DIR_DIARY, DIR_WIKI, ENDPOINT } from '../constant'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return getAllMd(DIR_WIKI)
     .filter((url) => {
-      return !url.startsWith(`${DIR_WIKI}/diary`)
+      return !url.startsWith(`${DIR_WIKI}/${DIR_DIARY}`)
     })
     .map((url) => {
       return url
