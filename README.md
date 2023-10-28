@@ -7,7 +7,7 @@
 > 필수: m
 > 선택: o
 
-| env                             | 설명             | wiki | meilisearch-updater [|](|)
+| env                             | 설명             | wiki | meilisearch-updater |
 |---------------------------------|------------------|------|---------------------|
 | URI_WIKI                        | github url       | o    |                     |
 | DIR_WIKI                        | /path/to/vimwiki | m    | m                   |
