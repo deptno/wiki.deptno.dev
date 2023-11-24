@@ -3,6 +3,7 @@ import { SearchBar } from './SearchBar'
 import { Breadcrumbs } from './Breadcrumbs'
 import { GitRevision } from './GitRevision'
 import { FrontendRepoHeaderLink } from './FrontendRepoHeaderLink'
+import { MeHeaderLink } from './MeHeaderLink'
 
 export const Header: FC<Props> = (props) => {
   return (
@@ -11,6 +12,7 @@ export const Header: FC<Props> = (props) => {
       <GitRevision/>
       <Breadcrumbs/>
       <div className="ml-auto"/>
+      <MeHeaderLink/>
       <SearchBar/>
     </header>
   )
