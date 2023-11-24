@@ -9,7 +9,8 @@
 
 | env                             | 설명             | wiki | meilisearch-updater |
 |---------------------------------|------------------|------|---------------------|
-| URI_WIKI                        | github url       | o    |                     |
+| URL_WIKI                        | github url       | o    |                     |
+| URL_ME                          | 자기소개 페이지  | o    |                     |
 | DIR_WIKI                        | /path/to/vimwiki | m    | m                   |
 | DIR_DIARY                       | diary dirrectory | o    |                     |
 | NEXT_PUBLIC_GIT_BRANCH          | default 'main'   | o    |                     |
