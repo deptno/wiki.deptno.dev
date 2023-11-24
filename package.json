@@ -8,6 +8,6 @@
   "devDependencies": {
     "turbo": "^1.10.16"
   },
-  "packageManager": "pnpm@7.15.0",
+  "packageManager": "pnpm@8.9.2",
   "name": "deptno.dev"
 }
