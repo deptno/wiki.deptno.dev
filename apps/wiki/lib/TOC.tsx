@@ -12,7 +12,7 @@ export const TOC: FC<Props> = (props) => {
     <div>
       {
         headers.map((h) => {
-          const n = +h.tagName.slice(1) * 2
+          const n = (+h.tagName.slice(1) - 1) * 2
           const anchor = slugger.slug(h.textContent)
 
           return (
