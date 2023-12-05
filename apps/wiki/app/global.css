@@ -69,21 +69,25 @@
   line-height: 1.5rem;
   font-size: 1.5rem;
   font-weight: 600;
+  padding: .5rem 0;
 }
 
 .markdown h4 {
   line-height: 1.25rem;
   font-size: 1.25rem;
+  padding: .25rem 0;
 }
 
 .markdown h5 {
   line-height: 1rem;
   font-size: 1rem;
+  padding: .25rem 0;
 }
 
 .markdown h6 {
   line-height: 1rem;
   font-size: 1rem;
+  padding: .25rem 0;
 }
 
 .markdown ul {
