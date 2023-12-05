@@ -104,6 +104,25 @@
   gap: 4px;
 }
 
+.markdown table {
+  overflow-x: auto;
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  padding: 1rem 0;
+}
+
+.markdown thead {
+  font-weight: bold;
+  background-color: #ebdbb2;
+}
+.markdown table tbody tr:nth-child(odd) {
+  background-color: #eeeeee;
+}
+.markdown table tbody tr:nth-child(even) {
+  background-color: #e3e3e3;
+}
+
 #sidebar .pl-2 {
   padding-left: 0.5rem;
 }
