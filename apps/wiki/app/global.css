@@ -33,6 +33,10 @@
   padding-left: 0.5rem;
 }
 
+.markdown pre {
+  padding: .25rem 0;
+}
+
 .markdown code {
   font-weight: 100;
   display: block;
