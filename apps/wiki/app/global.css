@@ -104,6 +104,19 @@
   gap: 4px;
 }
 
+#sidebar .pl-2 {
+  padding-left: 0.5rem;
+}
+#sidebar .pl-4 {
+  padding-left: 1rem;
+}
+#sidebar .pl-6 {
+  padding-left: 1.5rem;
+}
+#sidebar .pl-8 {
+  padding-left: 2rem;
+}
+
 
 /* 사용편의성을 위한 팔레트 */
 .palette {
