@@ -7,4 +7,8 @@ module.exports = {
       rootDir: ["apps/*/"],
     },
   },
+  rules: {
+    semi: ["error", "never"],
+    quotes: ["warn", "single"],
+  },
 };
