@@ -41,14 +41,14 @@ CACERT=\${SERVICEACCOUNT}/ca.crt \
 DEPLOYMENT=deptno-dev \
 ; curl -s --cacert \${CACERT} -X PATCH -H "Authorization: Bearer \${TOKEN}" -H "Content-Type: application/strategic-merge-patch+json" --data "{\\"spec\\":{\\"template\\":{\\"metadata\\":{\\"annotations\\":{\\"kubectl.kubernetes.io/restartedAt\\":\\"\$(date '+%Y-%m-%dT%H:%M:%S%:z')\\"}}}}}" \${APISERVER}/apis/apps/v1/namespaces/\${NAMESPACE}/deployments/\${DEPLOYMENT}`, (error, stdout, stderr) => {
       if (error) {
-        return console.error(`command error: ${error}`);
+        return console.error(`command error: ${error}`)
       }
-      console.info(`command stdout: ${stdout}`);
+      console.info(`command stdout: ${stdout}`)
       if (stderr) {
-        console.error(`command stderr: ${stderr}`);
+        console.error(`command stderr: ${stderr}`)
       }
     })
   child.on('exit', (code) => {
-    console.info(`command exit code ${code}`);
+    console.info(`command exit code ${code}`)
   })
 }

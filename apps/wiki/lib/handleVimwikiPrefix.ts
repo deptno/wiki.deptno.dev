@@ -1,5 +1,5 @@
-import { RE_INDEXED_VIMWIKI, RE_NAMED_VIMWIKI, RE_VIMWIKI_LINK } from "parser-vimwiki/constant"
-import { DIR_DIARY } from "../constant"
+import { RE_INDEXED_VIMWIKI, RE_NAMED_VIMWIKI } from 'parser-vimwiki/constant'
+import { DIR_DIARY } from '../constant'
 
 export function handleVimwikiPrefix(link: string) {
   if (link.startsWith('diary:')) {

@@ -36,6 +36,7 @@ export default function RootLayout({ children }: {
       }}
     />
     <Script
+      id="ms-clarify-init"
       strategy="afterInteractive"
       dangerouslySetInnerHTML={{
         __html: `(function(c,l,a,r,i,t,y){
