@@ -1,15 +1,15 @@
-import { RefObject, useLayoutEffect } from 'react'
+import { RefObject, useLayoutEffect, useRef } from 'react'
 import { ForceGraphInstance } from 'force-graph'
 import { draw } from './draw'
 
 export function useForceGraphLayoutEffect(elementRef: RefObject<HTMLElement>, graphData) {
-  let ran = false
+  let ran = useRef(false)
 
   useLayoutEffect(() => {
-    if (ran) {
+    if (ran.current) {
       return
     }
-    ran = true
+    ran.current = true
     let refGraph: ForceGraphInstance
 
     const element = elementRef.current
