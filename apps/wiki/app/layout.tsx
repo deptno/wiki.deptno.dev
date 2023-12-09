@@ -7,7 +7,7 @@ import './2xl.css'
 import './3xl.css'
 import React from 'react'
 import Script from 'next/script'
-import { GOOGLE_ANALYTICS_ID, MS_CLARITY_ID } from '../constant'
+import { ENDPOINT, GOOGLE_ANALYTICS_ID, MS_CLARITY_ID } from '../constant'
 import 'highlight.js/styles/rainbow.css'
 
 export default function RootLayout({ children }: {
@@ -54,4 +54,26 @@ export default function RootLayout({ children }: {
     </body>
     </html>
   )
+}
+
+export const metadata = {
+  metadataBase: new URL(ENDPOINT),
+  openGraph: {
+    title: 'deptno vimwiki',
+    description: 'vimwiki',
+    locale: 'ko',
+    siteName: ENDPOINT,
+    url: ENDPOINT,
+    images: '/icon.jpg',
+    type: 'article',
+  },
+  icons: {
+    icon: '/icon.jpg',
+    shortcut: '/icon.jpg',
+    apple: '/icon.jpg',
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: '/icon.jpg',
+    },
+  },
 }
