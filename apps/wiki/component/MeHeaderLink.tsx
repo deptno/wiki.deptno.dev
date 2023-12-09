@@ -3,7 +3,7 @@ import { URL_ME } from "../constant"
 
 export const MeHeaderLink: FC<Props> = () => {
   if (URL_ME) {
-    return <a href={URL_ME}>me?</a>
+    return <a className="underline underline-offset-4" href={URL_ME}>about-me</a>
   }
   return null
 }

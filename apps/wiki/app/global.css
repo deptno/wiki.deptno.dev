@@ -144,6 +144,19 @@
   padding-left: 2rem;
 }
 
+.ais-SearchBox-form {
+  display: flex;
+}
+.ais-SearchBox-form input {
+  width: 100%;
+  border-radius: 0;
+
+}
+.ais-SearchBox-form button {
+  background-color: #689d69;
+  padding: .5rem;
+}
+
 
 /* 사용편의성을 위한 팔레트 */
 .palette {

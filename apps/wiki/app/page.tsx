@@ -6,15 +6,16 @@ import { Header } from '../component/Header'
 import { Markdown } from '../component/Markdown'
 import { ChildrenWithSearchResult } from '../component/ChildrenWithSearchResult'
 import { getLastModifiedFiles } from '../lib/getLastModifiedFiles'
+import { basename } from 'node:path'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
-  const { files, lastModified } = getData(DIR_WIKI)
+  const { files, lastModified, mostModified } = getData(DIR_WIKI)
 
   try {
     return (
       <>
-        <Header/>
+        <Header placeholder={mostModified}/>
         <ChildrenWithSearchResult/>
         <div className="p-4 text-lg">위키</div>
         <Markdown data={marked('- [public-wiki](/)')}/>
@@ -54,5 +55,8 @@ const getData = cache((dir: string) => {
   return {
     files: toMarkdown(files),
     lastModified: toMarkdown(lastModified),
+    mostModified: lastModified[0]
+      ? basename(lastModified[0], '.md')
+      : undefined,
   }
 })

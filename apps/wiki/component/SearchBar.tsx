@@ -5,7 +5,7 @@ import { instantMeiliSearch, InstantMeiliSearchInstance } from '@meilisearch/ins
 import Link from 'next/link'
 import { SubContentPortal } from './SubContentPortal'
 
-export const SearchBar = () => {
+export const SearchBar = (props: Props) => {
   const [searchClient, setSearchClient] = useState<InstantMeiliSearchInstance>()
 
   useEffect(() => {
@@ -28,24 +28,22 @@ export const SearchBar = () => {
   }
 
   return (
-    <InstantSearch
-      indexName="wiki"
-      searchClient={searchClient}
-    >
-      <div className="flex flex-col text-gray-800">
-        <SearchBox/>
-        <SubContentPortal>
-          <div
-            className="whitespace-pre-wrap break-words break-all overflow-hidden">
-            <div className="overflow-scroll">
-              <Hits hitComponent={Hit}/>
-            </div>
+    <InstantSearch indexName="wiki" searchClient={searchClient}>
+      <SearchBox placeholder={props.placeholder}/>
+      <SubContentPortal>
+        <div className="whitespace-pre-wrap break-words break-all overflow-hidden">
+          <div className="overflow-scroll">
+            <Hits hitComponent={Hit}/>
           </div>
-        </SubContentPortal>
-      </div>
+        </div>
+      </SubContentPortal>
     </InstantSearch>
   )
 }
+type Props = {
+  placeholder?: string
+}
+
 const Hit = (props) => {
   const { hit } = props
   const id = Buffer.from(hit.id, 'hex').toString()
