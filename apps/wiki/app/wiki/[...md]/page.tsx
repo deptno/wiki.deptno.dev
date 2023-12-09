@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { cache } from 'react'
 import fs from 'node:fs/promises'
 import { createRelativeLinkReplacer } from 'parser-vimwiki'
 import { DIR_WIKI, ENDPOINT } from '../../../constant'
@@ -17,14 +17,11 @@ export default async (props: Props) => {
   const { mostModified } = getAllList()
 
   try {
-    const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
-    const markdown = await fs.readFile(file)
-      .then((buffer) => buffer.toString())
+    const markdown = await getMarkdown(path)
       .then(createRelativeLinkReplacer(currentPath))
     const html = marked(markdown)
 
-    return (
-      <>
+    return ( <>
         <Header placeholder={mostModified} />
         <Markdown data={html}>
           <MarkdownAside data={html} path={path} />
@@ -47,12 +44,19 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const path = params.md.map(decodeURIComponent).join('/')
+  const [first, ...lines] = await getMarkdown(path).then((md) => md.split('\n'))
 
   return {
     openGraph: {
-      locale: 'ko',
-      siteName: ENDPOINT,
-      url: `${ENDPOINT}/wiki/${path}`
+      title: first.replace(/^#*%s/g, ''),
+      description: lines.join('\n'),
+      url: `${ENDPOINT}/wiki/${path}`,
     },
   }
 }
+
+const getMarkdown = cache(async (path: string) => {
+  const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
+
+  return await fs.readFile(file).then((buffer) => buffer.toString())
+})
