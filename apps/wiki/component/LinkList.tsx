@@ -8,8 +8,8 @@ export const LinkList: FC<Props> = (props) => {
     <div className="flex flex-wrap gap-2 p-0 m-0 leading-tight">
       {graphData.nodes.map((n) => {
         return (
-          <span>
-            <Link className="text-blue-600" key={n.id} href={`/wiki/${n.id}`}>
+          <span key={n.id}>
+            <Link className="text-blue-600" href={`/wiki/${n.id}`}>
               <span className="underline">{n.name}</span>
               <sup>{n.val}</sup>
             </Link>
