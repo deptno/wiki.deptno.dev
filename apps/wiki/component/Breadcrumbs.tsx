@@ -13,7 +13,7 @@ export const Breadcrumbs: FC<Props> = (props) => {
           const href = '/' + pathname.slice(0, i).join('/')
 
           return (
-            <li key={href}>
+            <li key={href} className={i === 0 ? 'bg-white text-gray-800' : ''}>
               <Link  className="underline px-1" href={href}>
                 {pathname[i-1] ?? ''}/
               </Link>
