@@ -1,16 +1,13 @@
-import React, { cache } from 'react'
+import React from 'react'
 import { marked } from '../lib/marked'
-import { getAllMd } from '../lib/getAllMd'
-import { DIR_WIKI } from '../constant'
 import { Header } from '../component/Header'
 import { Markdown } from '../component/Markdown'
 import { ChildrenWithSearchResult } from '../component/ChildrenWithSearchResult'
-import { getLastModifiedFiles } from '../lib/getLastModifiedFiles'
-import { basename } from 'node:path'
+import { getAllList } from '../lib/getAllList'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
-  const { files, lastModified, mostModified } = getData(DIR_WIKI)
+  const { files, lastModified, mostModified } = getAllList()
 
   try {
     return (
@@ -36,27 +33,3 @@ type Props = {
     md: string
   }
 }
-
-const getData = cache((dir: string) => {
-  const toMarkdown = (files: string[]) => {
-    return files
-      .map((f: string) => f.replace(dir, '').slice(0, -3))
-      .reduce((markdowns: string[], file: string) => {
-        return [
-          ...markdowns,
-          `- [${file}](${file})`,
-        ]
-      }, [])
-      .join('\n')
-  }
-  const files = getAllMd(dir)
-  const lastModified = getLastModifiedFiles()
-
-  return {
-    files: toMarkdown(files),
-    lastModified: toMarkdown(lastModified),
-    mostModified: lastModified[0]
-      ? basename(lastModified[0], '.md')
-      : undefined,
-  }
-})

@@ -6,9 +6,12 @@ import { marked } from '../../lib/marked'
 import { Markdown } from '../../component/Markdown'
 import { Header } from '../../component/Header'
 import { ChildrenWithSearchResult } from '../../component/ChildrenWithSearchResult'
+import { getAllList } from '../../lib/getAllList'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
+  const { mostModified } = getAllList()
+
   try {
     const markdown = await fs.readFile(`${DIR_WIKI}/index.md`)
       .then((buffer) => buffer.toString())
@@ -17,7 +20,7 @@ export default async (props: Props) => {
 
     return (
       <>
-        <Header />
+        <Header placeholder={mostModified}/>
         <ChildrenWithSearchResult/>
         <Markdown data={html}/>
       </>

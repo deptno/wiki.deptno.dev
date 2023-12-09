@@ -8,11 +8,13 @@ import { Header } from '../../../component/Header'
 import { NoPage } from '../../../component/NoPage'
 import { Markdown } from '../../../component/Markdown'
 import { MarkdownAside } from '../../../component/MarkdownAside'
+import { getAllList } from '../../../lib/getAllList'
 
 export default async (props: Props) => {
   const md = props.params.md.map(decodeURIComponent)
   const path = md.join('/')
   const currentPath = md.slice(0, -1).join('/')
+  const { mostModified } = getAllList()
 
   try {
     const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
@@ -23,7 +25,7 @@ export default async (props: Props) => {
 
     return (
       <>
-        <Header/>
+        <Header placeholder={mostModified} />
         <Markdown data={html}>
           <MarkdownAside data={html} path={path} />
         </Markdown>
