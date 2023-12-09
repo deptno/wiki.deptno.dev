@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Header } from './Header'
 import { getGraph } from '../getGraph'
 import { LinkGraph } from './LinkGraph'
-import { URL_WIKI } from '../constant'
+import { GIT_BRANCH, URL_WIKI } from '../constant'
 
 // @ts-ignore
 export const NoPage: FC<Props> = async (props) => {
@@ -15,7 +15,7 @@ export const NoPage: FC<Props> = async (props) => {
       <Header/>
       <div className="w-full flex flex-col items-center justify-center h-screen">
         <span>존재하지 않는 문서입니다.</span>
-        <a className="underline border-l-blue-400" href={`${URL_WIKI}/${path}.md`} target="_blank">생성하기</a>
+        <a className="underline border-l-blue-400" href={`${URL_WIKI}/new/${GIT_BRANCH}?filename=${path}.md`} target="_blank">생성하기</a>
         <LinkGraph graphData={g}/>
       </div>
     </>
