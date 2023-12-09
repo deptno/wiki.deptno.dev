@@ -150,7 +150,7 @@
 .ais-SearchBox-form input {
   width: 100%;
   border-radius: 0;
-
+  padding: .25rem;
 }
 .ais-SearchBox-form button {
   background-color: #689d69;
