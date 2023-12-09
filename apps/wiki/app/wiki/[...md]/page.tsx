@@ -1,7 +1,7 @@
 import React from 'react'
 import fs from 'node:fs/promises'
 import { createRelativeLinkReplacer } from 'parser-vimwiki'
-import { DIR_WIKI } from '../../../constant'
+import { DIR_WIKI, ENDPOINT } from '../../../constant'
 import { marked } from '../../../lib/marked'
 import { redirect } from 'next/navigation'
 import { Header } from '../../../component/Header'
@@ -49,8 +49,8 @@ export async function generateMetadata({ params }: Props) {
   return {
     openGraph: {
       locale: 'ko',
-      siteName: 'https://deptno.dev',
-      url: 'https://deptno.dev/wiki/' + path,
+      siteName: ENDPOINT,
+      url: `${ENDPOINT}/wiki/${path}`
     },
   }
 }
