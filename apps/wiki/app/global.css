@@ -122,8 +122,10 @@
 
 .markdown thead {
   font-weight: bold;
-  background-color: #ebdbb2;
+  background-color: #3c3735;
+  color: #d79920;
 }
+
 .markdown table tr>td {
   width: 100%;
   padding: 0 .25rem;
