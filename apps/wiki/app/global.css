@@ -124,6 +124,11 @@
   font-weight: bold;
   background-color: #ebdbb2;
 }
+.markdown table tr>td {
+  width: 100%;
+  padding: 0 .25rem;
+}
+
 .markdown table tbody tr:nth-child(odd) {
   background-color: #eeeeee;
 }
