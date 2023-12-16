@@ -14,15 +14,16 @@ export default async (props: Props) => {
   const md = props.params.md.map(decodeURIComponent)
   const path = md.join('/')
   const currentPath = md.slice(0, -1).join('/')
-  const { mostModified } = getAllList()
+  const { getRandomLatestModifiedFileName } = getAllList()
 
   try {
     const markdown = await getMarkdown(path)
       .then(createRelativeLinkReplacer(currentPath))
     const html = marked(markdown)
 
-    return ( <>
-        <Header placeholder={mostModified} />
+    return (
+      <>
+        <Header placeholder={getRandomLatestModifiedFileName()} />
         <Markdown data={html}>
           <MarkdownAside data={html} path={path} />
         </Markdown>

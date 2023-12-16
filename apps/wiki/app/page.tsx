@@ -7,12 +7,12 @@ import { getAllList } from '../lib/getAllList'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
-  const { files, lastModified, mostModified } = getAllList()
+  const { files, lastModified, getRandomLatestModifiedFileName } = getAllList()
 
   try {
     return (
       <>
-        <Header placeholder={mostModified}/>
+        <Header placeholder={getRandomLatestModifiedFileName()}/>
         <ChildrenWithSearchResult/>
         <div className="p-4 text-lg">위키</div>
         <Markdown data={marked('- [public-wiki](/)')}/>

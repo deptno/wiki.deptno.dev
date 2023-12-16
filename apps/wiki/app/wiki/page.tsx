@@ -10,7 +10,7 @@ import { getAllList } from '../../lib/getAllList'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
-  const { mostModified } = getAllList()
+  const { getRandomLatestModifiedFileName } = getAllList()
 
   try {
     const markdown = await fs.readFile(`${DIR_WIKI}/index.md`)
@@ -20,7 +20,7 @@ export default async (props: Props) => {
 
     return (
       <>
-        <Header placeholder={mostModified}/>
+        <Header placeholder={getRandomLatestModifiedFileName()}/>
         <ChildrenWithSearchResult/>
         <Markdown data={html}/>
       </>

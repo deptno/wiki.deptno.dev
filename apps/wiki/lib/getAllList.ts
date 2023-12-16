@@ -2,6 +2,7 @@ import { getAllMd } from "./getAllMd"
 import { getLastModifiedFiles } from "./getLastModifiedFiles"
 import { basename } from "node:path"
 import { DIR_WIKI } from "../constant"
+import { random } from "./random"
 
 export const getAllList = () => {
   if (cache) {
@@ -25,9 +26,14 @@ export const getAllList = () => {
   cache = {
     files: toMarkdown(files),
     lastModified: toMarkdown(lastModified),
-    mostModified: lastModified[0]
-      ? basename(lastModified[0], '.md')
-      : undefined,
+    getRandomLatestModifiedFileName() {
+      if (lastModified.length === 0) {
+        return
+      }
+      const index = random(lastModified.length)
+
+      return basename(lastModified[index], '.md')
+    },
   }
 
   return cache
