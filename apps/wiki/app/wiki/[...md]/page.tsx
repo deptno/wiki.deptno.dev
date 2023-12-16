@@ -45,19 +45,25 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const path = params.md.map(decodeURIComponent).join('/')
+  console.log({path})
 
   try {
     const [first, ...lines] = await getMarkdown(path).then((md) => md.split('\n'))
+    const title = first.replace(/^#*%s/g, '')
+    const description = lines.join('\n')
 
     return {
+      title,
+      description,
       openGraph: {
-        title: first.replace(/^#*%s/g, ''),
-        description: lines.join('\n'),
+        title,
+        description,
         url: `${ENDPOINT}/wiki/${path}`,
       },
     }
   } catch(e) {
     console.error(e)
+
     return {
       openGraph: {
         url: `${ENDPOINT}/wiki/${path}`,

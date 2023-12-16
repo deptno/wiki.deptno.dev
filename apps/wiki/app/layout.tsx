@@ -58,9 +58,16 @@ export default function RootLayout({ children }: {
 
 export const metadata = {
   metadataBase: new URL(ENDPOINT),
+  title: 'deptno vimwiki',
+  description: 'dev log',
+  referrer: 'origin-when-cross-origin',
+  keywords: ['typescript', 'kubernetes', 'react', 'react native', 'terminal', 'neovim', 'vim', 'lua'],
+  authors: [{ name: 'deptno', url: ENDPOINT }],
+  creator: 'deptno@gmail.com',
+  publisher: 'deptno@gmail.com',
   openGraph: {
     title: 'deptno vimwiki',
-    description: 'vimwiki',
+    description: 'dev log',
     locale: 'ko',
     siteName: ENDPOINT,
     url: ENDPOINT,
