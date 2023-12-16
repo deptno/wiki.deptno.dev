@@ -83,4 +83,11 @@ export const metadata = {
       url: '/icon.jpg',
     },
   },
+  appleWebApp: {
+    title: 'deptno',
+    statusBarStyle: 'black-translucent',
+    startupImage: [
+      '/icon.jpg',
+    ],
+  },
 }
