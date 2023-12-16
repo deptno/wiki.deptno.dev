@@ -157,7 +157,10 @@
   padding: .5rem;
 }
 
-
+code.language-mermaid {
+  background-color: #d79920;
+  color: #3c3735;
+}
 /* 사용편의성을 위한 팔레트 */
 .palette {
   background-color: #ebdbb2;
