@@ -7,8 +7,6 @@ export function link(href: string, title: string, text: string) {
     const { protocol } = url
     const protocolName = protocol.slice(0, -1)
 
-    console.log(protocol )
-
     if (protocol) {
       // @ref :h vimwiki-syntax-links
       if (protocol == 'diary:') {
