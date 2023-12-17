@@ -5,6 +5,7 @@ import { LinkGraph } from './LinkGraph'
 import { getGraph } from '../getGraph'
 import { LinkList } from './LinkList'
 import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
+import { DiaryNavigation } from './DiaryNavigation'
 
 export const MarkdownAside: FC<Props> = (props) => {
   const { data, path = '' } = props
@@ -25,6 +26,7 @@ export const MarkdownAside: FC<Props> = (props) => {
         <LinkList graphData={g}/>
         <hr/>
         <TOC html={data}/>
+        <DiaryNavigation path={path}/>
       </ChildrenWithSearchResult>
     </div>
   )
