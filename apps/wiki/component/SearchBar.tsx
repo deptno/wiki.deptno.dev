@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { InstantSearch, SearchBox, Hits, Highlight } from 'react-instantsearch-hooks-web'
+import { InstantSearch, SearchBox, Hits, Highlight } from 'react-instantsearch'
 import { instantMeiliSearch, InstantMeiliSearchInstance } from '@meilisearch/instant-meilisearch'
 import Link from 'next/link'
 import { SubContentPortal } from './SubContentPortal'
@@ -9,7 +9,7 @@ export const SearchBar = (props: Props) => {
   const [searchClient, setSearchClient] = useState<InstantMeiliSearchInstance>()
 
   useEffect(() => {
-    const searchClient = instantMeiliSearch(
+    const { searchClient } = instantMeiliSearch(
       process.env.NEXT_PUBLIC_MEILISEARCH_HOST,
       undefined,
       {
