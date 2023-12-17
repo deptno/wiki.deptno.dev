@@ -19,19 +19,21 @@ export const getAllList = () => {
   const files = getAllMd(DIR_WIKI).map((f: string) =>
     f.replace(DIR_WIKI, '').slice(0, -3),
   )
+  const markdowns = toMarkdown(files)
   const lastModified = getLastModifiedFiles()
+  const stripExt = (f) => basename(f, '.md')
 
   cache = {
     files,
-    markdowns: toMarkdown(files),
-    lastModified: toMarkdown(lastModified),
+    markdowns,
+    lastModified: toMarkdown(lastModified.map(stripExt)),
     getRandomLatestModifiedFileName() {
       if (lastModified.length === 0) {
         return
       }
       const index = random(lastModified.length)
 
-      return basename(lastModified[index], '.md')
+      return stripExt(lastModified[index])
     },
   }
 
