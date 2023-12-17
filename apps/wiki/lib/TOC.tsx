@@ -9,21 +9,21 @@ export const TOC: FC<Props> = (props) => {
   const headers = Array.from(toc.values())
   const slugger = new Slugger()
   return (
-    <div>
+    <div className="toc">
       {
         headers.map((h) => {
           const n = (+h.tagName.slice(1) - 1) * 2
           const anchor = slugger.slug(h.textContent)
 
-          return (
-            <div className={`pl-${n} underline`} key={anchor}>
-              <a className={`pl-${n} underline`} href={`#${anchor}`}>
-                {h.textContent}
-              </a>
-            </div>
-          )
-        })
-      }
+            return (
+              <div className={`pl-${n}`} key={anchor}>
+                <a href={`#${anchor}`}>
+                  {h.textContent}
+                </a>
+              </div>
+            )
+          })
+        }
     </div>
   )
 }
