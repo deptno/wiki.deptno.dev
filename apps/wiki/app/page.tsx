@@ -7,7 +7,7 @@ import { getAllList } from '../lib/getAllList'
 
 export const dynamic = 'force-dynamic'
 export default async (props: Props) => {
-  const { files, lastModified, getRandomLatestModifiedFileName } = getAllList()
+  const { markdowns, lastModified, getRandomLatestModifiedFileName } = getAllList()
 
   try {
     return (
@@ -19,7 +19,7 @@ export default async (props: Props) => {
         <div className="p-4 text-lg">최근 수정</div>
         <Markdown data={marked(lastModified)}/>
         <div className="p-4 text-lg">files</div>
-        <Markdown data={marked(files)}/>
+        <Markdown data={marked(markdowns)}/>
       </>
     )
   } catch (err) {
