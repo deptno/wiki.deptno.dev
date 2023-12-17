@@ -14,7 +14,7 @@ export const Breadcrumbs: FC<Props> = (props) => {
 
           return (
             <li key={href} className={i === 0 ? 'bg-white text-gray-800' : ''}>
-              <Link  className="underline px-1" href={href}>
+              <Link  className="underline px-1 underline-offset-4" href={href}>
                 {pathname[i-1] ?? ''}/
               </Link>
             </li>
