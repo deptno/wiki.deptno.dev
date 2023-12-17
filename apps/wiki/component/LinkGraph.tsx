@@ -9,7 +9,7 @@ export const LinkGraph: FC<Props> = (props) => {
   useForceGraphLayoutEffect(ref, graphData)
 
   return (
-    <div className="w-full h-fit 3xl:w-96 3xl:h-96 relative">
+    <div className="w-full h-fit 3xl:w-96 3xl:h-96 min-h-24 relative">
       <div ref={ref}/>
     </div>
   )
