@@ -1,43 +1,43 @@
-import { Metadata } from "next"
-import { ENDPOINT } from "../constant"
-import { getMarkdown } from "./getMarkdown"
-import { getPath } from "./getPath"
+import { Metadata } from 'next'
+import { ENDPOINT } from '../constant'
+import { getMarkdown } from './getMarkdown'
+import { getPath } from './getPath'
+import { prodCache } from './prodCache'
 
-export async function getMarkdownMetadata(props: Props): Promise<Metadata> {
-  const result = getPath(props)
-  if (!result) {
-    return
-  }
+export const getMarkdownMetadata = prodCache(
+  async (paths: string[]): Promise<Metadata> => {
+    const result = getPath(paths)
+    if (!result) {
+      return
+    }
 
-  const { path } = result
-  try {
-    const [first, ...lines] = await getMarkdown(path).then(md => md.split('\n'))
-    const title = first.replace(/^#*%s/g, '')
-    const description = lines.join('\n')
+    const { path } = result
+    const url = `${ENDPOINT}/${path}`
 
-    return {
-      title,
-      description,
-      openGraph: {
+    try {
+      const [first, ...lines] = await getMarkdown(path).then(md =>
+        md.split('\n'),
+      )
+      const title = first.replace(/^#*%s/g, '')
+      const description = lines.join('\n')
+
+      return {
         title,
         description,
-        url: `${ENDPOINT}/${path}`,
-      },
-    }
-  } catch (e) {
-    console.warn(`warn: [${e.code}] ${e.message}`)
+        openGraph: {
+          title,
+          description,
+          url,
+        },
+      }
+    } catch (e) {
+      console.warn(`warn: [${e.code}] ${e.message}`)
 
-    return {
-      openGraph: {
-        url: `${ENDPOINT}/${path}`,
-      },
+      return {
+        openGraph: {
+          url,
+        },
+      }
     }
-  }
-}
-
-type Props = {
-  params: {
-    wiki: string
-    md: string[]
-  }
-}
+  },
+)

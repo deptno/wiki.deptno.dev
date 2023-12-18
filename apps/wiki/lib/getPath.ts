@@ -1,26 +1,18 @@
 import { isPublicWiki } from "./isPublicWiki"
 import { prodCache } from "./prodCache"
 
-export const getPath = prodCache((props: Props) => {
-  if (!isPublicWiki(props.params.wiki)) {
+export const getPath = prodCache((paths: string[]) => {
+  const [wiki, ...md] = paths.map(decodeURIComponent)
+  if (!isPublicWiki(wiki)) {
     return
   }
 
-  const md = props.params.md.map(decodeURIComponent)
-  const paths = [props.params.wiki, ...md]
   const path = paths.join('/')
   const currentPath = md.slice(0, -1).join('/')
 
   return {
+    wiki,
     path,
     currentPath,
-    wiki: props.params.wiki,
   }
 })
-
-type Props = {
-  params: {
-    wiki: string
-    md: string[]
-  }
-}

@@ -11,6 +11,8 @@ export async function getHtml(params: Params) {
 }
 
 type Params = {
+  // 렌더링할 파일에 대한 path
   path: string
+  // 링크를 그릴때 base 가 될 path
   currentPath: string
 }
