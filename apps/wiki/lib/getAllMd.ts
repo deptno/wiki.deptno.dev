@@ -2,7 +2,6 @@ import fs from 'node:fs'
 import { join, extname } from 'node:path'
 
 export function getAllMd(rootDir: string): string[] {
-  // TODO: 인젝션 막아야함 root 한정
   const files = fs.readdirSync(rootDir, {
     withFileTypes: true,
   })
