@@ -1,11 +1,11 @@
 import { getAllMd } from './getAllMd'
 import { getLastModifiedFiles } from './getLastModifiedFiles'
 import path from 'node:path'
-import { CONFIG, DIR_WIKI } from '../constant'
+import { CONFIG, DIR_WIKI, IS_PROD } from '../constant'
 import { random } from './random'
 
 export const getAllList = () => {
-  if (cache) {
+  if (cache && IS_PROD) {
     return cache
   }
 
