@@ -10,7 +10,7 @@ export default function Error(props: Props) {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-8" onClick={goRoot}>
-      <h1 className="text-8xl">{error.message}</h1>
+      <h1 className="text-8xl text-center">{error.message}</h1>
       <div>{ENDPOINT}로 이동</div>
     </div>
   )
