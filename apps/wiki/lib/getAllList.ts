@@ -51,4 +51,4 @@ export const getAllList = () => {
 }
 
 let cache = undefined
-const stripExt = (f: string) => basename(f, '.md')
+const stripExt = (f: string) => f.slice(0, -3)

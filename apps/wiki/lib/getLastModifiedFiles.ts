@@ -23,4 +23,5 @@ awk '{ print $1 " " $3 " " $4 " " $5 }'`
     .filter((v) => v[0] > 0)
     .map((v) => v[1])
     .filter((v) => !v.startsWith(`${wiki.diaryDir}/`))
+    .map((v) => path.join(wiki.dir, v))
 }
