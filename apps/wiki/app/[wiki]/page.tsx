@@ -44,6 +44,7 @@ async function _getData(wiki: string) {
     .readFile(`${DIR_WIKI}/${wiki}/index.md`)
     .then(buffer => buffer.toString())
     .then(parse)
+
   return marked(markdown)
 }
 const getData = IS_PROD ? cache(_getData) : _getData
