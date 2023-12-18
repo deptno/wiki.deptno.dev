@@ -3,14 +3,14 @@ import { join } from 'node:path'
 import { getAllMd } from './lib/getAllMd'
 import { RE_MARKDOWN_LINK, RE_VIMWIKI_LINK } from 'parser-vimwiki/constant'
 import { readFileSync } from 'fs'
-import { DIR_WIKI } from './constant'
+import { DIR_WIKI, IS_PROD } from './constant'
 import { getNameFromLink } from './lib/getNameFromLink'
 import { getVimwikiLinkBaseName } from './lib/getVimwikiLinkBaseName'
 import { getMakrdownLinkBaseName } from './lib/getMarkdownLinkBaseName'
 import { handleVimwikiPrefix } from './lib/handleVimwikiPrefix'
 
 export const getGraph = () => {
-  if (_cache.current) {
+  if (IS_PROD && _cache.current) {
     return _cache.current
   }
 
