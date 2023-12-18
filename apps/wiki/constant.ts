@@ -1,3 +1,6 @@
+import config from './wiki.config'
+
+export const CONFIG = config as Wiki[]
 export const IS_PROD = process.env.NODE_ENV === 'production'
 export const DIR_WIKI = process.env.DIR_WIKI
 export const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT
@@ -8,4 +11,3 @@ export const NEXT_PUBLIC_MEILISEARCH_HOST = process.env.NEXT_PUBLIC_MEILISEARCH_
 export const URL_ME = process.env.URL_ME
 export const URL_WIKI = process.env.URL_WIKI
 export const CURRENT_REVISION = '.CURRENT_REVISION'
-export { config as CONFIG } from './wiki.config'
