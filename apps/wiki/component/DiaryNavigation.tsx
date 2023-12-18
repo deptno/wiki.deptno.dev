@@ -14,8 +14,8 @@ export const DiaryNavigation: FC<Props> = props => {
 
   return (
     <div className="flex flex-wrap gap-2 pb-2 m-0 leading-tight ml-auto">
-      {hasPrev && <Link className="text-blue-600 underline" href={`/wiki/${prev}`}>이전({prev.slice('/diary/'.length)})</Link>}
-      {hasNext && <Link className="text-blue-600 underline" href={`/wiki/${next}`}>다음({next.slice('/diary/'.length)})</Link>}
+      {hasPrev && <Link className="text-blue-600 underline" href={`/wiki${prev}`}>이전({prev.slice('/diary/'.length)})</Link>}
+      {hasNext && <Link className="text-blue-600 underline" href={`/wiki${next}`}>다음({next.slice('/diary/'.length)})</Link>}
     </div>
   )
 }
