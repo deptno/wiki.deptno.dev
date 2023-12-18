@@ -50,14 +50,24 @@ export function link(href: string, title: string, text: string) {
       return `<a href="${href}">${text}</a>`
     }
   } catch (err) {
-    // 내부링크
+    // 내부링크 보정 2depth 정도 가정으로 작성됨
     const splited = href.split('/')
     const parentIndex = splited.findIndex(p => p === '..')
+
     if (parentIndex > 0) {
       const stripHref = splited.filter((_, i) => i >= parentIndex)
       const nextHref = stripHref.join('/')
 
       return link(nextHref, title, text)
+    }
+    if (href.startsWith('/')) {
+      return `<a href="${href}">${text}</a>`
+    }
+    if (href.startsWith('../')) {
+      return `<a href="${href}">${text}</a>`
+    }
+    if (href.includes(text) && href !== text) {
+      return `<a href="${text}">${text}</a>`
     }
 
     return `<a href="${href}">${text}</a>`
