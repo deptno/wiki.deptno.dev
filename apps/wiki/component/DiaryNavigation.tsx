@@ -5,7 +5,8 @@ import { getAllList } from '../lib/getAllList'
 export const DiaryNavigation: FC<Props> = props => {
   const { wiki, path } = props
   const prefix = `/${wiki}/diary/`
-  if (!path.startsWith(prefix)) {
+
+  if (!path.startsWith(prefix.slice(1))) {
     return null
   }
 
