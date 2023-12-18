@@ -10,7 +10,7 @@ export const DiaryNavigation: FC<Props> = props => {
     return null
   }
 
-  const { files } = getAllList()
+  const { files } = getAllList(wiki)
   const index = files.findIndex((f) => f.slice(1) === path)
   const prev = files[index - 1]
   const next = files[index + 1]

@@ -11,7 +11,7 @@ export const Header: FC<Props> = props => {
       <SearchBar placeholder={props.placeholder} />
       <div className="flex justify-between text-white gap-2">
         <FrontendRepoHeaderLink />
-        <GitRevision />
+        <GitRevision wiki={props.wiki}/>
         <MeHeaderLink />
         <div className="ml-auto" />
         <Breadcrumbs />
@@ -21,5 +21,6 @@ export const Header: FC<Props> = props => {
 }
 
 type Props = {
+  wiki?: string
   placeholder?: string
 }

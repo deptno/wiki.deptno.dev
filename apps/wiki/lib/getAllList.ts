@@ -4,11 +4,7 @@ import path from 'node:path'
 import { CONFIG, DIR_WIKI, IS_PROD } from '../constant'
 import { random } from './random'
 
-export const getAllList = () => {
-  if (cache && IS_PROD) {
-    return cache
-  }
-
+function _getAllList(wikiName: string) {
   const toMarkdown = (files: string[]) => {
     return files
       .reduce((markdowns: string[], file: string) => {
@@ -27,10 +23,15 @@ export const getAllList = () => {
   })
 
   const markdowns = toMarkdown(files)
-  // FIXME: CONFIG[0],  getAllList 함수가 wiki를 인자로 받는게 안전할 것
-  const lastModified = getLastModifiedFiles(CONFIG[0])
+  const wiki = CONFIG.find(w => w.dir === wikiName)
 
-  cache = {
+  if (!wiki) {
+    throw new Error('wiki not found')
+  }
+
+  const lastModified = getLastModifiedFiles(wiki)
+
+  return {
     files,
     markdowns,
     lastModified: toMarkdown(lastModified.map(stripExt)),
@@ -43,9 +44,9 @@ export const getAllList = () => {
       return stripExt(lastModified[index])
     },
   }
-
-  return cache
 }
 
 let cache = undefined
 const stripExt = (f: string) => f.slice(0, -3)
+
+export const getAllList = IS_PROD ? cache(_getAllList) : _getAllList

@@ -17,7 +17,7 @@ export default async (props: Props) => {
   }
 
   const { path, currentPath, wiki } = getPath(props)
-  const { getRandomLatestModifiedFileName } = getAllList()
+  const { getRandomLatestModifiedFileName } = getAllList(props.params.wiki)
 
   try {
     const markdown = await getMarkdown(path).then(
@@ -27,7 +27,7 @@ export default async (props: Props) => {
 
     return (
       <>
-        <Header placeholder={getRandomLatestModifiedFileName()} />
+        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()} />
         <Markdown data={html}>
           <MarkdownAside data={html} wiki={wiki} path={path} />
         </Markdown>
