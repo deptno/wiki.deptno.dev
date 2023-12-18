@@ -11,7 +11,7 @@ export const MarkdownAside: FC<Props> = (props) => {
   const { data, wiki, path = '' } = props
   const graph = getGraph(wiki)
   const wikiBasedPath = path.slice(wiki.length + 1)
-  const g = graph.getLinkGraphData(wikiBasedPath)
+  const g = graph.getLinkGraphData(decodeURIComponent(wikiBasedPath))
   const branch = GIT_BRANCH
 
   return (

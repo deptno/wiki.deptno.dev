@@ -10,7 +10,7 @@ export const NoPage: FC<Props> = async (props) => {
   const [ wiki, ...paths ] = props.name.split('/')
   const filename = getFilename(paths)
   const graph = getGraph(wiki)
-  const g = graph.getLinkGraphData(filename)
+  const g = graph.getLinkGraphData(decodeURIComponent(filename))
 
   return (
     <>
