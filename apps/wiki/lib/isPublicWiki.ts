@@ -1,6 +1,6 @@
 import { CONFIG } from '../constant'
 
-export async function isPublicWiki(wiki: string): boolean {
+export function isPublicWiki(wiki: string): boolean {
   return CONFIG.filter(w => !w.private)
     .map(w => w.dir)
     .some(w => w === wiki)

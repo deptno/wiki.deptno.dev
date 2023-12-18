@@ -9,8 +9,13 @@ import { NoPage } from '../../../component/NoPage'
 import { Markdown } from '../../../component/Markdown'
 import { MarkdownAside } from '../../../component/MarkdownAside'
 import { getAllList } from '../../../lib/getAllList'
+import { isPublicWiki } from '../../../lib/isPublicWiki'
 
 export default async (props: Props) => {
+  if (!isPublicWiki(props.params.wiki)) {
+    throw new Error('403')
+  }
+
   const { path, currentPath, wiki } = getPath(props)
   const { getRandomLatestModifiedFileName } = getAllList()
 
@@ -38,13 +43,16 @@ export default async (props: Props) => {
 type Props = {
   params: {
     wiki: string
-    md: string[]
-  }
+    md: string[] }
 }
 
 export async function generateMetadata(props: Props) {
-  const { path } = getPath(props)
+  const result = getPath(props)
+  if (!result) {
+    return
+  }
 
+  const { path } = result
   try {
     const [first, ...lines] = await getMarkdown(path).then(md => md.split('\n'))
     const title = first.replace(/^#*%s/g, '')
@@ -71,6 +79,10 @@ export async function generateMetadata(props: Props) {
 }
 
 function _getPath(props: Props) {
+  if (!isPublicWiki(props.params.wiki)) {
+    return
+  }
+
   const md = props.params.md.map(decodeURIComponent)
   const paths = [props.params.wiki, ...md]
   const path = paths.join('/')
