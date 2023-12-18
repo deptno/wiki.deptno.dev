@@ -11,9 +11,10 @@ export default async (props: Props) => {
   const { markdowns, lastModified, getRandomLatestModifiedFileName } = getAllList()
   const markdownWiki = CONFIG
     .map((w) => {
-      return `- [${w.name}](${w.dir})`
+      return `- [${w.dir}](${w.dir})`
     })
     .join('\n')
+
   try {
     return (
       <>
