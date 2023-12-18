@@ -27,7 +27,7 @@ function _getAllList(wikiName: string) {
   const wiki = CONFIG.find(w => w.dir === wikiName)
 
   if (!wiki) {
-    throw new Error('wiki not found')
+    throw new Error(`Unknown wiki(${wikiName})`)
   }
 
   const lastModified = getLastModifiedFiles(wiki)

@@ -7,15 +7,14 @@
 > 필수: m
 > 선택: o
 
-| env                             | 설명             | wiki | meilisearch-updater |
-|---------------------------------|------------------|------|---------------------|
-| URL_WIKI                        | github url       | o    |                     |
-| URL_ME                          | 자기소개 페이지  | o    |                     |
-| DIR_WIKI                        | /path/to/vimwiki | m    | m                   |
-| NEXT_PUBLIC_GIT_BRANCH          | default 'main'   | o    |                     |
-| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX     | o    |                     |
-| NEXT_PUBLIC_MEILISEARCH_HOST    | localhost:7700   | o    | m                   |
-| NEXT_PUBLIC_MS_CLARITY_ID       | xxxxxxxxxx       | o    |                     |
+| env                             | 설명                  | wiki | meilisearch-updater |
+|---------------------------------|-----------------------|------|---------------------|
+| URL_ME                          | 자기소개 페이지       | o    |                     |
+| DIR_WIKI                        | /path/to/vimwiki/root | m    | m                   |
+| NEXT_PUBLIC_GIT_BRANCH          | default 'main'        | o    |                     |
+| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX          | o    |                     |
+| NEXT_PUBLIC_MEILISEARCH_HOST    | localhost:7700        | o    | m                   |
+| NEXT_PUBLIC_MS_CLARITY_ID       | xxxxxxxxxx            | o    |                     |
 
 ## 실행
 
@@ -25,10 +24,12 @@
 # DIR_WIKI: 는 URL_WIKI 의 클론된 위치를 지정한다
 NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 \
 NEXT_PUBLIC_ENDPOINT=https://deptno.dev \
-URL_WIKI=https://github.com/deptno/public-wiki \
-DIR_WIKI=/path/to/vimwiki \
+DIR_WIKI=/path/to/vimwiki/root \
 pnpm dev # or pnpm build
 ```
+
+## 설정 파일
+- [wiki.config.js](wiki.config.js) 참조
 
 ### 다커 테스트
 ```sh
