@@ -1,9 +1,9 @@
 import { execSync } from 'node:child_process'
-import { DIR_WIKI } from '../constant'
+import { DIR_WIKI_ROOT } from '../constant'
 import path from 'node:path'
 
 export function getLastModifiedFiles(wiki: Wiki): string[] {
-  const dir = path.join(DIR_WIKI, wiki.dir)
+  const dir = path.join(DIR_WIKI_ROOT, wiki.dir)
   const command = `
 git -C ${dir} diff $(git -C ${dir} log --since="30 days ago" --pretty=format:"%H" | tail -1).. --stat |
 sed '$d' |
