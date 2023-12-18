@@ -17,10 +17,8 @@ export const getAllList = () => {
       .join('\n')
   }
 
-  const wikis = CONFIG
-    .filter((w) => !w.private)
-    .map((w) => w.dir)
-  const files = wikis.flatMap((wiki) => {
+  const wikis = CONFIG.filter(w => !w.private).map(w => w.dir)
+  const files = wikis.flatMap(wiki => {
     const dir = path.join(DIR_WIKI, wiki)
 
     return getAllMd(dir)

@@ -19,7 +19,8 @@ export default async (props: Props) => {
   const { path, currentPath, wiki } = getPath(props)
   const { getRandomLatestModifiedFileName } = getAllList()
 
-  try { const markdown = await getMarkdown(path).then(
+  try {
+    const markdown = await getMarkdown(path).then(
       createRelativeLinkReplacer(currentPath),
     )
     const html = marked(markdown)
@@ -43,7 +44,8 @@ export default async (props: Props) => {
 type Props = {
   params: {
     wiki: string
-    md: string[] }
+    md: string[]
+  }
 }
 
 export async function generateMetadata(props: Props) {

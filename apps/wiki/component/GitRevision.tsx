@@ -1,7 +1,7 @@
-import { FC } from "react"
-import { getRevision } from "../lib/getRevision"
-import { URL_WIKI } from "../constant"
-import { HeaderLink } from "./HeaderLink"
+import { FC } from 'react'
+import { getRevision } from '../lib/getRevision'
+import { URL_WIKI } from '../constant'
+import { HeaderLink } from './HeaderLink'
 
 export const GitRevision: FC<Props> = () => {
   const revision = getRevision()
@@ -17,5 +17,4 @@ export const GitRevision: FC<Props> = () => {
   return null
 }
 
-type Props = {
-}
+type Props = {}
