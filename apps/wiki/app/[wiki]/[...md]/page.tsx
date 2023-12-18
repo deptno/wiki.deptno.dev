@@ -14,7 +14,8 @@ export default async (props: Props) => {
   console.log({props})
   const { wiki } = props.params
   const md = props.params.md.map(decodeURIComponent)
-  const path = md.join('/')
+  const paths = [wiki, ...md]
+  const path = paths.join('/')
   const currentPath = md.slice(0, -1).join('/')
   const { getRandomLatestModifiedFileName } = getAllList()
 
@@ -27,16 +28,16 @@ export default async (props: Props) => {
       <>
         <Header placeholder={getRandomLatestModifiedFileName()} />
         <Markdown data={html}>
-          <MarkdownAside data={html} path={path} />
+          <MarkdownAside data={html} wiki={wiki} path={path} />
         </Markdown>
       </>
     )
   } catch (err) {
     if (!path.endsWith('index')) {
-      return redirect(decodeURIComponent(`/${wiki}/${path}/index`))
+      return redirect(decodeURIComponent(`/${path}/index`))
     }
 
-    return <NoPage name={path}/>
+    return <NoPage wiki={wiki} name={path}/>
   }
 }
 type Props = {
@@ -47,7 +48,11 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const path = params.md.map(decodeURIComponent).join('/')
+  // FIXME: 메인 펑션이랑 로직 합칠것
+  const { wiki } = params
+  const md = params.md.map(decodeURIComponent)
+  const paths = [wiki, ...md]
+  const path = paths.join('/')
 
   try {
     const [first, ...lines] = await getMarkdown(path).then((md) => md.split('\n'))
