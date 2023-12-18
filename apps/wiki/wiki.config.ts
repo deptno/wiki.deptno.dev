@@ -6,3 +6,10 @@ export const config = [
     private: false,
   }
 ]
+
+export type Wiki = {
+  name: string
+  dir: string
+  diaryDir: string
+  private?: Boolean
+}
