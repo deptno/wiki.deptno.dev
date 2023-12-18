@@ -1,7 +1,7 @@
 import { getAllMd } from './getAllMd'
 import { getLastModifiedFiles } from './getLastModifiedFiles'
-import { basename } from 'node:path'
-import { DIR_WIKI } from '../constant'
+import path, { basename } from 'node:path'
+import { CONFIG, DIR_WIKI } from '../constant'
 import { random } from './random'
 
 export const getAllList = () => {
@@ -16,12 +16,22 @@ export const getAllList = () => {
       }, [])
       .join('\n')
   }
-  const files = getAllMd(DIR_WIKI).map((f: string) =>
-    f.replace(DIR_WIKI, '').slice(0, -3),
-  )
+
+  const wikis = CONFIG
+    .filter((w) => !w.private)
+    .map((w) => w.dir)
+  const files = wikis.flatMap((wiki) => {
+    const dir = path.join(DIR_WIKI, wiki)
+
+    return getAllMd(dir)
+      .map((f: string) => f.replace(DIR_WIKI, ''))
+      .map(stripExt)
+  })
+
   const markdowns = toMarkdown(files)
-  const lastModified = getLastModifiedFiles()
-  const stripExt = (f: string) => basename(f, '.md')
+  // FIXME: CONFIG[0],  getAllList 함수가 wiki를 인자로 받는게 안전할 것
+  const lastModified = getLastModifiedFiles(CONFIG[0])
+  console.table(lastModified)
 
   cache = {
     files,
@@ -41,3 +51,4 @@ export const getAllList = () => {
 }
 
 let cache = undefined
+const stripExt = (f: string) => basename(f, '.md')
