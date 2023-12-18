@@ -53,9 +53,10 @@ const Hit = (props) => {
     .filter((v) => /<mark>/.exec(v))
     .join('\n')
 
+  // FIXME: public-wiki 하드 코딩
   return (
     <div className="grid grid-cols-1 md:grid-cols-[150px_1fr] border-b-2" key={id}>
-      <Link className="underline text-blue-800" href={`/wiki/${id}`}>
+      <Link className="underline text-blue-800" href={`/public-wiki/${id}`}>
         {id}
       </Link>
       <div className="flex-1 italic">
