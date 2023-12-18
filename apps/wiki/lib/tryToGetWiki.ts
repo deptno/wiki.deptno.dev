@@ -5,6 +5,7 @@ export function tryToGetWiki(wikiName: string) {
 
   if (!wiki) {
     throw new Error(`Unknown wiki(${wikiName})`)
+
   }
 
   return wiki
