@@ -1,6 +1,5 @@
 import { execSync } from 'node:child_process'
 import { DIR_WIKI } from '../constant'
-import { Wiki } from '../wiki.config'
 import path from 'node:path'
 
 export function getLastModifiedFiles(wiki: Wiki): string[] {
