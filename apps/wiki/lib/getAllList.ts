@@ -1,6 +1,6 @@
 import { getAllMd } from './getAllMd'
 import { getLastModifiedFiles } from './getLastModifiedFiles'
-import path from 'node:path'
+import path, { basename } from 'node:path'
 import { CONFIG, DIR_WIKI } from '../constant'
 import { random } from './random'
 import { prodCache } from './prodCache'
@@ -42,7 +42,7 @@ function _getAllList(wikiName: string) {
       }
       const index = random(lastModified.length)
 
-      return stripExt(lastModified[index])
+      return basename(lastModified[index], '.md')
     },
   }
 }
