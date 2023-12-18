@@ -21,7 +21,7 @@ export const getAllList = () => {
   )
   const markdowns = toMarkdown(files)
   const lastModified = getLastModifiedFiles()
-  const stripExt = (f) => basename(f, '.md')
+  const stripExt = (f: string) => basename(f, '.md')
 
   cache = {
     files,
