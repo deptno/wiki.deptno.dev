@@ -11,6 +11,8 @@ import { MarkdownAside } from '../../../component/MarkdownAside'
 import { getAllList } from '../../../lib/getAllList'
 
 export default async (props: Props) => {
+  console.log({props})
+  const { wiki } = props.params
   const md = props.params.md.map(decodeURIComponent)
   const path = md.join('/')
   const currentPath = md.slice(0, -1).join('/')
@@ -31,7 +33,7 @@ export default async (props: Props) => {
     )
   } catch (err) {
     if (!path.endsWith('index')) {
-      return redirect(decodeURIComponent(`/wiki/${path}/index`))
+      return redirect(decodeURIComponent(`/${wiki}/${path}/index`))
     }
 
     return <NoPage name={path}/>
@@ -39,6 +41,7 @@ export default async (props: Props) => {
 }
 type Props = {
   params: {
+    wiki: string
     md: string[]
   }
 }
