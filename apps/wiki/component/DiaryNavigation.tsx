@@ -4,10 +4,12 @@ import { getAllList } from '../lib/getAllList'
 
 export const DiaryNavigation: FC<Props> = props => {
   const { wiki, path } = props
-  console.log('DiaryNavigation', {props})
-  const { files } = getAllList()
   const prefix = `/${wiki}/diary/`
+  if (!path.startsWith(prefix)) {
+    return null
+  }
 
+  const { files } = getAllList()
   const index = files.findIndex((f) => f.slice(1) === path)
   const prev = files[index - 1]
   const next = files[index + 1]
