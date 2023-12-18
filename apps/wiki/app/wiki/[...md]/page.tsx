@@ -1,7 +1,7 @@
 import React, { cache } from 'react'
 import fs from 'node:fs/promises'
 import { createRelativeLinkReplacer } from 'parser-vimwiki'
-import { DIR_WIKI, ENDPOINT } from '../../../constant'
+import { DIR_WIKI, ENDPOINT, IS_PROD } from '../../../constant'
 import { marked } from '../../../lib/marked'
 import { redirect } from 'next/navigation'
 import { Header } from '../../../component/Header'
@@ -45,7 +45,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const path = params.md.map(decodeURIComponent).join('/')
-  console.log({path})
 
   try {
     const [first, ...lines] = await getMarkdown(path).then((md) => md.split('\n'))
@@ -62,7 +61,7 @@ export async function generateMetadata({ params }: Props) {
       },
     }
   } catch(e) {
-    console.error(e)
+    console.warn(`warn: [${e.code}] ${e.message}`)
 
     return {
       openGraph: {
@@ -72,8 +71,9 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
-const getMarkdown = cache(async (path: string) => {
+const _getMarkdown = async (path: string) => {
   const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
 
   return await fs.readFile(file).then((buffer) => buffer.toString())
-})
+}
+const getMarkdown = IS_PROD ? cache(_getMarkdown) : _getMarkdown

@@ -1,3 +1,4 @@
+export const IS_PROD = process.env.NODE_ENV === 'production'
 export const DIR_WIKI = process.env.DIR_WIKI
 export const DIR_DIARY = process.env.DIR_DIARY ?? 'diary'
 export const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT
