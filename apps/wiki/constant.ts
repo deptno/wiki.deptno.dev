@@ -9,3 +9,4 @@ export const NEXT_PUBLIC_MEILISEARCH_HOST = process.env.NEXT_PUBLIC_MEILISEARCH_
 export const URL_ME = process.env.URL_ME
 export const URL_WIKI = process.env.URL_WIKI
 export const CURRENT_REVISION = '.CURRENT_REVISION'
+export { config as CONFIG } from './wiki.config'
