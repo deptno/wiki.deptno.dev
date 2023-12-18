@@ -4,6 +4,7 @@ import path, { basename } from 'node:path'
 import { CONFIG, DIR_WIKI_ROOT } from '../constant'
 import { random } from './random'
 import { prodCache } from './prodCache'
+import { tryToGetWiki } from './tryToGetWiki'
 
 function _getAllList(wikiName: string) {
   const toMarkdown = (files: string[]) => {
@@ -24,12 +25,7 @@ function _getAllList(wikiName: string) {
   })
 
   const markdowns = toMarkdown(files)
-  const wiki = CONFIG.find(w => w.dir === wikiName)
-
-  if (!wiki) {
-    throw new Error(`Unknown wiki(${wikiName})`)
-  }
-
+  const wiki = tryToGetWiki(wikiName)
   const lastModified = getLastModifiedFiles(wiki)
 
   return {
