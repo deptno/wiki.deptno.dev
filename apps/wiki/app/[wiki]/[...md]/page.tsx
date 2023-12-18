@@ -11,17 +11,12 @@ import { MarkdownAside } from '../../../component/MarkdownAside'
 import { getAllList } from '../../../lib/getAllList'
 
 export default async (props: Props) => {
-  console.log({props})
-  const { wiki } = props.params
-  const md = props.params.md.map(decodeURIComponent)
-  const paths = [wiki, ...md]
-  const path = paths.join('/')
-  const currentPath = md.slice(0, -1).join('/')
+  const { path, currentPath, wiki } = getPath(props)
   const { getRandomLatestModifiedFileName } = getAllList()
 
-  try {
-    const markdown = await getMarkdown(path)
-      .then(createRelativeLinkReplacer(currentPath))
+  try { const markdown = await getMarkdown(path).then(
+      createRelativeLinkReplacer(currentPath),
+    )
     const html = marked(markdown)
 
     return (
@@ -37,7 +32,7 @@ export default async (props: Props) => {
       return redirect(decodeURIComponent(`/${path}/index`))
     }
 
-    return <NoPage wiki={wiki} name={path}/>
+    return <NoPage name={path} />
   }
 }
 type Props = {
@@ -47,15 +42,11 @@ type Props = {
   }
 }
 
-export async function generateMetadata({ params }: Props) {
-  // FIXME: 메인 펑션이랑 로직 합칠것
-  const { wiki } = params
-  const md = params.md.map(decodeURIComponent)
-  const paths = [wiki, ...md]
-  const path = paths.join('/')
+export async function generateMetadata(props: Props) {
+  const { path } = getPath(props)
 
   try {
-    const [first, ...lines] = await getMarkdown(path).then((md) => md.split('\n'))
+    const [first, ...lines] = await getMarkdown(path).then(md => md.split('\n'))
     const title = first.replace(/^#*%s/g, '')
     const description = lines.join('\n')
 
@@ -65,23 +56,37 @@ export async function generateMetadata({ params }: Props) {
       openGraph: {
         title,
         description,
-        url: `${ENDPOINT}/wiki/${path}`,
+        url: `${ENDPOINT}/${path}`,
       },
     }
-  } catch(e) {
+  } catch (e) {
     console.warn(`warn: [${e.code}] ${e.message}`)
 
     return {
       openGraph: {
-        url: `${ENDPOINT}/wiki/${path}`,
-      }
+        url: `${ENDPOINT}/${path}`,
+      },
     }
   }
 }
 
-const _getMarkdown = async (path: string) => {
+function _getPath(props: Props) {
+  const md = props.params.md.map(decodeURIComponent)
+  const paths = [props.params.wiki, ...md]
+  const path = paths.join('/')
+  const currentPath = md.slice(0, -1).join('/')
+
+  return {
+    path,
+    currentPath,
+    wiki: props.params.wiki,
+  }
+}
+async function _getMarkdown(path: string) {
   const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
 
-  return await fs.readFile(file).then((buffer) => buffer.toString())
+  return await fs.readFile(file).then(buffer => buffer.toString())
 }
+
+const getPath = IS_PROD ? cache(_getPath) : _getPath
 const getMarkdown = IS_PROD ? cache(_getMarkdown) : _getMarkdown
