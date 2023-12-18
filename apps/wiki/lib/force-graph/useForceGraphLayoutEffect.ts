@@ -2,7 +2,7 @@ import { RefObject, useLayoutEffect, useRef } from 'react'
 import { ForceGraphInstance } from 'force-graph'
 import { draw } from './draw'
 
-export function useForceGraphLayoutEffect(elementRef: RefObject<HTMLElement>, graphData) {
+export function useForceGraphLayoutEffect(elementRef: RefObject<HTMLElement>, wiki, graphData) {
   let ran = useRef(false)
 
   useLayoutEffect(() => {
@@ -41,7 +41,7 @@ export function useForceGraphLayoutEffect(elementRef: RefObject<HTMLElement>, gr
 
 
     const options = getOptions()
-    draw({ element, graphData, options }).then((instance) => {
+    draw({ element, wiki, graphData, options }).then((instance) => {
       refGraph = instance
 
       window.addEventListener('resize', updateGraph)

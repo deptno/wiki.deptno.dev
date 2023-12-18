@@ -8,9 +8,9 @@ import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 import { DiaryNavigation } from './DiaryNavigation'
 
 export const MarkdownAside: FC<Props> = (props) => {
-  const { data, path = '' } = props
-  const graph = getGraph()
-  const g = graph.getLinkGraphData(path)
+  const { data, wiki, path = '' } = props
+  const graph = getGraph(wiki)
+  const g = graph.getLinkGraphData(path.slice(wiki.length + 1))
   const branch = GIT_BRANCH
 
   return (
@@ -21,18 +21,19 @@ export const MarkdownAside: FC<Props> = (props) => {
           <a className="underline border-l-blue-800" href={`${URL_WIKI}/commits/${branch}/${path}.md`} target="_blank">기록</a>
           <a className="underline border-l-blue-800" href={`${URL_WIKI}/blame/${branch}/${path}.md`} target="_blank">추적</a>
         </div>
-        <LinkGraph graphData={g}/>
+        <LinkGraph wiki={wiki} graphData={g}/>
         <hr/>
         <LinkList graphData={g}/>
         <hr/>
         <TOC html={data}/>
-        <DiaryNavigation path={path}/>
+        <DiaryNavigation wiki={wiki} path={path}/>
       </ChildrenWithSearchResult>
     </div>
   )
 }
 
 type Props = {
+  wiki: string
   data: string
   path?: string
 }

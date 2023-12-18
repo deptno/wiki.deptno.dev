@@ -9,16 +9,17 @@ import { getVimwikiLinkBaseName } from './lib/getVimwikiLinkBaseName'
 import { getMakrdownLinkBaseName } from './lib/getMarkdownLinkBaseName'
 import { handleVimwikiPrefix } from './lib/handleVimwikiPrefix'
 
-export const getGraph = () => {
+export const getGraph = (wiki: string) => {
   if (IS_PROD && _cache.current) {
     return _cache.current
   }
 
   const graph = createGraph()
-  const map = getAllMd(DIR_WIKI)
+  const wikiDir = join(DIR_WIKI, wiki)
+  const map = getAllMd(wikiDir)
     .map((filepath: string) => {
       const markdown = readFileSync(filepath).toString()
-      const source = filepath.replace(`${DIR_WIKI}/`, '').slice(0, -3)
+      const source = filepath.replace(`${wikiDir}/`, '').slice(0, -3)
       const vimwikiLinks = (markdown.match(RE_VIMWIKI_LINK) ?? [])
         .map((l: string) => {
           return join(
@@ -53,7 +54,6 @@ export const getGraph = () => {
     })
 
   for (const {source, links} of map) {
-    graph.addNode(source)
     for (const target of links) {
       graph.addEdge({ source, target })
     }
