@@ -23,7 +23,7 @@ export const MarkdownAside: FC<Props> = (props) => {
         </div>
         <LinkGraph wiki={wiki} graphData={g}/>
         <hr/>
-        <LinkList graphData={g}/>
+        <LinkList wiki={wiki} graphData={g}/>
         <hr/>
         <TOC html={data}/>
         <DiaryNavigation wiki={wiki} path={path}/>
