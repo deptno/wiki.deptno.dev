@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllMd } from '../lib/getAllMd'
-import { DIR_WIKI, ENDPOINT } from '../constant'
+import { DIR_WIKI_ROOT, ENDPOINT } from '../constant'
 import config from '../wiki.config'
 import path from 'node:path'
 
@@ -9,12 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return publicW
     .flatMap(w => {
-      const dir = path.join(DIR_WIKI, w.dir)
+      const dir = path.join(DIR_WIKI_ROOT, w.dir)
       const diaryDir = path.join(dir, w.diaryDir)
 
       return getAllMd(dir)
         .filter(url => !url.startsWith(diaryDir))
-        .map(url => url.replace(DIR_WIKI, '').slice(0, -3))
+        .map(url => url.replace(DIR_WIKI_ROOT, '').slice(0, -3))
         .map(url => {
           return {
             url: `${ENDPOINT}${url}`,

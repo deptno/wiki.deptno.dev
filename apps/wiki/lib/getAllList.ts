@@ -1,7 +1,7 @@
 import { getAllMd } from './getAllMd'
 import { getLastModifiedFiles } from './getLastModifiedFiles'
 import path, { basename } from 'node:path'
-import { CONFIG, DIR_WIKI } from '../constant'
+import { CONFIG, DIR_WIKI_ROOT } from '../constant'
 import { random } from './random'
 import { prodCache } from './prodCache'
 
@@ -16,10 +16,10 @@ function _getAllList(wikiName: string) {
 
   const wikis = CONFIG.filter(w => !w.private).map(w => w.dir)
   const files = wikis.flatMap(wiki => {
-    const dir = path.join(DIR_WIKI, wiki)
+    const dir = path.join(DIR_WIKI_ROOT, wiki)
 
     return getAllMd(dir)
-      .map((f: string) => f.replace(DIR_WIKI, ''))
+      .map((f: string) => f.replace(DIR_WIKI_ROOT, ''))
       .map(stripExt)
   })
 

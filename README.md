@@ -10,7 +10,7 @@
 | env                             | 설명                  | wiki | meilisearch-updater |
 |---------------------------------|-----------------------|------|---------------------|
 | URL_ME                          | 자기소개 페이지       | o    |                     |
-| DIR_WIKI                        | /path/to/vimwiki/root | m    | m                   |
+| DIR_WIKI_ROOT                   | /path/to/vimwiki/root | m    | m                   |
 | NEXT_PUBLIC_GIT_BRANCH          | default 'main'        | o    |                     |
 | NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX          | o    |                     |
 | NEXT_PUBLIC_MEILISEARCH_HOST    | localhost:7700        | o    | m                   |
@@ -21,10 +21,10 @@
 ### 로컬 실행 및 빌드
 ```sh
 # NEXT_PUBLIC_MEILISEARCH_HOST: 실행되는 서버의 위치 지정
-# DIR_WIKI: 는 URL_WIKI 의 클론된 위치를 지정한다
+# DIR_WIKI_ROOT: wiki 들이 클론될 부모 위치
 NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 \
 NEXT_PUBLIC_ENDPOINT=https://deptno.dev \
-DIR_WIKI=/path/to/vimwiki/root \
+DIR_WIKI_ROOT=/path/to/vimwiki/root \
 pnpm dev # or pnpm build
 ```
 
