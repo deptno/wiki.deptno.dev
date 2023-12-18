@@ -1,8 +1,9 @@
 import { getAllMd } from './getAllMd'
 import { getLastModifiedFiles } from './getLastModifiedFiles'
 import path from 'node:path'
-import { CONFIG, DIR_WIKI, IS_PROD } from '../constant'
+import { CONFIG, DIR_WIKI } from '../constant'
 import { random } from './random'
+import { prodCache } from './prodCache'
 
 function _getAllList(wikiName: string) {
   const toMarkdown = (files: string[]) => {
@@ -46,7 +47,6 @@ function _getAllList(wikiName: string) {
   }
 }
 
-let cache = undefined
 const stripExt = (f: string) => f.slice(0, -3)
 
-export const getAllList = IS_PROD ? cache(_getAllList) : _getAllList
+export const getAllList = prodCache(_getAllList)
