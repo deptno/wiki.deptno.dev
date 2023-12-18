@@ -2,7 +2,7 @@ import { ENDPOINT } from '../../constant'
 import { ForceGraphInstance } from 'force-graph'
 
 export function draw(args: Args): Promise<ForceGraphInstance> {
-  const { element, graphData, options } = args
+  const { element, wiki, graphData, options } = args
 
   return new Promise((resolve) => {
     // window is not find 에러 발생에 대한 우회 처리
@@ -20,7 +20,8 @@ export function draw(args: Args): Promise<ForceGraphInstance> {
           .height(height)
           .zoom(zoom)
           .graphData(graphData)
-          .linkCanvasObjectMode(() => 'after').onNodeClick(node => location.href = `${ENDPOINT}/wiki/${node.id}`)
+          // TODO: router 가능한지 검토
+          .linkCanvasObjectMode(() => 'after').onNodeClick(node => location.href = `${ENDPOINT}/${wiki}/${node.id}`)
           .nodeCanvasObject((node, ctx, globalScale) => {
             const label = node.id
             const fontSize = 16 / globalScale
@@ -57,7 +58,8 @@ export function draw(args: Args): Promise<ForceGraphInstance> {
 
 type Args = {
   element: HTMLElement
-  graphData
+  wiki: string
+  graphData: any
   options: ForceGraphOption
 }
 type ForceGraphOption = { width, height, zoom }

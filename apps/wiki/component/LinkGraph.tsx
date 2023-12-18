@@ -3,10 +3,10 @@ import React, { FC, useRef } from 'react'
 import { useForceGraphLayoutEffect } from '../lib/force-graph'
 
 export const LinkGraph: FC<Props> = (props) => {
-  const { graphData } = props
+  const { wiki, graphData } = props
   const ref = useRef()
 
-  useForceGraphLayoutEffect(ref, graphData)
+  useForceGraphLayoutEffect(ref, wiki, graphData)
 
   return (
     <div className="w-full h-fit 3xl:w-96 3xl:h-96 min-h-24 relative">
@@ -16,5 +16,6 @@ export const LinkGraph: FC<Props> = (props) => {
 }
 
 type Props = {
+  wiki: string
   graphData: any
 }

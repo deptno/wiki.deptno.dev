@@ -32,7 +32,7 @@ container_envs=$(
 for s in $container_envs; do export $s; done
 for s in $container_envs; do echo $s; done
 
-export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
+export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
 
 pnpm build
 

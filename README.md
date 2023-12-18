@@ -7,30 +7,29 @@
 > 필수: m
 > 선택: o
 
-| env                             | 설명             | wiki | meilisearch-updater |
-|---------------------------------|------------------|------|---------------------|
-| URL_WIKI                        | github url       | o    |                     |
-| URL_ME                          | 자기소개 페이지  | o    |                     |
-| DIR_WIKI                        | /path/to/vimwiki | m    | m                   |
-| DIR_DIARY                       | diary dirrectory | o    |                     |
-| NEXT_PUBLIC_GIT_BRANCH          | default 'main'   | o    |                     |
-| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX     | o    |                     |
-| NEXT_PUBLIC_MEILISEARCH_HOST    | localhost:7700   | o    | m                   |
-| NEXT_PUBLIC_MS_CLARITY_ID       | xxxxxxxxxx       | o    |                     |
+| env                             | 설명                  | wiki | meilisearch-updater |
+|---------------------------------|-----------------------|------|---------------------|
+| URL_ME                          | 자기소개 페이지       | o    |                     |
+| DIR_WIKI_ROOT                   | /path/to/vimwiki/root | m    | m                   |
+| NEXT_PUBLIC_GIT_BRANCH          | default 'main'        | o    |                     |
+| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX          | o    |                     |
+| NEXT_PUBLIC_MEILISEARCH_HOST    | localhost:7700        | o    | m                   |
+| NEXT_PUBLIC_MS_CLARITY_ID       | xxxxxxxxxx            | o    |                     |
 
 ## 실행
 
 ### 로컬 실행 및 빌드
 ```sh
 # NEXT_PUBLIC_MEILISEARCH_HOST: 실행되는 서버의 위치 지정
-# DIR_WIKI: 는 URL_WIKI 의 클론된 위치를 지정한다
-# DIR_DIARY: custom diary path 를 사용하는 경우 입력한다. default = diary
+# DIR_WIKI_ROOT: wiki 들이 클론될 부모 위치
 NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 \
 NEXT_PUBLIC_ENDPOINT=https://deptno.dev \
-URL_WIKI=https://github.com/deptno/public-wiki \
-DIR_WIKI=/path/to/vimwiki \
+DIR_WIKI_ROOT=/path/to/vimwiki/root \
 pnpm dev # or pnpm build
 ```
+
+## 설정 파일
+- [wiki.config.js](wiki.config.js) 참조
 
 ### 다커 테스트
 ```sh
