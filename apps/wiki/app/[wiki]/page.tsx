@@ -17,7 +17,7 @@ export default async function Page(props: Props) {
 
     return (
       <>
-        <Header placeholder={getRandomLatestModifiedFileName()} />
+        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()} />
         <Markdown data={html}>
           <MarkdownAside data={html} wiki={wiki} path={path} />
         </Markdown>
