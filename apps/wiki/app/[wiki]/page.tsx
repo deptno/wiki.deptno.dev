@@ -30,6 +30,7 @@ export default async (props: Props) => {
     )
   } catch (err) {
     console.error(err)
+
     throw err
   }
 }

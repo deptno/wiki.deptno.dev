@@ -15,8 +15,9 @@ export default async (props: Props) => {
     throw new Error('403')
   }
 
+  const { path, currentPath, wiki } = getPath([props.params.wiki, ...props.params.md])
+
   try {
-    const { path, currentPath, wiki } = getPath([props.params.wiki, ...props.params.md])
     const { getRandomLatestModifiedFileName } = getAllList(wiki)
     const html = await getHtml({ path, currentPath })
 
