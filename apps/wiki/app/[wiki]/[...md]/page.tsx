@@ -1,8 +1,4 @@
-import React, { cache } from 'react'
-import fs from 'node:fs/promises'
-import { createRelativeLinkReplacer } from 'parser-vimwiki'
-import { DIR_WIKI, ENDPOINT, IS_PROD } from '../../../constant'
-import { marked } from '../../../lib/marked'
+import React from 'react'
 import { redirect } from 'next/navigation'
 import { Header } from '../../../component/Header'
 import { NoPage } from '../../../component/NoPage'
@@ -10,6 +6,9 @@ import { Markdown } from '../../../component/Markdown'
 import { MarkdownAside } from '../../../component/MarkdownAside'
 import { getAllList } from '../../../lib/getAllList'
 import { isPublicWiki } from '../../../lib/isPublicWiki'
+import { getHtml } from '../../../lib/getHtml'
+import { getMarkdownMetadata } from '../../../lib/generateMetadata'
+import { getPath } from '../../../lib/getPath'
 
 export default async (props: Props) => {
   if (!isPublicWiki(props.params.wiki)) {
@@ -20,10 +19,7 @@ export default async (props: Props) => {
   const { getRandomLatestModifiedFileName } = getAllList(props.params.wiki)
 
   try {
-    const markdown = await getMarkdown(path).then(
-      createRelativeLinkReplacer(currentPath),
-    )
-    const html = marked(markdown)
+    const html = await getHtml({ path, currentPath })
 
     return (
       <>
@@ -49,58 +45,5 @@ type Props = {
 }
 
 export async function generateMetadata(props: Props) {
-  const result = getPath(props)
-  if (!result) {
-    return
-  }
-
-  const { path } = result
-  try {
-    const [first, ...lines] = await getMarkdown(path).then(md => md.split('\n'))
-    const title = first.replace(/^#*%s/g, '')
-    const description = lines.join('\n')
-
-    return {
-      title,
-      description,
-      openGraph: {
-        title,
-        description,
-        url: `${ENDPOINT}/${path}`,
-      },
-    }
-  } catch (e) {
-    console.warn(`warn: [${e.code}] ${e.message}`)
-
-    return {
-      openGraph: {
-        url: `${ENDPOINT}/${path}`,
-      },
-    }
-  }
+  return getMarkdownMetadata(props)
 }
-
-function _getPath(props: Props) {
-  if (!isPublicWiki(props.params.wiki)) {
-    return
-  }
-
-  const md = props.params.md.map(decodeURIComponent)
-  const paths = [props.params.wiki, ...md]
-  const path = paths.join('/')
-  const currentPath = md.slice(0, -1).join('/')
-
-  return {
-    path,
-    currentPath,
-    wiki: props.params.wiki,
-  }
-}
-async function _getMarkdown(path: string) {
-  const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
-
-  return await fs.readFile(file).then(buffer => buffer.toString())
-}
-
-const getPath = IS_PROD ? cache(_getPath) : _getPath
-const getMarkdown = IS_PROD ? cache(_getMarkdown) : _getMarkdown

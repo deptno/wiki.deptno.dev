@@ -1,0 +1,9 @@
+import { DIR_WIKI } from '../constant'
+import { prodCache } from './prodCache'
+import fs from 'node:fs/promises'
+
+export const getMarkdown = prodCache(async (path: string) => {
+  const file = decodeURIComponent(`${DIR_WIKI}/${path}.md`)
+
+  return await fs.readFile(file).then(buffer => buffer.toString())
+})
