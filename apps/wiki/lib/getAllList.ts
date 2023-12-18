@@ -31,7 +31,6 @@ export const getAllList = () => {
   const markdowns = toMarkdown(files)
   // FIXME: CONFIG[0],  getAllList 함수가 wiki를 인자로 받는게 안전할 것
   const lastModified = getLastModifiedFiles(CONFIG[0])
-  console.table(lastModified)
 
   cache = {
     files,
