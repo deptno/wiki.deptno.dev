@@ -1,6 +1,6 @@
 import { getAllMd } from './getAllMd'
 import { getLastModifiedFiles } from './getLastModifiedFiles'
-import path, { basename } from 'node:path'
+import path from 'node:path'
 import { CONFIG, DIR_WIKI } from '../constant'
 import { random } from './random'
 
