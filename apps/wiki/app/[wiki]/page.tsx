@@ -8,7 +8,7 @@ import { getHtml } from '../../lib/getHtml'
 import { getPath } from '../../lib/getPath'
 import { getMarkdownMetadata } from '../../lib/generateMetadata'
 
-export default async (props: Props) => {
+export default async function Page(props: Props) {
   try {
     const { path, wiki } = getPath([props.params.wiki, 'index'])
     const { markdowns, lastModified, getRandomLatestModifiedFileName } =
@@ -47,7 +47,7 @@ export async function generateMetadata(props: Props) {
     ...metadata,
     openGraph: {
       ...metadata.openGraph,
-      url: (metadata.openGraph.url as string).slice(0, '/index'.length)
-    }
+      url: (metadata.openGraph.url as string).slice(0, '/index'.length),
+    },
   }
 }

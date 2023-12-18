@@ -1,5 +1,5 @@
-import { isPublicWiki } from "./isPublicWiki"
-import { prodCache } from "./prodCache"
+import { isPublicWiki } from './isPublicWiki'
+import { prodCache } from './prodCache'
 
 export const getPath = prodCache((paths: string[]) => {
   const [wiki, ...md] = paths.map(decodeURIComponent)

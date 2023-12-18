@@ -8,14 +8,17 @@ import { getAllList } from '../../../lib/getAllList'
 import { isPublicWiki } from '../../../lib/isPublicWiki'
 import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
-import { getPath } from "../../../lib/getPath"
+import { getPath } from '../../../lib/getPath'
 
-export default async (props: Props) => {
+export default async function Page(props: Props) {
   if (!isPublicWiki(props.params.wiki)) {
     throw new Error('403')
   }
 
-  const { path, currentPath, wiki } = getPath([props.params.wiki, ...props.params.md])
+  const { path, currentPath, wiki } = getPath([
+    props.params.wiki,
+    ...props.params.md,
+  ])
 
   try {
     const { getRandomLatestModifiedFileName } = getAllList(wiki)
@@ -31,7 +34,8 @@ export default async (props: Props) => {
     )
   } catch (err) {
     if (!path.endsWith('index')) {
-      return redirect(decodeURIComponent(`/${path}/index`)) }
+      return redirect(decodeURIComponent(`/${path}/index`))
+    }
 
     return <NoPage name={path} />
   }
