@@ -3,11 +3,11 @@ import { join } from 'node:path'
 import { getAllMd } from './lib/getAllMd'
 import { RE_MARKDOWN_LINK, RE_VIMWIKI_LINK } from 'parser-vimwiki/constant'
 import { readFileSync } from 'fs'
-import { DIR_WIKI, IS_PROD } from './constant'
+import { CONFIG, DIR_WIKI, IS_PROD } from './constant'
 import { getNameFromLink } from './lib/getNameFromLink'
 import { getVimwikiLinkBaseName } from './lib/getVimwikiLinkBaseName'
 import { getMakrdownLinkBaseName } from './lib/getMarkdownLinkBaseName'
-import { handleVimwikiPrefix } from './lib/handleVimwikiPrefix'
+import { createVimwikiPrefixHandler } from './lib/createVimwikiPrefixHandler'
 
 export const getGraph = (wiki: string) => {
   if (IS_PROD && _cache.current) {
@@ -16,6 +16,7 @@ export const getGraph = (wiki: string) => {
 
   const graph = createGraph()
   const wikiDir = join(DIR_WIKI, wiki)
+  const handleVimwikiPrefix  = createVimwikiPrefixHandler(CONFIG.find(w => w.dir === wiki)?.diaryDir ?? 'diary')
   const map = getAllMd(wikiDir)
     .map((filepath: string) => {
       const markdown = readFileSync(filepath).toString()
