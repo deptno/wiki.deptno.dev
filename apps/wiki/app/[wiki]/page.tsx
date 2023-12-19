@@ -13,7 +13,7 @@ export default async function Page(props: Props) {
     const { path, wiki } = getPath([props.params.wiki, 'index'])
     const { markdowns, lastModified, getRandomLatestModifiedFileName } =
       getAllList(wiki)
-    const html = await getHtml({ path, currentPath: wiki })
+    const html = await getHtml({ path, currentPath: `/${wiki}` })
 
     return (
       <>
