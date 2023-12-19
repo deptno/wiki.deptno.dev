@@ -35,7 +35,7 @@ for s in $container_envs; do echo $s; done
 export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
 export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
 
-pnpm build
+pnpm run turbo build
 
 docker build . \
  --platform linux/amd64 \
