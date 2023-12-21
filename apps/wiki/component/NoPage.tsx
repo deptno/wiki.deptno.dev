@@ -5,6 +5,7 @@ import { LinkGraph } from './LinkGraph'
 import { GIT_BRANCH } from '../constant'
 import { GoBack } from './GoBack'
 import { tryToGetWiki } from '../lib/tryToGetWiki'
+import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 
 // @ts-ignore
 export const NoPage: FC<Props> = async (props) => {
@@ -17,6 +18,7 @@ export const NoPage: FC<Props> = async (props) => {
   return (
     <>
       <Header/>
+      <ChildrenWithSearchResult />
       <div className="w-full flex flex-col items-center justify-center h-screen">
         <span>존재하지 않는 문서입니다.</span>
         <a className="underline underline-offset-4" href={`${cw.url}/new/${GIT_BRANCH}?filename=${filename}.md`} target="_blank">생성하기</a>
