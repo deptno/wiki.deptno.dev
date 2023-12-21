@@ -19,7 +19,7 @@ export const MarkdownAside: FC<Props> = props => {
   return (
     <div className="p-2">
       <ChildrenWithSearchResult>
-        <div className="flex justify-end gap-2 border-b-2">
+        <div className="flex justify-end gap-2 border-b-2 3xl:py-2">
           <a
             className="underline border-l-blue-400"
             href={`${cw.url}/edit/${branch}/${wikiBasedPath}.md`}
