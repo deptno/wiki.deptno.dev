@@ -6,6 +6,7 @@ export const ChildrenWithSearchResult: FC<Props> = (props) => {
   return (
     <aside id="sidebar" className="px-2 break-words border border-gray-800 3xl:text-md 3xl:border-hidden relataive flex flex-col gap-2">
       <div id="search_result" />
+      <div id="search-result" />
       {children}
     </aside>
   )

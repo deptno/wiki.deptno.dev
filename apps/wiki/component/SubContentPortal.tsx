@@ -6,7 +6,7 @@ export const SubContentPortal: FC<Props> = (props) => {
   const [sidebar, setSidebar] = useState<Element>()
 
   useLayoutEffect(() => {
-    setSidebar(document.querySelector('#search_result'))
+    setSidebar(document.querySelector('#search-result'))
   }, [])
 
   if (sidebar) {
