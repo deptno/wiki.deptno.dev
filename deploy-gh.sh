@@ -1,3 +1,10 @@
+OUTPUT=$(node -e "process.stdout.write(require('./apps/wiki/next.config.js').output ?? '')")
+
+if [ $OUTPUT != "export" ]; then
+  echo "next.config.js 에서 \`"output": "export"\` 설정 필요"
+  exit 1
+fi
+
 NEXT_PUBLIC_MEILISEARCH_HOST=https://search.deptno.dev \
 NEXT_PUBLIC_ENDPOINT=https://deptno.dev \
 DIR_WIKI_ROOT=~/workspace/src/github.com/deptno \

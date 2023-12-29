@@ -1,3 +1,10 @@
+OUTPUT=$(node -e "process.stdout.write(require('./apps/wiki/next.config.js').output ?? '')")
+
+if [ "$OUTPUT" != "" ]; then
+  echo "next.config.js 에서 \`output\` 속성 제거"
+  exit 1
+fi
+
 export NS=deptno
 
 TAG=latest
