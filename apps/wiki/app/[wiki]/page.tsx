@@ -43,12 +43,16 @@ type Props = {
 
 export async function generateMetadata(props: Props) {
   const metadata = await getMarkdownMetadata([props.params.wiki, 'index'])
+  const url = (metadata.openGraph.url as string).slice(0, '/index'.length)
   return {
     ...metadata,
     openGraph: {
       ...metadata.openGraph,
-      url: (metadata.openGraph.url as string).slice(0, '/index'.length),
+      url,
     },
+    alternates: {
+      canonical: url,
+    }
   }
 }
 export async function generateStaticParams() {
