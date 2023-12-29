@@ -2,13 +2,19 @@ import { isPublicWiki } from './isPublicWiki'
 import { prodCache } from './prodCache'
 
 export const getPath = prodCache((paths: string[]) => {
-  const [wiki, ...md] = paths.map(decodeURIComponent)
+  const decodedPaths = paths.map(decodeURIComponent)
+  const last = decodedPaths.pop()
+  const [wiki, ...md] = decodedPaths
+
   if (!isPublicWiki(wiki)) {
     return
   }
 
   const path = paths.join('/')
-  const currentPath = md.slice(0, -1).join('/')
+  const isIndex = last === 'index'
+  const currentPath = isIndex
+    ? `/${decodedPaths.join('/')}`
+    : md.join('/')
 
   return {
     wiki,

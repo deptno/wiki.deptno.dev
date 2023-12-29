@@ -61,7 +61,7 @@ export const metadata = {
   title: 'deptno vimwiki',
   description: 'dev log',
   referrer: 'origin-when-cross-origin',
-  keywords: ['typescript', 'kubernetes', 'react', 'react native', 'terminal', 'neovim', 'vim', 'lua'],
+  keywords: ['typescript', 'kubernetes', 'react', 'react native', 'terminal', 'neovim', 'vim', 'lua', 'frontend', 'seo', 'k9s'],
   authors: [{ name: 'deptno', url: ENDPOINT }],
   creator: 'deptno@gmail.com',
   publisher: 'deptno@gmail.com',

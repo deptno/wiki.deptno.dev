@@ -44,6 +44,7 @@ export function link(href: string, title: string, text: string) {
       if (protocol === 'mailto:') {
         const email = href.slice(protocol.length)
 
+        // FIXME: remove hardcoded domain
         return `<a href="${href}" target="_blank">${email}</a> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=from deptno.dev" target="_blank">[지메일로 보내기]</a>`
       }
 

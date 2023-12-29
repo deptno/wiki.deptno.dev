@@ -33,6 +33,7 @@ const file = '/webhook/github/POST'
 const restart = () => {
   console.info('restart deployment')
 
+  // FIXME: remove hardcoded domain
   const child = exec(`APISERVER=https://kubernetes.default.svc \
 SERVICEACCOUNT=/var/run/secrets/kubernetes.io/serviceaccount \
 NAMESPACE=\$(cat \${SERVICEACCOUNT}/namespace) \

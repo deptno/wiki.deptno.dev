@@ -17,6 +17,7 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules,
+    // FIXME: remove hardcoded domain
     sitemap: 'https://deptno.dev/sitemap.xml',
   }
 }

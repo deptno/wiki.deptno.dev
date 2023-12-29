@@ -1,4 +1,3 @@
-import { ENDPOINT } from '../../constant'
 import { ForceGraphInstance } from 'force-graph'
 
 export function draw(args: Args): Promise<ForceGraphInstance> {
@@ -21,7 +20,7 @@ export function draw(args: Args): Promise<ForceGraphInstance> {
           .zoom(zoom)
           .graphData(graphData)
           // TODO: router 가능한지 검토
-          .linkCanvasObjectMode(() => 'after').onNodeClick(node => location.href = `${ENDPOINT}/${wiki}/${node.id}`)
+          .linkCanvasObjectMode(() => 'after').onNodeClick(node => location.href = `${location.origin}/${wiki}/${node.id}`)
           .nodeCanvasObject((node, ctx, globalScale) => {
             const label = node.id
             const fontSize = 16 / globalScale
