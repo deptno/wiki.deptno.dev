@@ -1,6 +1,7 @@
 # deptno.dev
 - vimwiki <https://deptno.dev> 웹 서버
-- 런타임에 `/mnt/data` 에 vimwiki 가 마운트 되어 있어야 실행 가능
+- 런타임에 `/mnt/data` 에 vimwiki  디렉토리가 마운트 되어 있어야 실행 가능
+- 혹은
 
 ## 환경 변수
 > 필수: m
@@ -42,6 +43,7 @@ docker -e WIKI_DIR=/mnt/data -v my-wiki-directory:/mnt/data -p 3000:3000 wiki
 
 ### 쿠버네티스
 - initContainer 등을 통해서 `/mnt/data` 에 git clone 후 사용
+- [deploy.sh](deploy.sh) 참조
 
 ### github page
 - [deploy-gh.sh](deploy-gh.sh) 참조
