@@ -51,3 +51,12 @@ export async function generateMetadata(props: Props) {
     },
   }
 }
+export async function generateStaticParams() {
+  return [
+    {
+      params: {
+        wiki: 'public-wiki'
+      }
+    }
+  ]
+}
