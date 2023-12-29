@@ -50,3 +50,16 @@ type Props = {
 export async function generateMetadata(props: Props) {
   return getMarkdownMetadata([props.params.wiki, ...props.params.md])
 }
+export async function generateStaticParams() {
+  const wiki = 'public-wiki'
+  const {files} = getAllList(wiki)
+
+  return files
+    .map(f => {
+      return {
+        wiki,
+        // slice(2) `/[wiki]` 까지 제거는
+        md: f.split('/').slice(2),
+      }
+    })
+}

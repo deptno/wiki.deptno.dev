@@ -5,7 +5,7 @@ import { Markdown } from '../component/Markdown'
 import { ChildrenWithSearchResult } from '../component/ChildrenWithSearchResult'
 import { CONFIG } from '../constant'
 
-export default async function Page(props: Props) {
+export default async function Page() {
   const markdownWiki = CONFIG.map(w => `- [${w.dir}](${w.dir})`).join('\n')
 
   try {
@@ -20,11 +20,5 @@ export default async function Page(props: Props) {
   } catch (err) {
     console.error(err)
     throw err
-  }
-}
-
-type Props = {
-  params: {
-    md: string
   }
 }
