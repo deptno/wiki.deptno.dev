@@ -8,7 +8,10 @@ export const getPath = prodCache((paths: string[]) => {
   }
 
   const path = paths.join('/')
-  const currentPath = md.slice(0, -1).join('/')
+  const isIndex = paths[paths.length - 1] === 'index'
+  const currentPath = isIndex
+    ? `/${wiki}/${md.slice(0, -1).join('/')}`
+    : md.slice(0, -1).join('/')
 
   return {
     wiki,
