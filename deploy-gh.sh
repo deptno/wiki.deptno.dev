@@ -1,6 +1,6 @@
 OUTPUT=$(node -e "process.stdout.write(require('./apps/wiki/next.config.js').output ?? '')")
 
-if [ $OUTPUT != "export" ]; then
+if [ "$OUTPUT" != "export" ]; then
   echo "next.config.js 에서 \`"output": "export"\` 설정 필요"
   exit 1
 fi
