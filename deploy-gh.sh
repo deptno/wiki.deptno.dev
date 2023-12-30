@@ -11,7 +11,7 @@ export NEXT_PUBLIC_ENDPOINT=https://deptno.dev
 export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
 export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
 
-pnpm build
+pnpm turbo run build
 
 DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki \
 NEXT_PUBLIC_MEILISEARCH_HOST=https://search.deptno.dev \
