@@ -8,5 +8,6 @@ export const GIT_BRANCH = process.env.NEXT_PUBLIC_GIT_BRANCH ?? 'main'
 export const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
 export const MS_CLARITY_ID = process.env.NEXT_PUBLIC_MS_CLARITY_ID
 export const NEXT_PUBLIC_MEILISEARCH_HOST = process.env.NEXT_PUBLIC_MEILISEARCH_HOST
+export const NEXT_PUBLIC_MEILISEARCH_API_KEY = process.env.NEXT_PUBLIC_MEILISEARCH_API_KEY
 export const URL_ME = process.env.URL_ME
 export const CURRENT_REVISION = '.CURRENT_REVISION'
