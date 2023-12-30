@@ -4,14 +4,16 @@ import { InstantSearch, SearchBox, Hits, Highlight } from 'react-instantsearch'
 import { instantMeiliSearch, InstantMeiliSearchInstance } from '@meilisearch/instant-meilisearch'
 import Link from 'next/link'
 import { SubContentPortal } from './SubContentPortal'
+import { NEXT_PUBLIC_MEILISEARCH_API_KEY, NEXT_PUBLIC_MEILISEARCH_HOST } from '../constant'
+
 
 export const SearchBar = (props: Props) => {
   const [searchClient, setSearchClient] = useState<InstantMeiliSearchInstance>()
 
   useEffect(() => {
     const { searchClient } = instantMeiliSearch(
-      process.env.NEXT_PUBLIC_MEILISEARCH_HOST,
-      undefined,
+      NEXT_PUBLIC_MEILISEARCH_HOST,
+      NEXT_PUBLIC_MEILISEARCH_API_KEY,
       {
         placeholderSearch: false,
         finitePagination: true,
