@@ -14,6 +14,7 @@ export URL_ME=/public-wiki/about-me
 export NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-C362H0MHTV
 export NEXT_PUBLIC_MS_CLARITY_ID=hbj4961k1t
 
+git -C $DIR_WIKI rev-parse --short @ > $DIR_WIKI/.CURRENT_REVISION
 pnpm turbo run build --force
 
 MEILI_MASTER_KEY=$(kubectl get secret -n deptno meilisearch-master-key -ojsonpath="{.data.MEILI_MASTER_KEY}" | base64 -d | tr -d '\n') \
@@ -25,3 +26,4 @@ git -C apps/wiki/out add .
 git -C apps/wiki/out commit -m 'deploy commit'
 git -C apps/wiki/out remote add origin git@github.com:deptno/deptno.github.io
 git -C apps/wiki/out push -f origin @:main
+rm $DIR_WIKI/.CURRENT_REVISION
