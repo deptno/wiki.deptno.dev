@@ -10,3 +10,4 @@ export const MS_CLARITY_ID = process.env.NEXT_PUBLIC_MS_CLARITY_ID
 export const NEXT_PUBLIC_MEILISEARCH_HOST = process.env.NEXT_PUBLIC_MEILISEARCH_HOST
 export const URL_ME = process.env.URL_ME
 export const CURRENT_REVISION = '.CURRENT_REVISION'
+export const MEILI_API_KEY = process.env.MEILI_API_KEY
