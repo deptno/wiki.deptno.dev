@@ -14,8 +14,6 @@ export URL_ME=/public-wiki/about-me
 
 pnpm turbo run build
 
-DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki \
-NEXT_PUBLIC_MEILISEARCH_HOST=https://search.deptno.dev \
 MEILI_MASTER_KEY=$(kubectl get secret -n deptno meilisearch-master-key -ojsonpath="{.data.MEILI_MASTER_KEY}" | base64 -d | tr -d '\n') \
 pnpm --filter meilisearch-updater start
 
