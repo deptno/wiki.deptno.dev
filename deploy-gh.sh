@@ -12,7 +12,7 @@ export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
 export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
 export URL_ME=/public-wiki/about-me
 
-pnpm turbo run build
+pnpm turbo run build --force
 
 MEILI_MASTER_KEY=$(kubectl get secret -n deptno meilisearch-master-key -ojsonpath="{.data.MEILI_MASTER_KEY}" | base64 -d | tr -d '\n') \
 pnpm --filter meilisearch-updater start
