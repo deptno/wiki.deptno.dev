@@ -10,6 +10,7 @@ export NEXT_PUBLIC_MEILISEARCH_API_KEY=fde26209c267ac6b5802e52d0582a18ad593d3853
 export NEXT_PUBLIC_ENDPOINT=https://deptno.dev
 export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
 export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
+export URL_ME=/public-wiki/about-me
 
 pnpm turbo run build
 
