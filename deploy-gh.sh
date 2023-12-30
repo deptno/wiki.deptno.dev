@@ -11,6 +11,8 @@ export NEXT_PUBLIC_ENDPOINT=https://deptno.dev
 export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
 export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
 export URL_ME=/public-wiki/about-me
+export NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-C362H0MHTV
+export NEXT_PUBLIC_MS_CLARITY_ID=hbj4961k1t
 
 pnpm turbo run build --force
 
