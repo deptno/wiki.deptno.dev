@@ -40,6 +40,13 @@ docker -e WIKI_DIR=/mnt/data -v my-wiki-directory:/mnt/data -p 3000:3000 wiki
 ```
 
 ## 배포
+- 배포 방식에 따라서 배포 스크립트 실행전, `next.config.js` 에서 `export` 옵션 설정필요
+```js
+module.exports = {
+  // 정적 배포인 경우 설정
+  output: 'export'
+}
+```
 
 ### 쿠버네티스
 - initContainer 등을 통해서 `/mnt/data` 에 git clone 후 사용
