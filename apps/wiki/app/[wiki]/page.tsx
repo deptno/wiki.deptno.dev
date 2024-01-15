@@ -8,7 +8,6 @@ import { getHtml } from '../../lib/getHtml'
 import { getPath } from '../../lib/getPath'
 import { getMarkdownMetadata } from '../../lib/generateMetadata'
 
-export const dynamic = 'force-dynamic'
 export default async function Page(props: Props) {
   try {
     const { path, wiki } = getPath([props.params.wiki, 'index'])

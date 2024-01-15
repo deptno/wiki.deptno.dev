@@ -10,7 +10,6 @@ import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
 
-export const dynamic = 'force-dynamic'
 export default async function Page(props: Props) {
   if (!isPublicWiki(props.params.wiki)) {
     throw new Error('403')
