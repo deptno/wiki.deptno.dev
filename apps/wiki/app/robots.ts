@@ -10,7 +10,6 @@ export default function robots(): MetadataRoute.Robots {
     disallow: [
       ...privateW.map(w => w.dir).map(withSlash),
       ...publicW.map(w => [w.dir, w.diaryDir].join('/')).map(withSlash),
-      '/_next/',
     ],
     crawlDelay: 1,
   }
