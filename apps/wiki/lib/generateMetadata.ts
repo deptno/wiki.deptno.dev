@@ -8,6 +8,7 @@ export const getMarkdownMetadata = prodCache(
   async (paths: string[]): Promise<Metadata> => {
     const result = getPath(paths)
     if (!result) {
+      console.log('getMarkdownMetadata no-result', { paths })
       return
     }
 
