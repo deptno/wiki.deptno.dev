@@ -17,13 +17,10 @@ export NEXT_PUBLIC_MS_CLARITY_ID=hbj4961k1t
 git -C $DIR_WIKI rev-parse --short @ > $DIR_WIKI/.CURRENT_REVISION
 pnpm turbo run build --no-cache
 
-MEILI_MASTER_KEY=$(kubectl get secret -n deptno meilisearch-master-key -ojsonpath="{.data.MEILI_MASTER_KEY}" | base64 -d | tr -d '\n') \
-pnpm --filter meilisearch-updater start
-
-touch apps/wiki/out/.nojekyll
-git -C apps/wiki/out init
-git -C apps/wiki/out add .
-git -C apps/wiki/out commit -m 'deploy commit'
-git -C apps/wiki/out remote add origin git@github.com:deptno/deptno.github.io
-git -C apps/wiki/out push -f origin @:main
-rm $DIR_WIKI/.CURRENT_REVISION
+# touch apps/wiki/out/.nojekyll
+# git -C apps/wiki/out init
+# git -C apps/wiki/out add .
+# git -C apps/wiki/out commit -m 'deploy commit'
+# git -C apps/wiki/out remote add origin git@github.com:deptno/deptno.github.io
+# git -C apps/wiki/out push -f origin @:main
+# rm $DIR_WIKI/.CURRENT_REVISION

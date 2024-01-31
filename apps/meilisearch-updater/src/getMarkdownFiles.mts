@@ -3,17 +3,17 @@ import { getAllMd } from './getAllMd.mjs'
 
 export const getMarkdownFiles = async (dir: string) => {
   const files = getAllMd(dir)
-  const contents = files.map((md: string) => {
-    const name = md
-      .replace(`${dir}/`, '')
-      .slice(0, -3)
-    const id = Buffer.from(name).toString('hex')
+  const contents = files
+    .map((md: string) => md.toLowerCase())
+    .map((md: string) => {
+      const name = md.replace(`${dir}/`, '').slice(0, -3)
+      const id = Buffer.from(name).toString('hex')
 
-    return {
-      id: id,
-      content: readFileSync(md).toString()
-    }
-  })
+      return {
+        id: id,
+        content: readFileSync(md).toString(),
+      }
+    })
 
   return contents
 }
