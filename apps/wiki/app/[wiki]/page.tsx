@@ -43,16 +43,21 @@ type Props = {
 }
 
 export async function generateMetadata(props: Props) {
+  console.log('generateMetadata', props)
   const metadata = await getMarkdownMetadata([props.params.wiki, 'index'])
-  const url = (metadata.openGraph.url as string).slice(0, '/index'.length)
+
+  const url = metadata
+    ? (metadata.openGraph.url as string).slice(0, '/index'.length)
+    : ''
+
   return {
     ...metadata,
     openGraph: {
-      ...metadata.openGraph,
+      ...metadata?.openGraph,
       url,
     },
     alternates: {
-      canonical: url,
+      // canonical: url,
     }
   }
 }
