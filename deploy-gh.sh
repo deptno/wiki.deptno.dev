@@ -7,7 +7,7 @@ fi
 
 export NEXT_PUBLIC_MEILISEARCH_HOST=https://search.deptno.dev
 export NEXT_PUBLIC_MEILISEARCH_API_KEY=fde26209c267ac6b5802e52d0582a18ad593d3853f354e3d63e67d40c36628a7
-export NEXT_PUBLIC_ENDPOINT=https://deptno.dev
+export NEXT_PUBLIC_ENDPOINT=https://deptno.github.io
 export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
 export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
 export URL_ME=/public-wiki/about-me
