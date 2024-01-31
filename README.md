@@ -3,6 +3,9 @@
 - 런타임에 `/mnt/data` 에 vimwiki  디렉토리가 마운트 되어 있어야 실행 가능
 - 혹은
 
+## 브랜치
+- lab/static-build - github pages 이용시
+
 ## 환경 변수
 > 필수: m
 > 선택: o
