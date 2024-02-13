@@ -11,8 +11,8 @@ export NEXT_PUBLIC_ENDPOINT=https://deptno.github.io
 export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
 export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
 export URL_ME=/public-wiki/about-me
-export NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-C362H0MHTV
-export NEXT_PUBLIC_MS_CLARITY_ID=hbj4961k1t
+export NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-QKL40848FW
+export NEXT_PUBLIC_MS_CLARITY_ID=l1919qdcrc
 
 git -C $DIR_WIKI rev-parse --short @ > $DIR_WIKI/.CURRENT_REVISION
 pnpm turbo run build --no-cache
