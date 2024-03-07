@@ -1,4 +1,4 @@
-FROM node:20-bullseye
+FROM node:20-bullseye-slim
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
