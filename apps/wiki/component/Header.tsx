@@ -4,6 +4,7 @@ import { Breadcrumbs } from './Breadcrumbs'
 import { GitRevision } from './GitRevision'
 import { FrontendRepoHeaderLink } from './FrontendRepoHeaderLink'
 import { MeHeaderLink } from './MeHeaderLink'
+import { DiaryLink } from './DiaryLink'
 
 export const Header: FC<Props> = props => {
   return (
@@ -12,6 +13,7 @@ export const Header: FC<Props> = props => {
       <div className="flex justify-between text-white gap-2">
         <FrontendRepoHeaderLink />
         <GitRevision wiki={props.wiki}/>
+        <DiaryLink />
         <MeHeaderLink />
         <div className="ml-auto" />
         <Breadcrumbs />
