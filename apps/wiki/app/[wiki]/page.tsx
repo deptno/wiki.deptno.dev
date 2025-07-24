@@ -18,15 +18,15 @@ export default async function Page(props: Props) {
 
     return (
       <>
-        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()} />
+        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()}/>
         <Markdown data={html}>
-          <MarkdownAside data={html} wiki={wiki} path={path} />
+          <MarkdownAside data={html} wiki={wiki} path={path}/>
         </Markdown>
-        <hr className="my-4" />
+        <hr className="my-4"/>
         <div className="p-4 text-4xl">최근 수정</div>
-        <Markdown data={marked(lastModified)} />
+        <Markdown data={marked(lastModified)}/>
         <div className="p-4 text-lg">전체 파일</div>
-        <Markdown data={marked(markdowns)} />
+        <Markdown data={marked(markdowns)}/>
       </>
     )
   } catch (err) {
@@ -43,9 +43,9 @@ type Props = {
 }
 
 export async function generateMetadata(props: Props) {
-  console.log('generateMetadata', props)
-  const metadata = await getMarkdownMetadata([props.params.wiki, 'index'])
+  console.log({ file, props }, 'generateMetadata', props)
 
+  const metadata = await getMarkdownMetadata([props.params.wiki, 'index'])
   const url = metadata
     ? (metadata.openGraph.url as string).slice(0, '/index'.length)
     : ''
@@ -58,11 +58,14 @@ export async function generateMetadata(props: Props) {
     },
     alternates: {
       // canonical: url,
-    }
+    },
   }
 }
+
 export async function generateStaticParams() {
   return [
     { wiki: 'public-wiki' },
   ]
 }
+
+const file = import.meta.url

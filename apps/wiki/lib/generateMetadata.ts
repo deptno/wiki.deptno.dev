@@ -8,7 +8,7 @@ export const getMarkdownMetadata = prodCache(
   async (paths: string[]): Promise<Metadata> => {
     const result = getPath(paths)
     if (!result) {
-      console.log('getMarkdownMetadata no-result', { paths })
+      console.log({ file, paths }, 'no-result')
       return
     }
 
@@ -32,7 +32,7 @@ export const getMarkdownMetadata = prodCache(
         },
       }
     } catch (e) {
-      console.warn(`warn: [${e.code}] ${e.message}`)
+      console.warn({ file }, `warn: [${e.code}] ${e.message}`)
 
       return {
         openGraph: {
@@ -42,3 +42,5 @@ export const getMarkdownMetadata = prodCache(
     }
   },
 )
+
+const file = import.meta.url
