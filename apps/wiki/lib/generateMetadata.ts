@@ -3,17 +3,16 @@ import { ENDPOINT } from '../constant'
 import { getMarkdown } from './getMarkdown'
 import { getPath } from './getPath'
 import { prodCache } from './prodCache'
+import { isPublicWiki } from './isPublicWiki'
 
 export const getMarkdownMetadata = prodCache(
   async (paths: string[]): Promise<Metadata> => {
-    const result = getPath(paths)
-    if (!result) {
-      console.log({ file, paths }, 'no-result')
+    const { wiki, path } = getPath(paths)
+    const url = `${ENDPOINT}/${path}`
+
+    if (!isPublicWiki(wiki)) {
       return
     }
-
-    const { path } = result
-    const url = `${ENDPOINT}/${path}`
 
     try {
       const [first, ...lines] = await getMarkdown(path).then(md =>
