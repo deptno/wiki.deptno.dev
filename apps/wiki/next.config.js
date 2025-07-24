@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   transpilePackages: ['ui'],
-  output: 'export',
+  // output: 'export',
   async redirects() {
     return [
       {

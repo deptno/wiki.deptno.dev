@@ -1,0 +1,28 @@
+services:
+  wiki:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wiki
+    command: pnpm --filter @app/wiki dev
+    ports:
+      - "3001:3001"
+    environment:
+      - NEXT_PUBLIC_ENDPOINT=http://host.docker.internal:3001
+      - URL_ME=/public-wiki/about-me
+      - DIR_WIKI_ROOT=/mnt/data
+      - DIR_WIKI=/mnt/data/public-wiki
+    volumes:
+      - ../public-wiki:/mnt/data/public-wiki
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: .
+          ignore:
+            - '**/node_modules/'
+            - '**/.turbo/'
+            - '**/.next/'
+            - .idea/
+        - action: rebuild
+          path: package.json

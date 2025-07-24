@@ -5,11 +5,12 @@ import { GitRevision } from './GitRevision'
 import { FrontendRepoHeaderLink } from './FrontendRepoHeaderLink'
 import { MeHeaderLink } from './MeHeaderLink'
 import { DiaryLink } from './DiaryLink'
+import { NEXT_PUBLIC_MEILISEARCH_HOST } from '../constant'
 
 export const Header: FC<Props> = props => {
   return (
     <header className="flex flex-col p-3 bg-gray-800 gap-2 w-full">
-      <SearchBar placeholder={props.placeholder} />
+      {NEXT_PUBLIC_MEILISEARCH_HOST && <SearchBar placeholder={props.placeholder} />}
       <div className="flex justify-between text-white gap-2">
         <FrontendRepoHeaderLink />
         <GitRevision wiki={props.wiki}/>

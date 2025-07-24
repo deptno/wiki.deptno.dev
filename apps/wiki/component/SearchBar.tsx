@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { SubContentPortal } from './SubContentPortal'
 import { NEXT_PUBLIC_MEILISEARCH_API_KEY, NEXT_PUBLIC_MEILISEARCH_HOST } from '../constant'
 
-
 export const SearchBar = (props: Props) => {
   const [searchClient, setSearchClient] = useState<InstantMeiliSearchInstance>()
 

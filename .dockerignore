@@ -1,0 +1,10 @@
+Dockerfile*
+*.sh
+**/src
+.idea
+.turbo
+.env*
+**/.turbo
+**/.next
+**/node_modules
+.next/cache
