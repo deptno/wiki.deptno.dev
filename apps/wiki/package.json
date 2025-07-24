@@ -22,7 +22,7 @@
     "parser-vimwiki": "workspace:^",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-instantsearch": "^7.4.1",
+    "react-instantsearch": "^7.16.2",
     "ui": "workspace:*"
   },
   "devDependencies": {
