@@ -11,7 +11,6 @@ services:
       - NEXT_PUBLIC_ENDPOINT=http://host.docker.internal:3001
       - URL_ME=/public-wiki/about-me
       - DIR_WIKI_ROOT=/mnt/data
-      - DIR_WIKI=/mnt/data/public-wiki
     volumes:
       - ../public-wiki:/mnt/data/public-wiki
     develop:
