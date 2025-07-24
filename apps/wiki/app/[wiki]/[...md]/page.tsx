@@ -8,6 +8,7 @@ import { getAllList } from '../../../lib/getAllList'
 import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
+import { CONFIG } from '../../../constant'
 
 export const dynamic = 'force-dynamic'
 export default async function Page(props: Props) {
@@ -23,9 +24,9 @@ export default async function Page(props: Props) {
 
     return (
       <>
-        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()} />
+        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()}/>
         <Markdown data={html}>
-          <MarkdownAside data={html} wiki={wiki} path={path} />
+          <MarkdownAside data={html} wiki={wiki} path={path}/>
         </Markdown>
       </>
     )
@@ -34,7 +35,7 @@ export default async function Page(props: Props) {
       return redirect(decodeURIComponent(`/${path}/index`))
     }
 
-    return <NoPage name={path} />
+    return <NoPage name={path}/>
   }
 }
 type Props = {
@@ -49,16 +50,18 @@ export async function generateMetadata(props: Props) {
 
   return getMarkdownMetadata([params.wiki, ...params.md])
 }
+
 export async function generateStaticParams() {
-  const wiki = 'public-wiki'
-  const {files} = getAllList(wiki)
+  const wiki = CONFIG.filter(t => !t.private)[0].dir
+  const { files } = getAllList(wiki)
 
   return files
     .map(f => {
       return {
         wiki,
-        // slice(2) `/[wiki]` 까지 제거는
-        md: f.split('/').slice(2),
+        md: f.slice(wiki.length + 1).split('/'),
       }
     })
 }
+
+const file = import.meta.url
