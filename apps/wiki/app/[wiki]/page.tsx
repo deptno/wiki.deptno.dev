@@ -7,11 +7,15 @@ import { MarkdownAside } from '../../component/MarkdownAside'
 import { getHtml } from '../../lib/getHtml'
 import { getPath } from '../../lib/getPath'
 import { getMarkdownMetadata } from '../../lib/generateMetadata'
+import { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
 export default async function Page(props: Props) {
+  const params = await props.params
+  console.log({ file, params })
+
   try {
-    const { path, wiki } = getPath([props.params.wiki, 'index'])
+    const { path, wiki } = getPath([params.wiki, 'index'])
     const { markdowns, lastModified, getRandomLatestModifiedFileName } =
       getAllList(wiki)
     const html = await getHtml({ path, currentPath: `/${wiki}` })
@@ -30,22 +34,21 @@ export default async function Page(props: Props) {
       </>
     )
   } catch (err) {
-    console.error(err)
+    console.error({ file }, err.message)
 
     throw err
   }
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     wiki: string
-  }
+  }>
 }
 
 export async function generateMetadata(props: Props) {
-  console.log({ file, props }, 'generateMetadata', props)
-
-  const metadata = await getMarkdownMetadata([props.params.wiki, 'index'])
+  const params = await props.params
+  const metadata = await getMarkdownMetadata([params.wiki, 'index'])
   const url = metadata
     ? (metadata.openGraph.url as string).slice(0, '/index'.length)
     : ''
@@ -59,7 +62,7 @@ export async function generateMetadata(props: Props) {
     alternates: {
       // canonical: url,
     },
-  }
+  } as Metadata
 }
 
 export async function generateStaticParams() {

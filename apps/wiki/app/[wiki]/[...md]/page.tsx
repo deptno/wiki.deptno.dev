@@ -12,13 +12,14 @@ import { getPath } from '../../../lib/getPath'
 
 export const dynamic = 'force-dynamic'
 export default async function Page(props: Props) {
-  if (!isPublicWiki(props.params.wiki)) {
+  const params = await props.params
+  if (!isPublicWiki(params.wiki)) {
     throw new Error('403')
   }
 
   const { path, currentPath, wiki } = getPath([
-    props.params.wiki,
-    ...props.params.md,
+    params.wiki,
+    ...params.md,
   ])
 
   try {
@@ -49,7 +50,9 @@ type Props = {
 }
 
 export async function generateMetadata(props: Props) {
-  return getMarkdownMetadata([props.params.wiki, ...props.params.md])
+  const params = await props.params
+
+  return getMarkdownMetadata([params.wiki, ...params.md])
 }
 export async function generateStaticParams() {
   const wiki = 'public-wiki'
