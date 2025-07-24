@@ -18,7 +18,9 @@ export default async function Page() {
       </>
     )
   } catch (err) {
-    console.error(err)
+    console.error({ file }, err.message)
     throw err
   }
 }
+
+const file = import.meta.url
