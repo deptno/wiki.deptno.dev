@@ -1,10 +1,11 @@
 'use client'
+
 import React, { FC, useRef } from 'react'
 import { useForceGraphLayoutEffect } from '../lib/force-graph'
 
 export const LinkGraph: FC<Props> = (props) => {
   const { wiki, graphData } = props
-  const ref = useRef()
+  const ref = useRef(null)
 
   useForceGraphLayoutEffect(ref, wiki, graphData)
 
