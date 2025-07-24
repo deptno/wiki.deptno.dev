@@ -1,10 +1,8 @@
 Dockerfile*
 *.sh
-**/src
-.idea
-.turbo
 .env*
-**/.turbo
-**/.next
-**/node_modules
-.next/cache
+.idea/
+**/src/
+**/.turbo/
+**/node_modules/
+**/tsconfig.tsbuildinfo

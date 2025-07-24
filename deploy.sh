@@ -12,7 +12,7 @@ GIT_COMMIT=$(git rev-parse --short @)
 CHANGE_CAUSE="$(date '+%Y%m%d-%H:%M:%S') $(git rev-parse --abbrev-ref @)@$(git show --no-patch --oneline)"
 NAME=deptno-dev
 APP_MS=meilisearch-updater
-YAML=~/workspace/src/github.com/deptno/cluster-amd64/manifest/$NAME.yaml
+YAML=../cluster-amd64/manifest/$NAME.yaml
 PERMISSION="$(kubectl auth can-i update deployment -n deptno)"
 
 set -e
@@ -36,11 +36,10 @@ container_envs=$(
     | jq -r '.spec.template.spec.containers[0].env | map(select(.value)) | map(.name + "=" + .value) | .[]'
 )
 
-for s in $container_envs; do export $s; done
-for s in $container_envs; do echo $s; done
+while IFS= read -r line; do export "$line"; done <<< "$container_envs"
 
-export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
-export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
+export DIR_WIKI_ROOT=..
+export DIR_WIKI=../public-wiki
 
 pnpm turbo run build
 
