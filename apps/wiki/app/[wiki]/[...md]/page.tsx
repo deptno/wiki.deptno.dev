@@ -38,10 +38,10 @@ export default async function Page(props: Props) {
   }
 }
 type Props = {
-  params: {
+  params: Promise<{
     wiki: string
     md: string[]
-  }
+  }>
 }
 
 export async function generateMetadata(props: Props) {
