@@ -5,7 +5,6 @@ import { NoPage } from '../../../component/NoPage'
 import { Markdown } from '../../../component/Markdown'
 import { MarkdownAside } from '../../../component/MarkdownAside'
 import { getAllList } from '../../../lib/getAllList'
-import { isPublicWiki } from '../../../lib/isPublicWiki'
 import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
@@ -13,10 +12,6 @@ import { getPath } from '../../../lib/getPath'
 export const dynamic = 'force-dynamic'
 export default async function Page(props: Props) {
   const params = await props.params
-  if (!isPublicWiki(params.wiki)) {
-    throw new Error('403')
-  }
-
   const { path, currentPath, wiki } = getPath([
     params.wiki,
     ...params.md,

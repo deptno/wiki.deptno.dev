@@ -14,22 +14,17 @@ function _getAllList(wikiName: string) {
       .join('\n')
   }
 
-  const wikis = CONFIG.filter(w => !w.private).map(w => w.dir)
-  const files = wikis.flatMap(wiki => {
-    const dir = path.join(DIR_WIKI_ROOT, wiki)
-
-    return getAllMd(dir)
-      .map((f: string) => f.replace(DIR_WIKI_ROOT, ''))
-      .map(stripExt)
-  })
-
-  const markdowns = toMarkdown(files)
   const wiki = CONFIG.find(w => w.dir === wikiName)
-
   if (!wiki) {
     throw new Error(`Unknown wiki(${wikiName})`)
   }
 
+  const dir = path.join(DIR_WIKI_ROOT, wiki.dir)
+  const files = getAllMd(dir)
+    .map((f: string) => f.replace(DIR_WIKI_ROOT, ''))
+    .map(stripExt)
+
+  const markdowns = toMarkdown(files)
   const lastModified = getLastModifiedFiles(wiki)
 
   return {
@@ -47,6 +42,7 @@ function _getAllList(wikiName: string) {
   }
 }
 
+const file = import.meta.url
 const stripExt = (f: string) => f.slice(0, -3)
 
 export const getAllList = prodCache(_getAllList)
