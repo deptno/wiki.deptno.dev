@@ -1,6 +1,6 @@
 import { getAllMd } from './getAllMd'
 import { getLastModifiedFiles } from './getLastModifiedFiles'
-import path, { basename } from 'node:path'
+import { basename, join } from 'node:path'
 import { CONFIG, DIR_WIKI_ROOT } from '../constant'
 import { random } from './random'
 import { prodCache } from './prodCache'
@@ -19,7 +19,7 @@ function _getAllList(wikiName: string) {
     throw new Error(`Unknown wiki(${wikiName})`)
   }
 
-  const dir = path.join(DIR_WIKI_ROOT, wiki.dir)
+  const dir = join(DIR_WIKI_ROOT, wiki.dir)
   const files = getAllMd(dir)
     .map((f: string) => f.replace(DIR_WIKI_ROOT, ''))
     .map(stripExt)

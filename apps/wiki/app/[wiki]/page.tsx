@@ -10,7 +10,6 @@ import { getMarkdownMetadata } from '../../lib/generateMetadata'
 import { Metadata } from 'next'
 import { CONFIG } from '../../constant'
 
-export const dynamic = 'force-dynamic'
 export default async function Page(props: Props) {
   const params = await props.params
 

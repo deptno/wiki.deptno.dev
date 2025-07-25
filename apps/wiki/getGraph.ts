@@ -10,8 +10,10 @@ import { getMakrdownLinkBaseName } from './lib/getMarkdownLinkBaseName'
 import { createVimwikiPrefixHandler } from './lib/createVimwikiPrefixHandler'
 
 export const getGraph = (wiki: string) => {
-  if (IS_PROD && _cache.current) {
-    return _cache.current
+  if (IS_PROD) {
+    if (_cache.current[wiki]) {
+      return _cache.current[wiki]
+    }
   }
 
   const graph = createGraph()
@@ -59,9 +61,9 @@ export const getGraph = (wiki: string) => {
     }
   }
 
-  return (_cache.current = graph)
+  return (_cache.current[wiki] = graph)
 }
 
 const _cache = {
-  current: undefined as Graph<string>,
+  current: {} as Record<string, Graph<string>>
 }

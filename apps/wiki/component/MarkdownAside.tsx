@@ -10,6 +10,7 @@ import { tryToGetWiki } from '../lib/tryToGetWiki'
 
 export const MarkdownAside: FC<Props> = props => {
   const { data, wiki, path = '' } = props
+  console.log({ file, wiki, path })
   const graph = getGraph(wiki)
   const wikiBasedPath = path.slice(wiki.length + 1)
   const g = graph.getLinkGraphData(decodeURIComponent(wikiBasedPath))
@@ -23,28 +24,34 @@ export const MarkdownAside: FC<Props> = props => {
           <a
             className="underline border-l-blue-400"
             href={`${cw.url}/edit/${branch}/${wikiBasedPath}.md`}
-            target="_blank">
+            target="_blank"
+            rel="noreferrer"
+          >
             수정
           </a>
           <a
             className="underline border-l-blue-800"
             href={`${cw.url}/commits/${branch}/${wikiBasedPath}.md`}
-            target="_blank">
+            target="_blank"
+            rel="noreferrer"
+          >
             기록
           </a>
           <a
             className="underline border-l-blue-800"
             href={`${cw.url}/blame/${branch}/${wikiBasedPath}.md`}
-            target="_blank">
+            target="_blank"
+            rel="noreferrer"
+          >
             추적
           </a>
         </div>
-        <LinkGraph wiki={wiki} graphData={g} />
-        <hr />
-        <LinkList wiki={wiki} graphData={g} />
-        <hr />
-        <TOC html={data} />
-        <DiaryNavigation wiki={wiki} path={path} />
+        <LinkGraph wiki={wiki} graphData={g}/>
+        <hr/>
+        <LinkList wiki={wiki} graphData={g}/>
+        <hr/>
+        <TOC html={data}/>
+        <DiaryNavigation wiki={wiki} path={path}/>
       </ChildrenWithSearchResult>
     </div>
   )
@@ -55,3 +62,5 @@ type Props = {
   data: string
   path?: string
 }
+
+const file = import.meta.url
