@@ -19,7 +19,7 @@ export default async function Page(props: Props) {
 
   try {
     const { getRandomLatestModifiedFileName } = getAllList(wiki)
-    const html = await getHtml({ path, currentPath })
+    const html = await getHtml({ wiki, path, currentPath })
 
     return (
       <>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { marked } from '../../lib/marked'
 import { Header } from '../../component/Header'
 import { Markdown } from '../../component/Markdown'
 import { getAllList } from '../../lib/getAllList'
@@ -9,6 +8,7 @@ import { getPath } from '../../lib/getPath'
 import { getMarkdownMetadata } from '../../lib/generateMetadata'
 import { Metadata } from 'next'
 import { CONFIG } from '../../constant'
+import { getMarked } from '../../lib/getMarked'
 
 export default async function Page(props: Props) {
   const params = await props.params
@@ -17,7 +17,8 @@ export default async function Page(props: Props) {
     const { path, wiki } = getPath([params.wiki, 'index'])
     const { markdowns, lastModified, getRandomLatestModifiedFileName } =
       getAllList(wiki)
-    const html = await getHtml({ path, currentPath: `/${wiki}` })
+    const html = await getHtml({ wiki, path, currentPath: `/${wiki}` })
+    const { parse } = getMarked({ wiki })
 
     return (
       <>
@@ -27,9 +28,9 @@ export default async function Page(props: Props) {
         </Markdown>
         <hr className="my-4"/>
         <div className="p-4 text-4xl">최근 수정</div>
-        <Markdown data={marked(lastModified)}/>
+        <Markdown data={parse(lastModified)}/>
         <div className="p-4 text-lg">전체 파일</div>
-        <Markdown data={marked(markdowns)}/>
+        <Markdown data={parse(markdowns)}/>
       </>
     )
   } catch (err) {
