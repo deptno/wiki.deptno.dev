@@ -41,8 +41,6 @@ while IFS= read -r line; do export "$line"; done <<< "$container_envs"
 export DIR_WIKI_ROOT=../../../
 export DIR_WIKI=../../../public-wiki
 
-pnpm turbo run build
-
 docker build . \
  --platform linux/amd64 \
  -t harbor.deptno.dev/deptno/$NAME:$TAG \

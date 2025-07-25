@@ -2,7 +2,7 @@ Dockerfile*
 *.sh
 .env*
 .idea/
-**/src/
+**/out/
 **/.turbo/
 **/node_modules/
 **/tsconfig.tsbuildinfo

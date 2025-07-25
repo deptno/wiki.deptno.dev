@@ -22,4 +22,4 @@ RUN pnpm install
 
 COPY . .
 
-CMD ["pnpm", "start"]
+CMD ["sh", "-c", "pnpm turbo build && pnpm start"]
