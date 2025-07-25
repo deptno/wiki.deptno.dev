@@ -3,7 +3,7 @@ import { HeaderLink } from "./HeaderLink"
 
 export const FrontendRepoHeaderLink: FC<Props> = () => {
   return (
-    <HeaderLink href="https://github.com/deptno/deptno.dev">
+    <HeaderLink href="https://github.com/deptno/wiki.deptno.dev">
       FE
     </HeaderLink>
   )
