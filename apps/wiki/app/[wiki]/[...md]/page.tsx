@@ -10,7 +10,7 @@ import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
 import { CONFIG } from '../../../constant'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-static'
 export default async function Page(props: Props) {
   const params = await props.params
   const { path, currentPath, wiki } = getPath([
@@ -59,7 +59,7 @@ export async function generateStaticParams() {
     .map(f => {
       return {
         wiki,
-        md: f.slice(wiki.length + 1).split('/'),
+        md: f.split('/').slice(2),
       }
     })
 }

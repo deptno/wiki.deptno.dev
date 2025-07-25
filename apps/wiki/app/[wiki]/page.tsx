@@ -8,11 +8,11 @@ import { getHtml } from '../../lib/getHtml'
 import { getPath } from '../../lib/getPath'
 import { getMarkdownMetadata } from '../../lib/generateMetadata'
 import { Metadata } from 'next'
+import { CONFIG } from '../../constant'
 
 export const dynamic = 'force-dynamic'
 export default async function Page(props: Props) {
   const params = await props.params
-  console.log({ file, params })
 
   try {
     const { path, wiki } = getPath([params.wiki, 'index'])
@@ -66,9 +66,13 @@ export async function generateMetadata(props: Props) {
 }
 
 export async function generateStaticParams() {
-  return [
-    { wiki: 'public-wiki' },
-  ]
+  return CONFIG
+    .filter(t => !t.private)
+    .map(t => {
+      return {
+        wiki: t.dir
+      }
+    })
 }
 
 const file = import.meta.url
