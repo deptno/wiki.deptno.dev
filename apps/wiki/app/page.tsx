@@ -8,9 +8,10 @@ import { getMarked } from '../lib/getMarked'
 export default async function Page() {
   const markdownWiki = CONFIG.map(w => `- [${w.dir}](${w.dir})`).join('\n')
   const wiki = CONFIG.find(w => !w.private)?.dir ?? ''
-  const { parse } = getMarked({ wiki })
 
   try {
+    const { parse } = getMarked({ wiki })
+
     return (
       <>
         <Header wiki={wiki}/>
@@ -21,7 +22,8 @@ export default async function Page() {
     )
   } catch (err) {
     console.error({ file }, err.message)
-    throw err
+
+    return null
   }
 }
 

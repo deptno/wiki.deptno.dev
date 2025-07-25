@@ -7,9 +7,10 @@ import { getHtml } from '../../lib/getHtml'
 import { getPath } from '../../lib/getPath'
 import { getMarkdownMetadata } from '../../lib/generateMetadata'
 import { Metadata } from 'next'
-import { CONFIG } from '../../constant'
 import { getMarked } from '../../lib/getMarked'
 
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 export default async function Page(props: Props) {
   const params = await props.params
 
@@ -63,16 +64,6 @@ export async function generateMetadata(props: Props) {
       // canonical: url,
     },
   } as Metadata
-}
-
-export async function generateStaticParams() {
-  return CONFIG
-    .filter(t => !t.private)
-    .map(t => {
-      return {
-        wiki: t.dir
-      }
-    })
 }
 
 const file = import.meta.url

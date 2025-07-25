@@ -8,8 +8,9 @@ import { getAllList } from '../../../lib/getAllList'
 import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
-import { CONFIG } from '../../../constant'
 
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 export default async function Page(props: Props) {
   const params = await props.params
   const { path, currentPath, wiki } = getPath([
@@ -48,19 +49,6 @@ export async function generateMetadata(props: Props) {
   const params = await props.params
 
   return getMarkdownMetadata([params.wiki, ...params.md])
-}
-
-export async function generateStaticParams() {
-  const wiki = CONFIG.filter(t => !t.private)[0].dir
-  const { files } = getAllList(wiki)
-
-  return files
-    .map(f => {
-      return {
-        wiki,
-        md: f.split('/').slice(2),
-      }
-    })
 }
 
 const file = import.meta.url
