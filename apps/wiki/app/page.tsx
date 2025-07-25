@@ -7,11 +7,12 @@ import { CONFIG } from '../constant'
 
 export default async function Page() {
   const markdownWiki = CONFIG.map(w => `- [${w.dir}](${w.dir})`).join('\n')
+  const wiki = CONFIG.find(w => !w.private)?.dir ?? ''
 
   try {
     return (
       <>
-        <Header />
+        <Header wiki={wiki}/>
         <ChildrenWithSearchResult />
         <div className="p-4 text-lg">위키</div>
         <Markdown data={marked(markdownWiki)} />

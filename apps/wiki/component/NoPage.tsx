@@ -17,7 +17,7 @@ export const NoPage: FC<Props> = async (props) => {
 
   return (
     <>
-      <Header/>
+      <Header wiki={wiki} />
       <ChildrenWithSearchResult/>
       <div className="w-full flex flex-col items-center justify-center h-screen">
         <span>존재하지 않는 문서입니다.</span>

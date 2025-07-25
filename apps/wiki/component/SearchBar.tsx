@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useEffect, useState } from 'react'
 import { InstantSearch, SearchBox, Hits, Highlight } from 'react-instantsearch'
 import { instantMeiliSearch, InstantMeiliSearchInstance } from '@meilisearch/instant-meilisearch'
@@ -7,6 +8,7 @@ import { SubContentPortal } from './SubContentPortal'
 import { NEXT_PUBLIC_MEILISEARCH_API_KEY, NEXT_PUBLIC_MEILISEARCH_HOST } from '../constant'
 
 export const SearchBar = (props: Props) => {
+  const { placeholder, wiki } = props
   const [searchClient, setSearchClient] = useState<InstantMeiliSearchInstance>()
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export const SearchBar = (props: Props) => {
 
   return (
     <InstantSearch indexName="wiki" searchClient={searchClient}>
-      <SearchBox placeholder={props.placeholder}/>
+      <SearchBox placeholder={placeholder}/>
       <SubContentPortal>
         <div className="whitespace-pre-wrap break-words break-all overflow-hidden">
           <div className="overflow-scroll">
@@ -40,29 +42,31 @@ export const SearchBar = (props: Props) => {
       </SubContentPortal>
     </InstantSearch>
   )
+
+  function Hit(props) {
+    const { hit } = props
+    const id = Buffer.from(hit.id, 'hex').toString()
+
+    props.hit._highlightResult.content.value = props.hit._highlightResult.content.value
+      .split('\n')
+      .filter((v) => /<mark>/.exec(v))
+      .join('\n')
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-[150px_1fr] border-b-2" key={id}>
+        <Link className="underline text-blue-800" href={`/${wiki}/${id}`}>
+          {id}
+        </Link>
+        <div className="flex-1 italic">
+          <Highlight attribute="content" hit={hit}/>
+        </div>
+      </div>
+    )
+  }
+
 }
 type Props = {
   placeholder?: string
+  wiki: string
 }
 
-const Hit = (props) => {
-  const { hit } = props
-  const id = Buffer.from(hit.id, 'hex').toString()
-
-  props.hit._highlightResult.content.value = props.hit._highlightResult.content.value
-    .split('\n')
-    .filter((v) => /<mark>/.exec(v))
-    .join('\n')
-
-  // FIXME: public-wiki 하드 코딩
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-[150px_1fr] border-b-2" key={id}>
-      <Link className="underline text-blue-800" href={`/public-wiki/${id}`}>
-        {id}
-      </Link>
-      <div className="flex-1 italic">
-        <Highlight attribute="content" hit={hit}/>
-      </div>
-    </div>
-  )
-}

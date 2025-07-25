@@ -8,9 +8,10 @@ import { DiaryLink } from './DiaryLink'
 import { NEXT_PUBLIC_MEILISEARCH_HOST } from '../constant'
 
 export const Header: FC<Props> = props => {
+  const { wiki, placeholder } = props
   return (
     <header className="flex flex-col p-3 bg-gray-800 gap-2 w-full">
-      {NEXT_PUBLIC_MEILISEARCH_HOST && <SearchBar placeholder={props.placeholder} />}
+      {NEXT_PUBLIC_MEILISEARCH_HOST && <SearchBar wiki={wiki} placeholder={placeholder} />}
       <div className="flex justify-between text-white gap-2">
         <FrontendRepoHeaderLink />
         <GitRevision wiki={props.wiki}/>
@@ -24,6 +25,6 @@ export const Header: FC<Props> = props => {
 }
 
 type Props = {
-  wiki?: string
+  wiki: string
   placeholder?: string
 }
