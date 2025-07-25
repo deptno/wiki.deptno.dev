@@ -4,7 +4,7 @@ export function getLastModifiedTime(params: Params): Date {
   const { dir, pathname } = params
 
   try {
-    const command = `git -C ${dir} log -1 --format="%cI" -- ${pathname}`
+    const command = `git -C ${dir} log -1 --format="%cI" -- "${pathname}"`
     const result = execSync(command)
       .toString()
       .trim()
