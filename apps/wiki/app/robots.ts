@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import config from '../wiki.config'
+import { ENDPOINT } from '../constant'
 
 export default function robots(): MetadataRoute.Robots {
   const publicW = (config as Wiki[]).filter(w => !w.private)
@@ -16,8 +17,7 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules,
-    // FIXME: remove hardcoded domain
-    sitemap: 'https://deptno.dev/sitemap.xml',
+    sitemap: `${ENDPOINT}/sitemap.xml`,
   }
 }
 
