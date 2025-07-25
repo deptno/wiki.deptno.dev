@@ -10,7 +10,6 @@ import { tryToGetWiki } from '../lib/tryToGetWiki'
 
 export const MarkdownAside: FC<Props> = props => {
   const { data, wiki, path = '' } = props
-  console.log({ file, wiki, path })
   const graph = getGraph(wiki)
   const wikiBasedPath = path.slice(wiki.length + 1)
   const g = graph.getLinkGraphData(decodeURIComponent(wikiBasedPath))
