@@ -9,9 +9,14 @@ export const getMarkdownMetadata = prodCache(
   async (paths: string[]): Promise<Metadata> => {
     const { wiki, path } = getPath(paths)
     const url = `${ENDPOINT}/${path}`
+    const defaultMetadata = {
+      openGraph: {
+        url,
+      },
+    }
 
     if (!isPublicWiki(wiki)) {
-      return
+      return defaultMetadata
     }
 
     try {
@@ -33,11 +38,7 @@ export const getMarkdownMetadata = prodCache(
     } catch (e) {
       console.warn({ file }, `warn: [${e.code}] ${e.message}`)
 
-      return {
-        openGraph: {
-          url,
-        },
-      }
+      return defaultMetadata
     }
   },
 )
