@@ -3,6 +3,7 @@ import { RE_INDEXED_VIMWIKI } from 'parser-vimwiki/constant'
 
 export function createLink(params: Params) {
   const { wiki } = params
+  const { dir, diaryDir } = CONFIG.find(w => w.dir === wiki)
 
   return function link(href: string, title: string, text: string) {
     try {
@@ -13,8 +14,6 @@ export function createLink(params: Params) {
       if (protocol) {
         // @ref :h vimwiki-syntax-links
         if (protocol == 'diary:') {
-          console.log('diary', {protocol, href, url})
-          const { dir, diaryDir } = CONFIG.find(w => w.dir === wiki)
           const diaryLink = `/${dir}/${diaryDir}/${href.slice(protocol.length)}`
 
             return `<a href="${diaryLink}">[${protocolName}] ${text}</a>`
