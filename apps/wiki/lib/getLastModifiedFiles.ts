@@ -1,9 +1,9 @@
 import { execSync } from 'node:child_process'
-import { DIR_WIKI_ROOT } from '../constant'
+import { DIR_DATA } from '../constant'
 import path from 'node:path'
 
 export function getLastModifiedFiles(wiki: Wiki): string[] {
-  const dir = path.join(DIR_WIKI_ROOT, wiki.dir)
+  const dir = path.join(DIR_DATA, wiki.dir)
   const hash = execSync(`git -C ${dir} log --since="30 days ago" --pretty=format:"%H" | tail -1`)
     .toString()
     .trim()

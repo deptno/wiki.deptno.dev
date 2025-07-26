@@ -9,11 +9,10 @@ services:
       - "3001:3001"
     environment:
       - NEXT_PUBLIC_ENDPOINT=http://localhost:3001
-      - NEXT_PUBLIC_MEILISEARCH_HOST=http://search:7700
+      - MEILISEARCH_HOST=http://search:7700
       - TURBO_TELEMETRY_DISABLED=1
       - URL_ME=/public-wiki/about-me
-      - DIR_WIKI_ROOT=/mnt/data
-      - DIR_WIKI=/mnt/data/public-wiki
+      - DIR_DATA=/mnt/data
     volumes:
       - ../public-wiki:/mnt/data/public-wiki
     develop:
@@ -46,9 +45,8 @@ services:
     command: pnpm --filter @app/meilisearch-updater dev
     environment:
       - NEXT_PUBLIC_ENDPOINT=http://localhost:3001
-      - NEXT_PUBLIC_MEILISEARCH_HOST=http://search:7700
-      - DIR_WIKI_ROOT=/mnt/data
-      - DIR_WIKI=/mnt/data/public-wiki
+      - MEILISEARCH_HOST=http://search:7700
+      - DIR_DATA=/mnt/data
     volumes:
       - ../public-wiki:/mnt/data/public-wiki
     develop:

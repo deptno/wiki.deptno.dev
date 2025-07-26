@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { getAllMd } from './lib/getAllMd'
 import { RE_MARKDOWN_LINK, RE_VIMWIKI_LINK } from 'parser-vimwiki/constant'
 import { readFileSync } from 'fs'
-import { CONFIG, DIR_WIKI_ROOT, IS_PROD } from './constant'
+import { CONFIG, DIR_DATA, IS_PROD } from './constant'
 import { getNameFromLink } from './lib/getNameFromLink'
 import { getVimwikiLinkBaseName } from './lib/getVimwikiLinkBaseName'
 import { getMakrdownLinkBaseName } from './lib/getMarkdownLinkBaseName'
@@ -17,7 +17,7 @@ export const getGraph = (wiki: string) => {
   }
 
   const graph = createGraph()
-  const wikiDir = join(DIR_WIKI_ROOT, wiki)
+  const wikiDir = join(DIR_DATA, wiki)
   const handleVimwikiPrefix = createVimwikiPrefixHandler(
     CONFIG.find(w => w.dir === wiki)?.diaryDir ?? 'diary',
   )

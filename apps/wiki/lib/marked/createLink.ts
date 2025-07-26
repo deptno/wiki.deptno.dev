@@ -1,4 +1,4 @@
-import { CONFIG, ENDPOINT } from '../../constant'
+import { CONFIG, NEXT_PUBLIC_ENDPOINT } from '../../constant'
 import { RE_INDEXED_VIMWIKI } from 'parser-vimwiki/constant'
 
 export function createLink(params: Params) {
@@ -50,7 +50,7 @@ export function createLink(params: Params) {
         if (protocol === 'mailto:') {
           const email = href.slice(protocol.length)
 
-          return `<a href="${href}" target="_blank">${email}</a> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=from ${ENDPOINT}" target="_blank">[지메일로 보내기]</a>`
+          return `<a href="${href}" target="_blank">${email}</a> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=from ${NEXT_PUBLIC_ENDPOINT}" target="_blank">[지메일로 보내기]</a>`
         }
 
         return `<a href="${href}">${text}</a>`

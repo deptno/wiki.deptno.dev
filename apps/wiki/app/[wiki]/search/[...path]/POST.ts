@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server'
-import { NEXT_PUBLIC_MEILISEARCH_API_KEY, NEXT_PUBLIC_MEILISEARCH_HOST } from '../../../../constant'
+import { MEILISEARCH_API_KEY, MEILISEARCH_HOST } from '../../../../constant'
 
 export async function POST(req: Request, context: Context) {
   const params = await context.params
   const { path } = params
 
   try {
-    const api = `${NEXT_PUBLIC_MEILISEARCH_HOST}/${path.join('/')}`
+    const api = `${MEILISEARCH_HOST}/${path.join('/')}`
     const headers = new Headers(req.headers)
-    if (NEXT_PUBLIC_MEILISEARCH_API_KEY) {
-      headers.set('authorization', `Bearer ${NEXT_PUBLIC_MEILISEARCH_API_KEY}`)
+    if (MEILISEARCH_API_KEY) {
+      headers.set('authorization', `Bearer ${MEILISEARCH_API_KEY}`)
     }
 
     const response = await fetch(api, {

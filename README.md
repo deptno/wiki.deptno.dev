@@ -1,59 +1,59 @@
 # wiki.deptno.dev
+
 - vimwiki <https://wiki.deptno.dev> 웹 서버
-- 런타임에 `/mnt/data` 에 vimwiki  디렉토리가 마운트 되어 있어야 실행 가능
-- 혹은
+- 런타임에 `/mnt/data` 에 `vimwiki` 디렉토리가 마운트 되어 있어야 실행 가능
+  - 다중 위키를 지원하기 때문에 `/mnt/data/{wiki name}` 형태
 
-## 브랜치
-- lab/static-build - github pages 이용시
+## 설정
+### 환경 변수
 
-## 환경 변수
-> 필수: m
-> 선택: o
+| env                             | description      | wiki     | meilisearch-updater |
+|---------------------------------|------------------|----------|---------------------|
+| URL_ME                          | about-me         | optional |                     |
+| DIR_DATA                        | /path/to/vimwiki | required |                     |
+| NEXT_PUBLIC_GIT_BRANCH          | default 'main'   | optional |                     |
+| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX     | optional |                     |
+| MEILISEARCH_HOST                | localhost:7700   | optional | required            |
+| NEXT_PUBLIC_MS_CLARITY_ID       | xxxxxxxxxx       | optional |                     |
 
-| env                             | 설명                  | wiki | meilisearch-updater |
-|---------------------------------|-----------------------|------|---------------------|
-| URL_ME                          | 자기소개 페이지       | o    |                     |
-| DIR_WIKI                        | /path/to/vimwiki      |      | m                   |
-| DIR_WIKI_ROOT                   | /path/to/vimwiki/root | m    |                     |
-| NEXT_PUBLIC_GIT_BRANCH          | default 'main'        | o    |                     |
-| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX          | o    |                     |
-| NEXT_PUBLIC_MEILISEARCH_HOST    | localhost:7700        | o    | m                   |
-| NEXT_PUBLIC_MS_CLARITY_ID       | xxxxxxxxxx            | o    |                     |
+### 설정 파일
+
+- [wiki.config.json](apps/wiki/wiki.config.json) 참조
+- `wiki`, `meilisearch-updater` 둘 모두 `wiki.config.json` 을 각각 가지고 있음
+- 쿠버네티스 배포시에는 하나의 `configmap` 으로 덮어써서 사용
 
 ## 실행
 
-### 로컬 실행 및 빌드
+### 로컬
+
 ```sh
-# NEXT_PUBLIC_MEILISEARCH_HOST: 실행되는 서버의 위치 지정
-# DIR_WIKI: meilisearch-updater 를 사용하는 경우
-NEXT_PUBLIC_MEILISEARCH_HOST=localhost:7700 \
-NEXT_PUBLIC_ENDPOINT=https://wiki.deptno.dev \
-DIR_WIKI_ROOT=/path/to/vimwiki/root \
-pnpm dev # or pnpm build
+pnpm dev # docker compose 필요
 ```
 
-## 설정 파일
-- [wiki.config.js](wiki.config.js) 참조
+### 배포
 
-### 다커 테스트
-```sh
-pnpm build
-docker build -t wiki .
-docker -e WIKI_DIR=/mnt/data -v my-wiki-directory:/mnt/data -p 3000:3000 wiki
-```
+- [deploy.sh](deploy.sh) 참조
+- 위키 데이터를 위해 `volume` 마운트가 필수인 컨테이너가 뜨고 나서 관계로 런타임 빌드함
 
 ## 배포
-- 배포 방식에 따라서 배포 스크립트 실행전, `next.config.js` 에서 `export` 옵션 설정필요
-```js
-module.exports = {
-  // 정적 배포인 경우 설정
-  output: 'export'
-}
-```
 
 ### 쿠버네티스
-- initContainer 등을 통해서 `/mnt/data` 에 git clone 후 사용
+
+- initContainer
+  - `DIR_DATA` 에 git clone
+  - initContainer `meilisearch-updater` 를 통해 인덱싱
 - [deploy.sh](deploy.sh) 참조
 
 ### github page
-- [deploy-gh.sh](deploy-gh.sh) 참조
+
+- 지원 제거
+  - ~~[deploy-gh.sh](deploy-gh.sh) 참조~~
+    - lab/static-build - github pages 이용시
+  - 배포 방식에 따라서 배포 스크립트 실행전, `next.config.js` 에서 `export` 옵션 설정필요
+    ```js
+    module.exports = {
+      // 정적 배포인 경우 설정
+      output: 'export'
+    }
+    ```
+

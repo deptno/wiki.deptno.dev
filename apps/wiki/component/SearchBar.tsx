@@ -7,7 +7,7 @@ import { InstantSearch, SearchBox, Hits, Highlight } from 'react-instantsearch'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import Link from 'next/link'
 import { SubContentPortal } from './SubContentPortal'
-import { ENDPOINT } from '../constant'
+import { NEXT_PUBLIC_ENDPOINT } from '../constant'
 
 export const SearchBar = (props: Props) => {
   const { placeholder, wiki } = props
@@ -15,7 +15,7 @@ export const SearchBar = (props: Props) => {
 
   useEffect(() => {
     const { searchClient: client } = instantMeiliSearch(
-      `${ENDPOINT}/${wiki}/search`,
+      `${NEXT_PUBLIC_ENDPOINT}/${wiki}/search`,
       undefined,
       {
         placeholderSearch: false,

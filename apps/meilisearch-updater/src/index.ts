@@ -1,13 +1,13 @@
 import { MeiliSearch } from 'meilisearch'
 import { getMarkdownFiles } from './getMarkdownFiles.mjs'
-import { CONFIG, DIR_WIKI_ROOT, INDEX, MEILI_MASTER_KEY, NEXT_PUBLIC_MEILISEARCH_HOST } from './constant.mjs'
+import { CONFIG, DIR_DATA, INDEX, MEILI_MASTER_KEY, MEILISEARCH_HOST } from './constant.mjs'
 import { join } from 'node:path'
 
 try {
   for (const w of CONFIG) {
-    const contents = await getMarkdownFiles(join(DIR_WIKI_ROOT, w.dir))
+    const contents = await getMarkdownFiles(join(DIR_DATA, w.dir))
     const ms = new MeiliSearch({
-      host: NEXT_PUBLIC_MEILISEARCH_HOST,
+      host: MEILISEARCH_HOST,
       apiKey: MEILI_MASTER_KEY,
     })
 

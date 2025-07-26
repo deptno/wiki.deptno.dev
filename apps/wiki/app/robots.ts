@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { ENDPOINT, CONFIG } from '../constant'
+import { NEXT_PUBLIC_ENDPOINT, CONFIG } from '../constant'
 
 export default function robots(): MetadataRoute.Robots {
   const publicW = CONFIG.filter(w => !w.private)
@@ -16,7 +16,7 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules,
-    sitemap: `${ENDPOINT}/sitemap.xml`,
+    sitemap: `${NEXT_PUBLIC_ENDPOINT}/sitemap.xml`,
   }
 }
 

@@ -5,10 +5,10 @@ if [ "$OUTPUT" != "export" ]; then
   exit 1
 fi
 
-export NEXT_PUBLIC_MEILISEARCH_HOST=https://search.deptno.dev
+export MEILISEARCH_HOST=https://search.deptno.dev
 export NEXT_PUBLIC_MEILISEARCH_API_KEY=fde26209c267ac6b5802e52d0582a18ad593d3853f354e3d63e67d40c36628a7
 export NEXT_PUBLIC_ENDPOINT=https://deptno.github.io
-export DIR_WIKI_ROOT=../../../
+export DIR_DATA=../../../
 export DIR_WIKI=../../../public-wiki
 export URL_ME=/public-wiki/about-me
 export NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-QKL40848FW

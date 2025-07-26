@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { ENDPOINT } from '../constant'
+import { NEXT_PUBLIC_ENDPOINT } from '../constant'
 import { getMarkdown } from './getMarkdown'
 import { getPath } from './getPath'
 import { prodCache } from './prodCache'
@@ -8,7 +8,7 @@ import { isPublicWiki } from './isPublicWiki'
 export const getMarkdownMetadata = prodCache(
   async (paths: string[]): Promise<Metadata> => {
     const { wiki, path } = getPath(paths)
-    const url = `${ENDPOINT}/${path}`
+    const url = `${NEXT_PUBLIC_ENDPOINT}/${path}`
     const defaultMetadata = {
       openGraph: {
         url,
