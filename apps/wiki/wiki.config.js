@@ -1,9 +1,0 @@
-module.exports = [
-  {
-    name: 'public',
-    dir: 'public-wiki',
-    diaryDir: 'diary',
-    private: false,
-    url: 'https://github.com/deptno/public-wiki'
-  }
-]

@@ -1,12 +1,11 @@
 import { MetadataRoute } from 'next'
 import { getAllMd } from '../lib/getAllMd'
-import { DIR_WIKI_ROOT, ENDPOINT } from '../constant'
-import config from '../wiki.config'
+import { DIR_WIKI_ROOT, ENDPOINT, CONFIG } from '../constant'
 import path from 'node:path'
 import { getLastModifiedTime } from '../lib/getlastModifiedTime'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const publicW = (config as Wiki[]).filter(w => !w.private)
+  const publicW = CONFIG.filter(w => !w.private)
 
   return publicW
     .flatMap(w => {

@@ -1,4 +1,4 @@
-import config from './wiki.config'
+import config from './wiki.config.json'
 
 export const CONFIG = config as Wiki[]
 export const IS_PROD = process.env.NODE_ENV === 'production'
