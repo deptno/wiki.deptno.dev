@@ -3,7 +3,6 @@ import { NEXT_PUBLIC_MEILISEARCH_API_KEY, NEXT_PUBLIC_MEILISEARCH_HOST } from '.
 
 export async function POST(req: Request, context: Context) {
   const params = await context.params
-  console.debug({ file, params })
   const { path } = params
 
   try {
