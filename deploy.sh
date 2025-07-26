@@ -35,14 +35,15 @@ container_envs=$(
     | jq 'select(.kind == "Deployment")' \
     | jq -r '.spec.template.spec.containers[0].env | map(select(.value)) | map(.name + "=" + .value) | .[]'
 )
-
-while IFS= read -r line; do export "$line"; done <<< "$container_envs"
-
-export DIR_WIKI_ROOT=../../../
-export DIR_WIKI=../../../public-wiki
+build_args=()
+while IFS='=' read -r name value; do
+  [ -z "$name" ] && continue
+  build_args+=(--build-arg "$name=$value")
+done <<< "$container_envs"
 
 docker build . \
  --platform linux/amd64 \
+ "${build_args[@]}" \
  -t harbor.deptno.dev/deptno/$NAME:$TAG \
  -t harbor.deptno.dev/deptno/$NAME:$GIT_COMMIT
 
