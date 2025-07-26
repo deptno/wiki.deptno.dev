@@ -9,8 +9,6 @@ import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
 
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true
 export default async function Page(props: Props) {
   const params = await props.params
   const { path, currentPath, wiki } = getPath([

@@ -33,6 +33,6 @@ ENV URL_ME=$URL_ME
 ENV DIR_WIKI_ROOT=$DIR_WIKI_ROOT
 ENV DIR_WIKI=$DIR_WIKI
 
-RUN mkdir -p $DIR_WIKI && pnpm turbo build && rm -rf $DIR_WIKI_ROOT
+RUN pnpm turbo build
 
 CMD ["pnpm","start"]
