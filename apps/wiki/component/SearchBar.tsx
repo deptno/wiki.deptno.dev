@@ -7,7 +7,7 @@ import { InstantSearch, SearchBox, Hits, Highlight } from 'react-instantsearch'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import Link from 'next/link'
 import { SubContentPortal } from './SubContentPortal'
-import { NEXT_PUBLIC_MEILISEARCH_API_KEY, NEXT_PUBLIC_MEILISEARCH_HOST } from '../constant'
+import { ENDPOINT } from '../constant'
 
 export const SearchBar = (props: Props) => {
   const { placeholder, wiki } = props
@@ -15,8 +15,8 @@ export const SearchBar = (props: Props) => {
 
   useEffect(() => {
     const { searchClient: client } = instantMeiliSearch(
-      NEXT_PUBLIC_MEILISEARCH_HOST,
-      NEXT_PUBLIC_MEILISEARCH_API_KEY,
+      `${ENDPOINT}/${wiki}/search`,
+      undefined,
       {
         placeholderSearch: false,
         finitePagination: true,
@@ -31,7 +31,7 @@ export const SearchBar = (props: Props) => {
   }
 
   return (
-    <InstantSearch indexName="wiki" searchClient={searchClient}>
+    <InstantSearch indexName={wiki} searchClient={searchClient}>
       <SearchBox placeholder={placeholder}/>
       <SubContentPortal>
         <div className="whitespace-pre-wrap break-words break-all overflow-hidden">
