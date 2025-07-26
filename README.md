@@ -5,6 +5,7 @@
   - 다중 위키를 지원하기 때문에 `/mnt/data/{wiki name}` 형태
 
 ## 설정
+
 ### 환경 변수
 
 | env                             | description      | wiki     | meilisearch-updater |
@@ -20,7 +21,13 @@
 
 - [wiki.config.json](apps/wiki/wiki.config.json) 참조
 - `wiki`, `meilisearch-updater` 둘 모두 `wiki.config.json` 을 각각 가지고 있음
-- 쿠버네티스 배포시에는 하나의 `configmap` 으로 덮어써서 사용
+- 쿠버네티스 배포시에는 하나의 `configmap` 설정 추천
+
+#### private 위키 처리
+
+- 해당 설정은 SEO 및 `robots.txt`, `sitemap.xml` 에서 제외 시킴
+- 공개 여부와는 관계가 없으므로 주의
+- 인증 처리를 하려면 `reverse proxy` 레벨에서 처리 추천
 
 ## 실행
 
