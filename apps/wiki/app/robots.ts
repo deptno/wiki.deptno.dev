@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next'
-import config from '../wiki.config'
+import { NEXT_PUBLIC_ENDPOINT, CONFIG } from '../constant'
 
 export default function robots(): MetadataRoute.Robots {
-  const publicW = (config as Wiki[]).filter(w => !w.private)
-  const privateW = (config as Wiki[]).filter(w => w.private)
+  const publicW = CONFIG.filter(w => !w.private)
+  const privateW = CONFIG.filter(w => w.private)
   const rules = {
     userAgent: '*',
     allow: publicW.map(w => w.dir).map(withSlash),
@@ -16,8 +16,7 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules,
-    // FIXME: remove hardcoded domain
-    sitemap: 'https://deptno.dev/sitemap.xml',
+    sitemap: `${NEXT_PUBLIC_ENDPOINT}/sitemap.xml`,
   }
 }
 

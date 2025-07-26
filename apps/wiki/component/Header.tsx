@@ -7,9 +7,10 @@ import { MeHeaderLink } from './MeHeaderLink'
 import { DiaryLink } from './DiaryLink'
 
 export const Header: FC<Props> = props => {
+  const { wiki, placeholder } = props
   return (
     <header className="flex flex-col p-3 bg-gray-800 gap-2 w-full">
-      <SearchBar placeholder={props.placeholder} />
+      <SearchBar wiki={wiki} placeholder={placeholder} />
       <div className="flex justify-between text-white gap-2">
         <FrontendRepoHeaderLink />
         <GitRevision wiki={props.wiki}/>
@@ -23,6 +24,6 @@ export const Header: FC<Props> = props => {
 }
 
 type Props = {
-  wiki?: string
+  wiki: string
   placeholder?: string
 }

@@ -7,7 +7,7 @@ import './2xl.css'
 import './3xl.css'
 import React from 'react'
 import Script from 'next/script'
-import { ENDPOINT, GOOGLE_ANALYTICS_ID, MS_CLARITY_ID } from '../constant'
+import { NEXT_PUBLIC_ENDPOINT, GOOGLE_ANALYTICS_ID, MS_CLARITY_ID } from '../constant'
 import 'highlight.js/styles/rainbow.css'
 
 export default function RootLayout({ children }: {
@@ -57,20 +57,20 @@ export default function RootLayout({ children }: {
 }
 
 export const metadata = {
-  metadataBase: new URL(ENDPOINT),
+  metadataBase: new URL(NEXT_PUBLIC_ENDPOINT),
   title: 'deptno vimwiki',
   description: 'dev log',
   referrer: 'origin-when-cross-origin',
   keywords: ['typescript', 'kubernetes', 'react', 'react native', 'terminal', 'neovim', 'vim', 'lua', 'frontend', 'seo', 'k9s'],
-  authors: [{ name: 'deptno', url: ENDPOINT }],
+  authors: [{ name: 'deptno', url: NEXT_PUBLIC_ENDPOINT }],
   creator: 'deptno@gmail.com',
   publisher: 'deptno@gmail.com',
   openGraph: {
     title: 'deptno vimwiki',
     description: 'dev log',
     locale: 'ko',
-    siteName: ENDPOINT,
-    url: ENDPOINT,
+    siteName: NEXT_PUBLIC_ENDPOINT,
+    url: NEXT_PUBLIC_ENDPOINT,
     images: '/icon.jpg',
     type: 'article',
   },

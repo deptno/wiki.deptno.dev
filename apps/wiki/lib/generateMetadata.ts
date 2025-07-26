@@ -1,19 +1,23 @@
 import { Metadata } from 'next'
-import { ENDPOINT } from '../constant'
+import { NEXT_PUBLIC_ENDPOINT } from '../constant'
 import { getMarkdown } from './getMarkdown'
 import { getPath } from './getPath'
 import { prodCache } from './prodCache'
+import { isPublicWiki } from './isPublicWiki'
 
 export const getMarkdownMetadata = prodCache(
   async (paths: string[]): Promise<Metadata> => {
-    const result = getPath(paths)
-    if (!result) {
-      console.log('getMarkdownMetadata no-result', { paths })
-      return
+    const { wiki, path } = getPath(paths)
+    const url = `${NEXT_PUBLIC_ENDPOINT}/${path}`
+    const defaultMetadata = {
+      openGraph: {
+        url,
+      },
     }
 
-    const { path } = result
-    const url = `${ENDPOINT}/${path}`
+    if (!isPublicWiki(wiki)) {
+      return defaultMetadata
+    }
 
     try {
       const [first, ...lines] = await getMarkdown(path).then(md =>
@@ -32,13 +36,11 @@ export const getMarkdownMetadata = prodCache(
         },
       }
     } catch (e) {
-      console.warn(`warn: [${e.code}] ${e.message}`)
+      console.warn({ file }, `warn: [${e.code}] ${e.message}`)
 
-      return {
-        openGraph: {
-          url,
-        },
-      }
+      return defaultMetadata
     }
   },
 )
+
+const file = import.meta.url

@@ -3,19 +3,21 @@ import { join } from 'node:path'
 import { getAllMd } from './lib/getAllMd'
 import { RE_MARKDOWN_LINK, RE_VIMWIKI_LINK } from 'parser-vimwiki/constant'
 import { readFileSync } from 'fs'
-import { CONFIG, DIR_WIKI_ROOT, IS_PROD } from './constant'
+import { CONFIG, DIR_DATA, IS_PROD } from './constant'
 import { getNameFromLink } from './lib/getNameFromLink'
 import { getVimwikiLinkBaseName } from './lib/getVimwikiLinkBaseName'
 import { getMakrdownLinkBaseName } from './lib/getMarkdownLinkBaseName'
 import { createVimwikiPrefixHandler } from './lib/createVimwikiPrefixHandler'
 
 export const getGraph = (wiki: string) => {
-  if (IS_PROD && _cache.current) {
-    return _cache.current
+  if (IS_PROD) {
+    if (_cache.current[wiki]) {
+      return _cache.current[wiki]
+    }
   }
 
   const graph = createGraph()
-  const wikiDir = join(DIR_WIKI_ROOT, wiki)
+  const wikiDir = join(DIR_DATA, wiki)
   const handleVimwikiPrefix = createVimwikiPrefixHandler(
     CONFIG.find(w => w.dir === wiki)?.diaryDir ?? 'diary',
   )
@@ -59,9 +61,9 @@ export const getGraph = (wiki: string) => {
     }
   }
 
-  return (_cache.current = graph)
+  return (_cache.current[wiki] = graph)
 }
 
 const _cache = {
-  current: undefined as Graph<string>,
+  current: {} as Record<string, Graph<string>>
 }

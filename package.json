@@ -1,15 +1,14 @@
 {
+  "name": "wiki.deptno.dev",
   "private": true,
   "scripts": {
-    "dev": "./dev.sh",
-    "build": "./build.sh",
+    "dev": "docker compose up --build --watch",
     "deploy": "./deploy.sh",
     "lint": "turbo run lint"
   },
   "devDependencies": {
     "eslint-config-custom": "^0.0.0",
-    "turbo": "^1.11.2"
+    "turbo": "^2.5.5"
   },
-  "packageManager": "pnpm@8.9.2",
-  "name": "deptno.dev"
+  "packageManager": "pnpm@10.6.5"
 }

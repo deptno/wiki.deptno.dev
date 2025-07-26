@@ -1,0 +1,63 @@
+services:
+  wiki:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wiki
+    command: pnpm --filter @app/wiki dev
+    ports:
+      - "3001:3001"
+    environment:
+      - NEXT_PUBLIC_ENDPOINT=http://localhost:3001
+      - MEILISEARCH_HOST=http://search:7700
+      - TURBO_TELEMETRY_DISABLED=1
+      - URL_ME=/public-wiki/about-me
+      - DIR_DATA=/mnt/data
+    volumes:
+      - ../public-wiki:/mnt/data/public-wiki
+    develop:
+      watch:
+        - action: sync
+          path: apps/wiki
+          target: /app/apps/wiki
+          ignore:
+            - '**/node_modules/'
+            - '**/.turbo/'
+            - '**/.next/'
+            - .idea/
+        - action: rebuild
+          path: package.json
+  search:
+    image: getmeili/meilisearch:v1.1.1
+    container_name: meilisearch
+    ports:
+      - "7700:7700"
+    environment:
+      - MEILI_NO_ANALYTICS=true
+  meilisearch-updater:
+    depends_on:
+      - wiki
+      - search
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: meilisearch-updater
+    command: pnpm --filter @app/meilisearch-updater dev
+    environment:
+      - NEXT_PUBLIC_ENDPOINT=http://localhost:3001
+      - MEILISEARCH_HOST=http://search:7700
+      - DIR_DATA=/mnt/data
+    volumes:
+      - ../public-wiki:/mnt/data/public-wiki
+    develop:
+      watch:
+        - action: sync
+          path: apps/meilisearch-updater
+          target: /app/apps/meilisearch-updater
+          ignore:
+            - '**/node_modules/'
+            - '**/.turbo/'
+            - '**/.next/'
+            - .idea/
+        - action: rebuild
+          path: package.json

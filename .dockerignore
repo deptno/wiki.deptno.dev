@@ -1,0 +1,10 @@
+Dockerfile*
+*.sh
+.env*
+.idea/
+**/dist/
+**/.next/
+**/out/
+**/.turbo/
+**/node_modules/
+**/tsconfig.tsbuildinfo

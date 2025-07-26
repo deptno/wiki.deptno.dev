@@ -10,9 +10,9 @@ export NS=deptno
 TAG=latest
 GIT_COMMIT=$(git rev-parse --short @)
 CHANGE_CAUSE="$(date '+%Y%m%d-%H:%M:%S') $(git rev-parse --abbrev-ref @)@$(git show --no-patch --oneline)"
-NAME=deptno-dev
+NAME=wiki
 APP_MS=meilisearch-updater
-YAML=~/workspace/src/github.com/deptno/cluster-amd64/manifest/$NAME.yaml
+YAML=../cluster-amd64/manifest/$NAME.yaml
 PERMISSION="$(kubectl auth can-i update deployment -n deptno)"
 
 set -e
@@ -29,22 +29,8 @@ fi
 
 echo $YAML
 
-container_envs=$(
-  cat $YAML \
-    | yq -ojson \
-    | jq 'select(.kind == "Deployment")' \
-    | jq -r '.spec.template.spec.containers[0].env | map(select(.value)) | map(.name + "=" + .value) | .[]'
-)
-
-for s in $container_envs; do export $s; done
-for s in $container_envs; do echo $s; done
-
-export DIR_WIKI_ROOT=~/workspace/src/github.com/deptno
-export DIR_WIKI=~/workspace/src/github.com/deptno/public-wiki
-
-pnpm turbo run build
-
 docker build . \
+ --progress plain \
  --platform linux/amd64 \
  -t harbor.deptno.dev/deptno/$NAME:$TAG \
  -t harbor.deptno.dev/deptno/$NAME:$GIT_COMMIT

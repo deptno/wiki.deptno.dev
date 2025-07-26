@@ -1,14 +1,7 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['ui'],
-  output: 'export',
-  async redirects() {
-    return [
-      {
-        source: '/wiki/:md*',
-        destination: 'public-wiki/:md*',
-        permanent: true,
-      },
-    ]
-  },
+  // output: 'export',
 }
+module.exports = nextConfig

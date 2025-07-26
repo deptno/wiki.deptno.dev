@@ -1,7 +1,7 @@
 import { getAllMd } from './getAllMd'
 import { getLastModifiedFiles } from './getLastModifiedFiles'
-import path, { basename } from 'node:path'
-import { CONFIG, DIR_WIKI_ROOT } from '../constant'
+import { basename, join } from 'node:path'
+import { CONFIG, DIR_DATA } from '../constant'
 import { random } from './random'
 import { prodCache } from './prodCache'
 
@@ -14,22 +14,17 @@ function _getAllList(wikiName: string) {
       .join('\n')
   }
 
-  const wikis = CONFIG.filter(w => !w.private).map(w => w.dir)
-  const files = wikis.flatMap(wiki => {
-    const dir = path.join(DIR_WIKI_ROOT, wiki)
-
-    return getAllMd(dir)
-      .map((f: string) => f.replace(DIR_WIKI_ROOT, ''))
-      .map(stripExt)
-  })
-
-  const markdowns = toMarkdown(files)
   const wiki = CONFIG.find(w => w.dir === wikiName)
-
   if (!wiki) {
     throw new Error(`Unknown wiki(${wikiName})`)
   }
 
+  const dir = join(DIR_DATA, wiki.dir)
+  const files = getAllMd(dir)
+    .map((f: string) => f.replace(DIR_DATA, ''))
+    .map(stripExt)
+
+  const markdowns = toMarkdown(files)
   const lastModified = getLastModifiedFiles(wiki)
 
   return {
@@ -40,13 +35,14 @@ function _getAllList(wikiName: string) {
       if (lastModified.length === 0) {
         return
       }
-      const index = random(lastModified.length)
+      const index = random(lastModified.length - 1)
 
       return basename(lastModified[index], '.md')
     },
   }
 }
 
+const file = import.meta.url
 const stripExt = (f: string) => f.slice(0, -3)
 
 export const getAllList = prodCache(_getAllList)

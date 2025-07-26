@@ -1,5 +1,4 @@
 import React from 'react'
-import { marked } from '../../lib/marked'
 import { Header } from '../../component/Header'
 import { Markdown } from '../../component/Markdown'
 import { getAllList } from '../../lib/getAllList'
@@ -7,45 +6,49 @@ import { MarkdownAside } from '../../component/MarkdownAside'
 import { getHtml } from '../../lib/getHtml'
 import { getPath } from '../../lib/getPath'
 import { getMarkdownMetadata } from '../../lib/generateMetadata'
+import { Metadata } from 'next'
+import { getMarked } from '../../lib/getMarked'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-static'
 export default async function Page(props: Props) {
+  const params = await props.params
+
   try {
-    const { path, wiki } = getPath([props.params.wiki, 'index'])
+    const { path, wiki } = getPath([params.wiki, 'index'])
     const { markdowns, lastModified, getRandomLatestModifiedFileName } =
       getAllList(wiki)
-    const html = await getHtml({ path, currentPath: `/${wiki}` })
+    const html = await getHtml({ wiki, path, currentPath: `/${wiki}` })
+    const { parse } = getMarked({ wiki })
 
     return (
       <>
-        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()} />
+        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()}/>
         <Markdown data={html}>
-          <MarkdownAside data={html} wiki={wiki} path={path} />
+          <MarkdownAside data={html} wiki={wiki} path={path}/>
         </Markdown>
-        <hr className="my-4" />
+        <hr className="my-4"/>
         <div className="p-4 text-4xl">최근 수정</div>
-        <Markdown data={marked(lastModified)} />
+        <Markdown data={parse(lastModified)}/>
         <div className="p-4 text-lg">전체 파일</div>
-        <Markdown data={marked(markdowns)} />
+        <Markdown data={parse(markdowns)}/>
       </>
     )
   } catch (err) {
-    console.error(err)
+    console.error({ file }, err.message)
 
     throw err
   }
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     wiki: string
-  }
+  }>
 }
 
 export async function generateMetadata(props: Props) {
-  console.log('generateMetadata', props)
-  const metadata = await getMarkdownMetadata([props.params.wiki, 'index'])
-
+  const params = await props.params
+  const metadata = await getMarkdownMetadata([params.wiki, 'index'])
   const url = metadata
     ? (metadata.openGraph.url as string).slice(0, '/index'.length)
     : ''
@@ -58,11 +61,8 @@ export async function generateMetadata(props: Props) {
     },
     alternates: {
       // canonical: url,
-    }
-  }
+    },
+  } as Metadata
 }
-export async function generateStaticParams() {
-  return [
-    { wiki: 'public-wiki' },
-  ]
-}
+
+const file = import.meta.url

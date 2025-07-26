@@ -1,5 +1,5 @@
 import { RE_INDEXED_VIMWIKI } from 'parser-vimwiki/constant'
-import { CONFIG } from '../../constant'
+import { CONFIG, NEXT_PUBLIC_ENDPOINT } from '../../constant'
 
 export function link(href: string, title: string, text: string) {
   try {
@@ -23,6 +23,16 @@ export function link(href: string, title: string, text: string) {
 
         return `<strike>[${protocolName}] ${text}</strike>`
       }
+      if (protocol.startsWith('wn.')) {
+        const name = protocol.slice('wn.'.length, -1)
+        const wiki = CONFIG.find(w => w.name === name)
+        if (wiki) {
+          const diaryLink = `/${wiki.dir}/${href.slice(protocol.length)}`
+
+          return `<a href="${diaryLink}">[${protocolName}] ${text}</a>`
+        }
+        return `<strike>[error:${protocolName}] ${text}</strike>`
+      }
       if (protocol == 'https:' || protocol === 'http:') {
         const decoded = [
           url.origin,
@@ -36,7 +46,6 @@ export function link(href: string, title: string, text: string) {
       if (
         protocol === 'file:' ||
         protocol === 'local:' ||
-        protocol.startsWith('wn.') || // TODO: support wiki name
         RE_INDEXED_VIMWIKI.test(protocol)
       ) {
         return `<strike>[${protocolName}] ${text}</strike>`
@@ -44,8 +53,7 @@ export function link(href: string, title: string, text: string) {
       if (protocol === 'mailto:') {
         const email = href.slice(protocol.length)
 
-        // FIXME: remove hardcoded domain
-        return `<a href="${href}" target="_blank">${email}</a> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=from deptno.dev" target="_blank">[지메일로 보내기]</a>`
+        return `<a href="${href}" target="_blank">${email}</a> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=from ${NEXT_PUBLIC_ENDPOINT}" target="_blank">[지메일로 보내기]</a>`
       }
 
       return `<a href="${href}">${text}</a>`
@@ -74,3 +82,5 @@ export function link(href: string, title: string, text: string) {
     return `<a href="${href}">${text}</a>`
   }
 }
+
+const file = import.meta.url

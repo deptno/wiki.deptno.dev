@@ -1,4 +1,4 @@
-import { ForceGraphInstance } from 'force-graph'
+import ForceGraphInstance from 'force-graph'
 
 export function draw(args: Args): Promise<ForceGraphInstance> {
   const { element, wiki, graphData, options } = args
@@ -7,11 +7,13 @@ export function draw(args: Args): Promise<ForceGraphInstance> {
     // window is not find 에러 발생에 대한 우회 처리
     import('force-graph').then(({ default: ForceGraph }) => {
       const { width, height, zoom } = options
-      const instance = ForceGraph()
+      // @ts-ignore
+      const instance = new ForceGraph()
 
       resolve(instance)
 
       requestAnimationFrame(() => {
+        // @ts-ignore
         instance(element)
           .nodeLabel('id')
           .nodeAutoColorBy('id')

@@ -1,10 +1,24 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "pipeline": {
+  "globalEnv": [
+    "DIR_DATA",
+    "NODE_ENV",
+    "MEILISEARCH_HOST",
+    "NEXT_PUBLIC_ENDPOINT",
+    "NEXT_PUBLIC_GIT_BRANCH",
+    "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
+    "NEXT_PUBLIC_MS_CLARITY_ID"
+  ],
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "out",
+        "dist"
+      ]
     },
     "lint": {},
     "dev": {

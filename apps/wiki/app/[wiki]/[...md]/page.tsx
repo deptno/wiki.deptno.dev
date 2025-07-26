@@ -5,31 +5,27 @@ import { NoPage } from '../../../component/NoPage'
 import { Markdown } from '../../../component/Markdown'
 import { MarkdownAside } from '../../../component/MarkdownAside'
 import { getAllList } from '../../../lib/getAllList'
-import { isPublicWiki } from '../../../lib/isPublicWiki'
 import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-static'
 export default async function Page(props: Props) {
-  if (!isPublicWiki(props.params.wiki)) {
-    throw new Error('403')
-  }
-
+  const params = await props.params
   const { path, currentPath, wiki } = getPath([
-    props.params.wiki,
-    ...props.params.md,
+    params.wiki,
+    ...params.md,
   ])
 
   try {
     const { getRandomLatestModifiedFileName } = getAllList(wiki)
-    const html = await getHtml({ path, currentPath })
+    const html = await getHtml({ wiki, path, currentPath })
 
     return (
       <>
-        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()} />
+        <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()}/>
         <Markdown data={html}>
-          <MarkdownAside data={html} wiki={wiki} path={path} />
+          <MarkdownAside data={html} wiki={wiki} path={path}/>
         </Markdown>
       </>
     )
@@ -38,29 +34,20 @@ export default async function Page(props: Props) {
       return redirect(decodeURIComponent(`/${path}/index`))
     }
 
-    return <NoPage name={path} />
+    return <NoPage name={path}/>
   }
 }
 type Props = {
-  params: {
+  params: Promise<{
     wiki: string
     md: string[]
-  }
+  }>
 }
 
 export async function generateMetadata(props: Props) {
-  return getMarkdownMetadata([props.params.wiki, ...props.params.md])
-}
-export async function generateStaticParams() {
-  const wiki = 'public-wiki'
-  const {files} = getAllList(wiki)
+  const params = await props.params
 
-  return files
-    .map(f => {
-      return {
-        wiki,
-        // slice(2) `/[wiki]` 까지 제거는
-        md: f.split('/').slice(2),
-      }
-    })
+  return getMarkdownMetadata([params.wiki, ...params.md])
 }
+
+const file = import.meta.url

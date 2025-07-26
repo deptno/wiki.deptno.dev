@@ -1,5 +1,5 @@
 import { RefObject, useLayoutEffect, useRef } from 'react'
-import { ForceGraphInstance } from 'force-graph'
+import ForceGraphInstance from 'force-graph'
 import { draw } from './draw'
 
 export function useForceGraphLayoutEffect(elementRef: RefObject<HTMLElement>, wiki: string, graphData: any) {
