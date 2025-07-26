@@ -58,7 +58,7 @@ export default function RootLayout({ children }: {
 
 export const metadata = {
   metadataBase: new URL(NEXT_PUBLIC_ENDPOINT),
-  title: 'deptno vimwiki',
+  title: 'deptno\'s vimwiki',
   description: 'dev log',
   referrer: 'origin-when-cross-origin',
   keywords: ['typescript', 'kubernetes', 'react', 'react native', 'terminal', 'neovim', 'vim', 'lua', 'frontend', 'seo', 'k9s'],
@@ -66,28 +66,24 @@ export const metadata = {
   creator: 'deptno@gmail.com',
   publisher: 'deptno@gmail.com',
   openGraph: {
-    title: 'deptno vimwiki',
+    title: 'deptno\'s vimwiki',
     description: 'dev log',
     locale: 'ko',
     siteName: NEXT_PUBLIC_ENDPOINT,
     url: NEXT_PUBLIC_ENDPOINT,
-    images: '/icon.jpg',
+    images: ['/web-app-manifest-512x512.png'],
     type: 'article',
   },
   icons: {
-    icon: '/icon.jpg',
-    shortcut: '/icon.jpg',
-    apple: '/icon.jpg',
-    other: {
-      rel: 'apple-touch-icon-precomposed',
-      url: '/icon.jpg',
-    },
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
   },
   appleWebApp: {
     title: 'deptno',
     statusBarStyle: 'black-translucent',
     startupImage: [
-      '/icon.jpg',
+      '/icon.svg',
     ],
   },
 }
