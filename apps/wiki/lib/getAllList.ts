@@ -35,7 +35,7 @@ function _getAllList(wikiName: string) {
       if (lastModified.length === 0) {
         return
       }
-      const index = random(lastModified.length)
+      const index = random(lastModified.length - 1)
 
       return basename(lastModified[index], '.md')
     },
