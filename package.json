@@ -2,7 +2,7 @@
   "name": "wiki.deptno.dev",
   "private": true,
   "scripts": {
-    "dev": "./dev.sh",
+    "dev": "docker compose up --build --watch",
     "build": "./build.sh",
     "deploy": "./deploy.sh",
     "lint": "turbo run lint"
