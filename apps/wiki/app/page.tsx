@@ -5,6 +5,7 @@ import { ChildrenWithSearchResult } from '../component/ChildrenWithSearchResult'
 import { CONFIG } from '../constant'
 import { getMarked } from '../lib/getMarked'
 
+export const dynamic = 'force-static'
 export default async function Page() {
   const markdownWiki = CONFIG.map(w => `- [${w.dir}](${w.dir})`).join('\n')
   const wiki = CONFIG.find(w => !w.private)?.dir ?? ''

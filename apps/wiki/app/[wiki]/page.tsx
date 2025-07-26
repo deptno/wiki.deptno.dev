@@ -9,6 +9,7 @@ import { getMarkdownMetadata } from '../../lib/generateMetadata'
 import { Metadata } from 'next'
 import { getMarked } from '../../lib/getMarked'
 
+export const dynamic = 'force-static'
 export default async function Page(props: Props) {
   const params = await props.params
 
