@@ -2,7 +2,7 @@ services:
   wiki:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     container_name: wiki
     command: pnpm --filter @app/wiki dev
     ports:
@@ -16,8 +16,6 @@ services:
       - DIR_WIKI=/mnt/data/public-wiki
     volumes:
       - ../public-wiki:/mnt/data/public-wiki
-      - ../private-wiki:/mnt/data/private-wiki
-      - ../writing-wiki:/mnt/data/writing-wiki
     develop:
       watch:
         - action: sync
@@ -43,7 +41,7 @@ services:
       - search
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     container_name: meilisearch-updater
     command: pnpm --filter @app/meilisearch-updater dev
     environment:
@@ -53,8 +51,6 @@ services:
       - DIR_WIKI=/mnt/data/public-wiki
     volumes:
       - ../public-wiki:/mnt/data/public-wiki
-      - ../private-wiki:/mnt/data/private-wiki
-      - ../writing-wiki:/mnt/data/writing-wiki
     develop:
       watch:
         - action: sync

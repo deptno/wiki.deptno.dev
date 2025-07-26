@@ -29,21 +29,9 @@ fi
 
 echo $YAML
 
-container_envs=$(
-  cat $YAML \
-    | yq -ojson \
-    | jq 'select(.kind == "Deployment")' \
-    | jq -r '.spec.template.spec.containers[0].env | map(select(.value)) | map(.name + "=" + .value) | .[]'
-)
-build_args=()
-while IFS='=' read -r name value; do
-  [ -z "$name" ] && continue
-  build_args+=(--build-arg "$name=$value")
-done <<< "$container_envs"
-
 docker build . \
+ --progress plain \
  --platform linux/amd64 \
- "${build_args[@]}" \
  -t harbor.deptno.dev/deptno/$NAME:$TAG \
  -t harbor.deptno.dev/deptno/$NAME:$GIT_COMMIT
 
