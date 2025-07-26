@@ -1,31 +1,31 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+// @ts-ignore
+import type { SearchClient } from 'instantsearch.js'
 import { InstantSearch, SearchBox, Hits, Highlight } from 'react-instantsearch'
-import { instantMeiliSearch, InstantMeiliSearchInstance } from '@meilisearch/instant-meilisearch'
+import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import Link from 'next/link'
 import { SubContentPortal } from './SubContentPortal'
 import { NEXT_PUBLIC_MEILISEARCH_API_KEY, NEXT_PUBLIC_MEILISEARCH_HOST } from '../constant'
 
 export const SearchBar = (props: Props) => {
   const { placeholder, wiki } = props
-  const [searchClient, setSearchClient] = useState<InstantMeiliSearchInstance>()
+  const [searchClient, setSearchClient] = useState<SearchClient | null>(null)
 
   useEffect(() => {
-    const { searchClient } = instantMeiliSearch(
+    const { searchClient: client } = instantMeiliSearch(
       NEXT_PUBLIC_MEILISEARCH_HOST,
       NEXT_PUBLIC_MEILISEARCH_API_KEY,
       {
         placeholderSearch: false,
         finitePagination: true,
         primaryKey: 'id',
-        requestConfig: {},
       },
     )
 
-    setSearchClient(searchClient)
+    setSearchClient(client)
   }, [])
-
   if (!searchClient) {
     return <div>로딩...</div>
   }
@@ -69,4 +69,3 @@ type Props = {
   placeholder?: string
   wiki: string
 }
-

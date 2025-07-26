@@ -9,7 +9,7 @@ services:
       - "3001:3001"
     environment:
       - NEXT_PUBLIC_ENDPOINT=http://host.docker.internal:3001
-      - NEXT_PUBLIC_MEILISEARCH_HOST=http://search:7700
+      - NEXT_PUBLIC_MEILISEARCH_HOST=http://localhost:3001/api/meili
       - TURBO_TELEMETRY_DISABLED=1
       - URL_ME=/public-wiki/about-me
       - DIR_WIKI_ROOT=/mnt/data
