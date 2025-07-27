@@ -13,9 +13,10 @@
 | URL_ME                          | about-me         | optional |                     |
 | DIR_DATA                        | /path/to/vimwiki | required |                     |
 | NEXT_PUBLIC_GIT_BRANCH          | default 'main'   | optional |                     |
-| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX     | optional |                     |
 | MEILISEARCH_HOST                | localhost:7700   | optional | required            |
+| NEXT_PUBLIC_GOOGLE_ANALYTICS_ID | G-XXXXXXXXXX     | optional |                     |
 | NEXT_PUBLIC_MS_CLARITY_ID       | xxxxxxxxxx       | optional |                     |
+| GITHUB_WEBHOOK_SECRET           | xxxxxxxxxx       | optional |                     |
 
 ### 설정 파일
 
