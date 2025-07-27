@@ -2,6 +2,7 @@ import crypto from 'crypto'
 import { NextResponse } from 'next/server'
 import { CONFIG, GITHUB_WEBHOOK_SECRET } from '../../../constant'
 import { revalidatePath } from 'next/cache'
+import { $ } from 'zx'
 
 export async function POST(req: Request) {
   try {
@@ -26,8 +27,10 @@ export async function POST(req: Request) {
       throw new Error(`unknown repo: ${repoFullName}`)
     }
 
-    revalidatePath(config.dir, 'layout')
-    console.info(`revalidated path: ${config.dir}`)
+    await $`git -C /mnt/data/${config.dir} pull --ff`
+
+    revalidatePath('/[wiki]', 'layout')
+    console.log('revalidated path: /[wiki]')
 
     return new Response(undefined, { status: 200 })
   } catch (err) {
