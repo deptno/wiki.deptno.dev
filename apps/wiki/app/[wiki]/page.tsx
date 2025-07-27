@@ -8,6 +8,7 @@ import { getPath } from '../../lib/getPath'
 import { getMarkdownMetadata } from '../../lib/generateMetadata'
 import { Metadata } from 'next'
 import { getMarked } from '../../lib/getMarked'
+import { Footer } from '../../component/Footer'
 
 export const dynamic = 'force-static'
 export default async function Page(props: Props) {
@@ -31,6 +32,7 @@ export default async function Page(props: Props) {
         <Markdown data={parse(lastModified)}/>
         <div className="p-4 text-lg">전체 파일</div>
         <Markdown data={parse(markdowns)}/>
+        <Footer wiki={wiki}/>
       </>
     )
   } catch (err) {

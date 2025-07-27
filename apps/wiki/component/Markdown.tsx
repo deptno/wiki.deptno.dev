@@ -5,7 +5,7 @@ export const Markdown: FC<Props> = (props) => {
   const { data, children } = props
 
   return (
-    <div className="w-full overflow-x-hidden">
+    <div className="w-full overflow-x-hidden pb-4">
       <MermaidRenderer />
       {children}
       <pre

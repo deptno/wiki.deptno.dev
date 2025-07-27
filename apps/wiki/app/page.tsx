@@ -4,6 +4,7 @@ import { Markdown } from '../component/Markdown'
 import { ChildrenWithSearchResult } from '../component/ChildrenWithSearchResult'
 import { CONFIG } from '../constant'
 import { getMarked } from '../lib/getMarked'
+import { Footer } from '../component/Footer'
 
 export const dynamic = 'force-static'
 export default async function Page() {
@@ -19,6 +20,7 @@ export default async function Page() {
         <ChildrenWithSearchResult />
         <div className="p-4 text-lg">위키</div>
         <Markdown data={parse(markdownWiki)} />
+        <Footer wiki={wiki}/>
       </>
     )
   } catch (err) {

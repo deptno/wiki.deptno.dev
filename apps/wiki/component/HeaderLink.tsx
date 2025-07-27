@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode } from 'react'
 
 export const HeaderLink: FC<Props> = (props: Props) => {
   const { href, children } = props
@@ -8,7 +8,8 @@ export const HeaderLink: FC<Props> = (props: Props) => {
       <a
         target='_blank'
         href={href}
-        className="bg-white text-black"
+        className="text-white underline underline-offset-4 p-2 text-sm"
+        rel="noreferrer"
       >
         {children}
       </a>

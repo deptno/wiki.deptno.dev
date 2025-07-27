@@ -1,23 +1,23 @@
 import React, { FC } from 'react'
 import { SearchBar } from './SearchBar'
 import { Breadcrumbs } from './Breadcrumbs'
-import { GitRevision } from './GitRevision'
-import { FrontendRepoHeaderLink } from './FrontendRepoHeaderLink'
-import { MeHeaderLink } from './MeHeaderLink'
-import { DiaryLink } from './DiaryLink'
+import Link from 'next/link'
 
 export const Header: FC<Props> = props => {
   const { wiki, placeholder } = props
+
   return (
-    <header className="flex flex-col p-3 bg-gray-800 gap-2 w-full">
-      <SearchBar wiki={wiki} placeholder={placeholder} />
-      <div className="flex justify-between text-white gap-2">
-        <FrontendRepoHeaderLink />
-        <GitRevision wiki={props.wiki}/>
-        <DiaryLink />
-        <MeHeaderLink />
-        <div className="ml-auto" />
-        <Breadcrumbs />
+    <header className="flex flex-col p-2 bg-gray-800 w-full">
+      <SearchBar wiki={wiki} placeholder={placeholder}/>
+      <div className="flex justify-between items-center text-sm text-white">
+        <Link
+          href={`/${wiki}/diary/index`}
+          className="text-white underline underline-offset-4 p-1"
+        >
+          journal
+        </Link>
+        <div className="ml-auto"/>
+        <Breadcrumbs/>
       </div>
     </header>
   )

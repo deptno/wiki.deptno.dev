@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { getRevision } from '../lib/getRevision'
 import { CONFIG } from '../constant'
-import { HeaderLink } from './HeaderLink'
 
 export const GitRevision: FC<Props> = (props) => {
   const wiki = CONFIG.find(w => w.dir === props.wiki)
@@ -11,9 +10,14 @@ export const GitRevision: FC<Props> = (props) => {
 
     if (revision) {
       return (
-        <HeaderLink href={`${wiki.url}/tree/${revision}`}>
-          {revision.slice(0, 7)}
-        </HeaderLink>
+        <a
+          target="_blank"
+          href={`${wiki.url}/tree/${revision}`}
+          className="text-white underline underline-offset-4 p-1 text-sm"
+          rel="noreferrer"
+        >
+          git:{wiki.dir}@{revision.slice(0, 7)}
+        </a>
       )
     }
   }

@@ -8,6 +8,7 @@ import { getAllList } from '../../../lib/getAllList'
 import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
+import { Footer } from '../../../component/Footer'
 
 export const dynamic = 'force-static'
 export default async function Page(props: Props) {
@@ -27,6 +28,7 @@ export default async function Page(props: Props) {
         <Markdown data={html}>
           <MarkdownAside data={html} wiki={wiki} path={path}/>
         </Markdown>
+        <Footer wiki={wiki}/>
       </>
     )
   } catch (err) {
