@@ -9,5 +9,6 @@ export const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
 export const MS_CLARITY_ID = process.env.NEXT_PUBLIC_MS_CLARITY_ID
 export const MEILISEARCH_HOST = process.env.MEILISEARCH_HOST
 export const MEILISEARCH_API_KEY = process.env.MEILISEARCH_API_KEY
+export const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
 export const URL_ME = process.env.URL_ME
 export const CURRENT_REVISION = '.CURRENT_REVISION'
