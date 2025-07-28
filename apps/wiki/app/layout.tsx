@@ -80,10 +80,14 @@ export const metadata = {
     ],
   },
   appleWebApp: {
-    title: 'deptno',
     statusBarStyle: 'black-translucent',
     startupImage: [
       '/icon.svg',
     ],
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
