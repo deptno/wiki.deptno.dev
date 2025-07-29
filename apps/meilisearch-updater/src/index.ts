@@ -1,6 +1,6 @@
 import { MeiliSearch } from 'meilisearch'
 import { getMarkdownFiles } from './getMarkdownFiles.mjs'
-import { CONFIG, DIR_DATA, INDEX, MEILI_MASTER_KEY, MEILISEARCH_HOST } from './constant.mjs'
+import { CONFIG, DIR_DATA, MEILI_MASTER_KEY, MEILISEARCH_HOST } from './constant.mjs'
 import { join } from 'node:path'
 
 try {
@@ -11,7 +11,7 @@ try {
       apiKey: MEILI_MASTER_KEY,
     })
 
-    await ms.deleteIndexIfExists(INDEX)
+    await ms.deleteIndexIfExists(w.dir)
       .then((task) => console.info({ task }, 'deleteIndexIfExists'))
     await ms
       .createIndex(w.dir, { primaryKey: 'id' })
