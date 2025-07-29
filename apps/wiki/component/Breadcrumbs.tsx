@@ -1,21 +1,50 @@
 'use client'
+
 import React, { FC } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 export const Breadcrumbs: FC<Props> = (props) => {
-  const pathname = usePathname().split('/').slice(1)
+  const current = usePathname()
+  const pathname = current.split('/')
+  const targets = pathname[pathname.length - 1] === 'index'
+    // index 로 끝나는 case 는 표시 하지 않음 ex. diary/index
+    ? pathname.slice(0, -1)
+    : pathname
+  const { refresh } = useRouter()
 
   return (
-    <div className="breadcrumbs">
-      <ul className="flex">
-        {pathname.map((p, i, a) => {
-          const href = '/' + pathname.slice(0, i).join('/')
+    <div className="breadcrumbs flex gap-1 items-center">
+      <ul className="flex gap-1">
+        {targets.map((p, i, a) => {
+          const href = pathname.slice(0, i + 1).join('/') || '/'
 
+          if (i < pathname.length - 1) {
+            return (
+              <li key={i}>
+                <Link className="underline text-sm underline-offset-4" href={href}>
+                  {pathname[i]}/
+                </Link>
+              </li>
+            )
+          }
+
+          if (href === current) {
+            // 현재경로가 url와 동일한 경우 refresh
+            return (
+              <li key={i}>
+                <div className="underline text-sm underline-offset-4 cursor-pointer" onClick={refresh}>
+                  {pathname[i]}
+                </div>
+              </li>
+            )
+          }
+
+          // */index 케이스
           return (
-            <li key={href} className={i === 0 ? 'bg-white text-gray-800' : ''}>
-              <Link  className="underline p-1 text-sm underline-offset-4" href={href}>
-                {pathname[i-1] ?? ''}/
+            <li key={i}>
+              <Link className="underline text-sm underline-offset-4" href={href}>
+                {pathname[i]}
               </Link>
             </li>
           )
