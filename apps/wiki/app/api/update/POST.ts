@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import { CONFIG, GITHUB_WEBHOOK_SECRET } from '../../../constant'
 import { revalidatePath } from 'next/cache'
 import { $ } from 'zx'
+import { updateMeilisearchDocuments } from '../../../lib/updateMeilisearchDocuments'
 
 export async function POST(req: Request) {
   try {
@@ -32,9 +33,17 @@ export async function POST(req: Request) {
     revalidatePath('/[wiki]', 'layout')
     console.log('revalidated path: /[wiki]')
 
+    if (payload.commits) {
+      updateMeilisearchDocuments({ index: config.dir, commits: payload.commits }).catch(err => {
+        console.error({ file, err })
+      })
+    }
+
     return new Response(undefined, { status: 200 })
   } catch (err) {
     console.error('webhook error', err)
     return NextResponse.json({ error: 'server error' }, { status: 500 })
   }
 }
+
+const file = import.meta.url
