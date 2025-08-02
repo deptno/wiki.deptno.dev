@@ -13,7 +13,7 @@ export function createLink(params: Params) {
 
       if (protocol) {
         // @ref :h vimwiki-syntax-links
-        if (protocol == 'diary:') {
+        if (protocol === 'diary:') {
           const diaryLink = `/${dir}/${diaryDir}/${href.slice(protocol.length)}`
 
             return `<a href="${diaryLink}">[${protocolName}] ${text}</a>`

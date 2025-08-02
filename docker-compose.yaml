@@ -25,6 +25,14 @@ services:
             - '**/.turbo/'
             - '**/.next/'
             - .idea/
+        - action: sync
+          path: packages/parser-vimwiki
+          target: /app/packages/parser-vimwiki
+          ignore:
+            - '**/node_modules/'
+            - '**/.turbo/'
+            - '**/.next/'
+            - .idea/
         - action: rebuild
           path: package.json
   search:
