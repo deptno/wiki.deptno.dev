@@ -9,6 +9,8 @@ export const getMarkdownFiles = async (dir: string) => {
       const name = md.replace(`${dir}/`, '').slice(0, -3)
       const id = Buffer.from(name).toString('hex')
 
+      console.log(`id: ${id}, md: ${md}, name: ${name}`)
+
       return {
         id: id,
         content: readFileSync(md).toString(),

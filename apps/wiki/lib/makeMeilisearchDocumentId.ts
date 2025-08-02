@@ -1,5 +1,5 @@
-export function makeMeilisearchDocumentId(source: string): string {
-  const key = source
+export function makeMeilisearchDocumentId(filepath: string): string {
+  const key = filepath
     .toLowerCase()
     .slice(0, -3)
 

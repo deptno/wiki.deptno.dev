@@ -1,16 +1,17 @@
 import { Commit, getFinalChanges } from './getFinalChanges'
+import { makeMeilisearchDocumentIdContent } from './makeMeilisearchDocumentIdContent'
+import { DIR_DATA, MEILI_MASTER_KEY, MEILISEARCH_HOST } from '../constant'
 import { makeMeilisearchDocumentId } from './makeMeilisearchDocumentId'
-import { MEILI_MASTER_KEY, MEILISEARCH_HOST } from '../constant'
+import path from 'path'
 
 export async function updateMeilisearchDocuments(params: Params) {
   const { index, commits } = params
   const { added, modified, removed } = getFinalChanges(commits)
 
   // Map file paths to Meilisearch document IDs
-  const addedIds = added.map(makeMeilisearchDocumentId)
-  const modifiedIds = modified.map(makeMeilisearchDocumentId)
+  const addedIds = added.map(t => makeMeilisearchDocumentIdContent(path.join(DIR_DATA, index, t), t))
+  const modifiedIds = modified.map(t => makeMeilisearchDocumentIdContent(path.join(DIR_DATA, index, t), t))
   const removedIds = removed.map(makeMeilisearchDocumentId)
-
   const allUpserts = [...addedIds, ...modifiedIds]
 
   // Helper to build common headers
@@ -23,19 +24,21 @@ export async function updateMeilisearchDocuments(params: Params) {
 
   // 1. Upsert (create/update) documents for added and modified files
   if (allUpserts.length > 0) {
-    const upsertPayload = allUpserts.map(id => ({ id }))
     const upsertRes = await fetch(`${MEILISEARCH_HOST}/indexes/${index}/documents`, {
       method: 'POST',
       headers: msHeaders,
-      body: JSON.stringify(upsertPayload),
+      body: JSON.stringify(allUpserts),
     })
     const upsertJson = await upsertRes.json()
-    console.info({
-      action: 'upsert',
-      index,
-      documents: allUpserts,
-      task: upsertJson,
-    })
+    console.dir(
+      {
+        action: 'upsert',
+        index,
+        documents: allUpserts.slice(0, 2),
+        task: upsertJson,
+      },
+      { depth: null, maxArrayLength: 2, maxStringLength: 80 }
+    )
   }
 
   // 2. Delete documents for removed files
