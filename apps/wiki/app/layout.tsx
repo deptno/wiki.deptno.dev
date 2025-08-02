@@ -1,4 +1,5 @@
 import './global.css'
+import './googit.css'
 import './prism.css'
 import './sm.css'
 import './md.css'
