@@ -16,9 +16,9 @@ export function createLink(params: Params) {
         if (protocol === 'diary:') {
           const diaryLink = `/${dir}/${diaryDir}/${href.slice(protocol.length)}`
 
-            return `<a href="${diaryLink}">[${protocolName}] ${text}</a>`
+            return `<a href="${diaryLink}">[${protocolName}]${text}</a>`
 
-          return `<strike>[${protocolName}] ${text}</strike>`
+          return `<strike>[${protocolName}]${text}</strike>`
         }
         if (protocol.startsWith('wn.')) {
           const name = protocol.slice('wn.'.length, -1)
@@ -26,9 +26,9 @@ export function createLink(params: Params) {
           if (wiki) {
             const diaryLink = `/${wiki.dir}/${href.slice(protocol.length)}`
 
-            return `<a href="${diaryLink}">[${protocolName}] ${text}</a>`
+            return `<a href="${diaryLink}">[${protocolName}]${text}</a>`
           }
-          return `<strike>[error:${protocolName}] ${text}</strike>`
+          return `<strike>[error:${protocolName}]${text}</strike>`
         }
         if (protocol == 'https:' || protocol === 'http:') {
           const decoded = [
@@ -38,14 +38,14 @@ export function createLink(params: Params) {
             decodeURIComponent(url.hash),
           ].join('')
 
-          return `<a href="${href}" target="_blank">[URL] ${decoded}</a>`
+          return `<a href="${href}" target="_blank">[URL]${decoded}</a>`
         }
         if (
           protocol === 'file:' ||
           protocol === 'local:' ||
           RE_INDEXED_VIMWIKI.test(protocol)
         ) {
-          return `<strike>[${protocolName}] ${text}</strike>`
+          return `<strike>[${protocolName}]${text}</strike>`
         }
         if (protocol === 'mailto:') {
           const email = href.slice(protocol.length)

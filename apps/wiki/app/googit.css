@@ -1,0 +1,99 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+* {
+  font-family: "Spoqa Han Sans", "Spoqa Han Sans JP", "Sans-serif";
+}
+.markdown a, code, h1 {
+  word-wrap: break-word;
+}
+.markdown .chartreuse {
+  color: chartreuse;
+}
+.markdown blockquote::before {
+  content: "“ ";
+  float: left;
+  min-width: 1.5rem;
+  margin-left: -1.0rem;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.markdown .hljs {
+  padding: 1.2em 1em;
+}
+.markdown article p {
+  color: rgba(0,0,0, .8)
+}
+.markdown img {
+  max-height: 70vh;
+}
+.markdown footer {
+  left: 0;
+  bottom: 0;
+  padding: 1em;
+}
+.markdown .sticky-outer-wrapper.active .sticky-inner-wrapper {
+  height: 150px;
+}
+.markdown .v-animate {
+  transition: opacity 0.7s linear;
+}
+.markdown .z--1 {
+  z-index: -1;
+}
+.markdown .stroke {
+  stroke: black;
+  stroke-width: 3;
+  cursor: pointer;
+}
+.print {
+  display: none;
+}
+.pbb {
+  page-break-before: always;
+}
+.pba {
+  page-break-after: always;
+}
+.pbi {
+  page-break-inside: avoid;
+}
+.cbi {
+  -webkit-column-break-inside: avoid;
+}
+@media print {
+  nav {
+    display: none
+  }
+  footer {
+    display: none
+  }
+  .print {
+    display: initial;
+  }
+  .no-print {
+    display: none;
+  }
+  .cc2-ns {
+    column-count: 2
+  }
+}
+@page {
+  @top-right {
+    content: "generate from deptno.dev. page " counter(page);
+  }
+  size: A4;
+  margin: 1.5cm 0.5cm;
+}
+
+@media screen and (min-width: 30em) {
+  .cc2-ns {
+    column-count: 2
+  }
+}
+@media screen and (min-width: 30em) and (max-width: 60em) {
+}
+@media screen and (min-width: 60em) {
+  .cc2-l {
+    column-count: 2
+  }
+}
