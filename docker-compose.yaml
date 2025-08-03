@@ -18,6 +18,14 @@ services:
     develop:
       watch:
         - action: sync
+          path: ./
+          target: /app
+          ignore:
+            - '**/node_modules/'
+            - '**/.turbo/'
+            - '**/.next/'
+            - .idea/
+        - action: sync
           path: apps/wiki
           target: /app/apps/wiki
           ignore:
