@@ -16,9 +16,7 @@ export function createLink(params: Params) {
         if (protocol === 'diary:') {
           const diaryLink = `/${dir}/${diaryDir}/${href.slice(protocol.length)}`
 
-            return `<a href="${diaryLink}">[${protocolName}]${text}</a>`
-
-          return `<strike>[${protocolName}]${text}</strike>`
+          return `<a href="${diaryLink}">[${protocolName}]${text.replace('diary:', '')}</a>`
         }
         if (protocol.startsWith('wn.')) {
           const name = protocol.slice('wn.'.length, -1)
