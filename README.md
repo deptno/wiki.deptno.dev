@@ -20,8 +20,8 @@
 
 ### 설정 파일
 
-- [wiki.config.json](apps/wiki/wiki.config.json) 참조
-- `wiki`, `meilisearch-updater` 둘 모두 `wiki.config.json` 을 각각 가지고 있음
+- [wiki.config.json](wiki.config.json) 참조
+- `wiki`, `meilisearch-updater` 둘 모두 필요로 함
 - 쿠버네티스 배포시에는 하나의 `configmap` 설정 추천
 
 #### private 위키 처리
