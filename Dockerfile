@@ -3,6 +3,7 @@ FROM node:22-bullseye-slim
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN git config --global core.quotepath false
 RUN npm install -g pnpm
 
 WORKDIR /app
