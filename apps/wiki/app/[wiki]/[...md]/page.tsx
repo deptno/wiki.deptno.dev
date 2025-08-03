@@ -9,7 +9,6 @@ import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
 import { Footer } from '../../../component/Footer'
-import Prism from 'prismjs'
 
 export const dynamic = 'force-static'
 export default async function Page(props: Props) {
@@ -18,9 +17,6 @@ export default async function Page(props: Props) {
     params.wiki,
     ...params.md,
   ])
-
-
-
 
   try {
     const { getRandomLatestModifiedFileName } = getAllList(wiki)
@@ -37,7 +33,7 @@ export default async function Page(props: Props) {
     )
   } catch (err) {
     if (!path.endsWith('index')) {
-      return redirect(decodeURIComponent(`/${path}/index`))
+      return redirect(`/${path}/index`)
     }
 
     return <NoPage name={path}/>
