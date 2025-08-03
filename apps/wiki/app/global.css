@@ -132,6 +132,18 @@
   background-color: #e3e3e3;
 }
 
+.markdown .anchor::after {
+  position: absolute;
+  right: 0;
+  content: "#anchor";
+  float: right;
+  background-color: #272727;
+  color: chartreuse;
+}
+.markdown .anchor {
+  background-color: #e3e3e3;
+}
+
 #sidebar .toc {
   overflow-x: scroll;
 }
