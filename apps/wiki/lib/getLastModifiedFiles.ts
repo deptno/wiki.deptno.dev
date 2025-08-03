@@ -12,23 +12,18 @@ export function getLastModifiedFiles(wiki: Wiki): string[] {
     return []
   }
 
-  const command = `
-git -C ${dir} diff ${hash}.. --stat |
-sed '$d' |
-awk -F'|' '{ print $2 $1 }' |
-sort -nr |
-awk '{ print $1 " " $3 " " $4 " " $5 }'`
-  const result = execSync(command).toString()
-  const handleAwkResult = (l: string): [number, string] => {
-    const [modifiedLineCount, ...rest] = l.split(' ')
+  const command = `git -C ${dir} diff ${hash}.. --numstat | cat`
+  const result = execSync(command, { encoding: 'utf-8' }).toString()
+  const handleAwkResult = (l: string): string => {
+    const [_, __, filename] = l.split('\t')
 
-    return [ Number(modifiedLineCount), rest.reverse().find(Boolean) ]
+    return filename
   }
 
-  return result.split('\n')
+  return result
+    .split('\n')
+    .filter(Boolean)
     .map(handleAwkResult)
-    .filter((v) => v[0] > 0)
-    .map((v) => v[1])
     .filter((v) => !v.startsWith(`${wiki.diaryDir}/`))
     .map((v) => path.join(wiki.dir, v))
 }
