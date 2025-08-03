@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process'
 import { DIR_DATA } from '../constant'
-import path from 'node:path'
+import path, { extname } from 'node:path'
 
 export function getLastModifiedFiles(wiki: Wiki): string[] {
   const dir = path.join(DIR_DATA, wiki.dir)
@@ -24,6 +24,11 @@ export function getLastModifiedFiles(wiki: Wiki): string[] {
     .split('\n')
     .filter(Boolean)
     .map(handleAwkResult)
-    .filter((v) => !v.startsWith(`${wiki.diaryDir}/`))
+    .filter((v) => {
+      if (v.startsWith(`${wiki.diaryDir}/`)) {
+        return false
+      }
+      return extname(v) === '.md'
+    })
     .map((v) => path.join(wiki.dir, v))
 }
