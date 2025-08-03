@@ -1,3 +1,5 @@
+import { cutAnchor } from './cutAnchor'
+
 export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
   const nodes: Set<N> = new Set()
   const nodeMap: Map<N, number> = new Map()
@@ -18,13 +20,18 @@ export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
       const n = nodeMap.get(edge.source) ?? 0
       nodeMap.set(edge.source, n + 1)
 
-      edges.push(edge)
+      edges.push({
+        source: edge.source,
+        target: cutAnchor(edge.target as string),
+      } as Edge<N>)
     },
     getOutgoingEdges(nodeId: N): readonly Edge<N>[] {
       return edges.filter((e) => e.source === nodeId)
     },
     getIncomingEdges(nodeId: N): readonly Edge<N>[] {
-      return edges.filter((e) => e.target === nodeId)
+      return edges.filter((e) => {
+        return cutAnchor(e.target as string) === nodeId
+      })
     },
     getNodes() {
       return Array.from(nodes)

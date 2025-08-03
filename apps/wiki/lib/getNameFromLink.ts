@@ -3,5 +3,4 @@
 export const getNameFromLink = (_match: string, $1: string) => {
   return $1
     .split('|')[0]
-    .split('#')[0]
 }

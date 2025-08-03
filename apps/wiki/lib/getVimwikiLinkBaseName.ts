@@ -4,5 +4,9 @@ export function getVimwikiLinkBaseName(source: string, link: string) {
   if (link.includes('](/')) {
     return ''
   }
+  if (link.startsWith('[[diary:')) {
+    return ''
+  }
+
   return dirname(source)
 }
