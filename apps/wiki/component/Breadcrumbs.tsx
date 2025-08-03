@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export const Breadcrumbs: FC<Props> = (props) => {
   const current = usePathname()
-  const pathname = current.split('/')
+  const pathname = decodeURI(current).split('/')
   const targets = pathname[pathname.length - 1] === 'index'
     // index 로 끝나는 case 는 표시 하지 않음 ex. diary/index
     ? pathname.slice(0, -1)
@@ -14,8 +14,8 @@ export const Breadcrumbs: FC<Props> = (props) => {
   const { refresh } = useRouter()
 
   return (
-    <div className="breadcrumbs flex gap-1 items-center">
-      <ul className="flex gap-1">
+    <div className="breadcrumbs flex gap-1 items-center max-w-full">
+      <ul className="flex gap-1 overflow-x-auto whitespace-nowrap max-w-full">
         {targets.map((p, i, a) => {
           const href = pathname.slice(0, i + 1).join('/') || '/'
 
