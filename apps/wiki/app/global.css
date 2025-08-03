@@ -134,14 +134,13 @@
 
 .markdown .anchor::after {
   position: absolute;
-  right: 0;
   content: "#anchor";
-  float: right;
-  background-color: #272727;
-  color: chartreuse;
-}
-.markdown .anchor {
-  background-color: #e3e3e3;
+  display: inline;
+  background-color: yellow;;
+  color: #f92672;
+  font-size: 75%;
+  margin-left: 0.5rem;
+  opacity: .9;
 }
 
 #sidebar .toc {
