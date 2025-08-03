@@ -43,6 +43,11 @@ function _getAllList(wikiName: string) {
 }
 
 const file = import.meta.url
-const stripExt = (f: string) => f.slice(0, -3)
+const stripExt = (f: string) => {
+  if (f.endsWith('.md')) {
+    return f.slice(0, -3)
+  }
+  return f
+}
 
 export const getAllList = prodCache(_getAllList)
