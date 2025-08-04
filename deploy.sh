@@ -32,6 +32,7 @@ echo $YAML
 docker build . \
  --progress plain \
  --platform linux/amd64 \
+ --build-arg GIT_COMMIT=$GIT_COMMIT \
  -t harbor.deptno.dev/deptno/$NAME:$TAG \
  -t harbor.deptno.dev/deptno/$NAME:$GIT_COMMIT
 

@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Header } from './Header'
 import { getGraph } from '../getGraph'
 import { LinkGraph } from './LinkGraph'
-import { GIT_BRANCH } from '../constant'
+import { NEXT_PUBLIC_GIT_BRANCH } from '../constant'
 import { GoBack } from './GoBack'
 import { tryToGetWiki } from '../lib/tryToGetWiki'
 import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
@@ -25,7 +25,7 @@ export const NoPage: FC<Props> = async (props) => {
         <span>존재하지 않는 문서입니다.</span>
         <a
           className="underline underline-offset-4"
-          href={`${cw.url}/new/${GIT_BRANCH}?filename=${filename}.md`}
+          href={`${cw.url}/new/${NEXT_PUBLIC_GIT_BRANCH}?filename=${filename}.md`}
           target="_blank"
           rel="noreferrer"
         >

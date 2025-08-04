@@ -5,7 +5,7 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import { usePathname, useRouter } from 'next/navigation'
 import { createNumberHandler } from '../lib/createNumberHandler'
 import { OverlayTutorial } from './OverlayTutorial'
-import { GIT_BRANCH, RE_IN_DIARY } from '../constant'
+import { NEXT_PUBLIC_GIT_COMMIT, RE_IN_DIARY } from '../constant'
 import { createWikiHandler } from '../lib/createWikiHandler'
 
 export function HotKey(props) {
@@ -14,7 +14,7 @@ export function HotKey(props) {
 
   // 도움말
   useHotkeys('f1', () => {
-    window.open(`https://github.com/deptno/wiki.deptno.dev/blob/${GIT_BRANCH}/apps/wiki/component/HotKey.tsx`)
+    window.open(`https://github.com/deptno/wiki.deptno.dev/blob/${NEXT_PUBLIC_GIT_COMMIT}/apps/wiki/component/HotKey.tsx`)
   })
   // 위키 목록
   useHotkeys('w', () => {

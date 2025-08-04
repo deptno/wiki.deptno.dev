@@ -22,4 +22,7 @@ RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
 
 COPY . .
 
+ARG GIT_COMMIT=unknown
+ENV NEXT_PUBLIC_GIT_COMMIT=$GIT_COMMIT
+
 CMD ["sh", "-c", "pnpm turbo build && pnpm start"]

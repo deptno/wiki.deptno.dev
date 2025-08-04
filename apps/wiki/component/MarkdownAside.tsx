@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { GIT_BRANCH } from '../constant'
+import { NEXT_PUBLIC_GIT_BRANCH } from '../constant'
 import { TOC } from '../lib/TOC'
 import { LinkGraph } from './LinkGraph'
 import { getGraph } from '../getGraph'
@@ -13,7 +13,7 @@ export const MarkdownAside: FC<Props> = props => {
   const graph = getGraph(wiki)
   const wikiBasedPath = path.slice(wiki.length + 1)
   const g = graph.getLinkGraphData(decodeURIComponent(wikiBasedPath))
-  const branch = GIT_BRANCH
+  const branch = NEXT_PUBLIC_GIT_BRANCH
   const cw = tryToGetWiki(wiki)
 
   return (
