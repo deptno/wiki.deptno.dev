@@ -9,6 +9,7 @@ import { getHtml } from '../../../lib/getHtml'
 import { getMarkdownMetadata } from '../../../lib/generateMetadata'
 import { getPath } from '../../../lib/getPath'
 import { Footer } from '../../../component/Footer'
+import { HotKey } from '../../../component/HotKey'
 
 export const dynamic = 'force-static'
 export default async function Page(props: Props) {
@@ -24,6 +25,7 @@ export default async function Page(props: Props) {
 
     return (
       <>
+        <HotKey />
         <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()}/>
         <Markdown data={html}>
           <MarkdownAside data={html} wiki={wiki} path={path}/>

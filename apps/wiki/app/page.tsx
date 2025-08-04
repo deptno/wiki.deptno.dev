@@ -5,6 +5,7 @@ import { ChildrenWithSearchResult } from '../component/ChildrenWithSearchResult'
 import { CONFIG } from '../constant'
 import { getMarked } from '../lib/getMarked'
 import { Footer } from '../component/Footer'
+import { HotKey } from '../component/HotKey'
 
 export const dynamic = 'force-static'
 export default async function Page() {
@@ -16,6 +17,7 @@ export default async function Page() {
 
     return (
       <>
+        <HotKey />
         <Header wiki={wiki}/>
         <ChildrenWithSearchResult />
         <div className="p-4 text-lg">위키</div>

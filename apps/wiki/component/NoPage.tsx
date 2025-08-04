@@ -6,6 +6,7 @@ import { GIT_BRANCH } from '../constant'
 import { GoBack } from './GoBack'
 import { tryToGetWiki } from '../lib/tryToGetWiki'
 import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
+import { HotKey } from './HotKey'
 
 // @ts-ignore
 export const NoPage: FC<Props> = async (props) => {
@@ -17,6 +18,7 @@ export const NoPage: FC<Props> = async (props) => {
 
   return (
     <>
+      <HotKey />
       <Header wiki={wiki} />
       <ChildrenWithSearchResult/>
       <div className="w-full flex flex-col items-center justify-center h-screen">

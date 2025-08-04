@@ -25,22 +25,28 @@ export const SearchBar = (props: Props) => {
     )
 
     setSearchClient(client)
-  }, [])
+  }, [wiki])
+
   if (!searchClient) {
     return <div>로딩...</div>
   }
 
   return (
-    <InstantSearch indexName={wiki} searchClient={searchClient}>
-      <SearchBox placeholder={placeholder}/>
-      <SubContentPortal>
-        <div className="whitespace-pre-wrap break-words break-all overflow-hidden">
-          <div className="overflow-scroll">
-            <Hits hitComponent={Hit}/>
-          </div>
-        </div>
-      </SubContentPortal>
-    </InstantSearch>
+    <div className="flex w-full gap-2 items-center">
+      <div className="hidden md:block chartreuse">⌘k</div>
+      <div className="flex-grow">
+        <InstantSearch indexName={wiki} searchClient={searchClient}>
+          <SearchBox className="text-right" placeholder={placeholder}/>
+          <SubContentPortal>
+            <div className="whitespace-pre-wrap break-words break-all overflow-hidden">
+              <div className="overflow-scroll">
+                <Hits hitComponent={Hit}/>
+              </div>
+            </div>
+          </SubContentPortal>
+        </InstantSearch>
+      </div>
+    </div>
   )
 
   function Hit(props) {
@@ -53,13 +59,18 @@ export const SearchBar = (props: Props) => {
       .join('\n')
 
     return (
-      <div className="grid grid-cols-1 md:grid-cols-[150px_1fr] border-b-2" key={id}>
-        <Link className="underline text-blue-800" href={`/${wiki}/${id}`}>
-          {id}
-        </Link>
-        <div className="flex-1 italic">
-          <Highlight attribute="content" hit={hit}/>
+      <div className="flex flex-col border-b-2" key={id}>
+        <div className="flex items-center gap-1">
+          <small className="hidden md:flex justify-center px-1 w-6 text-xs bg-gray-800 text-green-400 rounded-md">
+            <div>{hit.__position}</div>
+          </small>
+          <Link className="underline text-blue-800 flex" href={`/${wiki}/${id}`} data-search-result={hit.__position}>
+            <div>{id}</div>
+          </Link>
         </div>
+        <small className="flex-1 italic h-8">
+          <Highlight attribute="content" hit={hit}/>
+        </small>
       </div>
     )
   }
