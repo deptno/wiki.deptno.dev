@@ -5,7 +5,7 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import { usePathname, useRouter } from 'next/navigation'
 import { createNumberHandler } from '../lib/createNumberHandler'
 import { OverlayTutorial } from './OverlayTutorial'
-import { NEXT_PUBLIC_GIT_COMMIT, RE_IN_DIARY } from '../constant'
+import { NEXT_PUBLIC_GIT_COMMIT } from '../constant'
 import { createWikiHandler } from '../lib/createWikiHandler'
 
 export function HotKey(props) {
@@ -46,30 +46,26 @@ export function HotKey(props) {
     document.querySelector<HTMLInputElement>('input[type=search]')?.focus()
   })
   // 검색 결과 선택
-  useHotkeys('1', createNumberHandler({ router, key: '1'}))
-  useHotkeys('2', createNumberHandler({ router, key: '2'}))
-  useHotkeys('3', createNumberHandler({ router, key: '3'}))
-  useHotkeys('4', createNumberHandler({ router, key: '4'}))
-  useHotkeys('5', createNumberHandler({ router, key: '5'}))
-  useHotkeys('6', createNumberHandler({ router, key: '6'}))
-  useHotkeys('7', createNumberHandler({ router, key: '7'}))
-  useHotkeys('8', createNumberHandler({ router, key: '8'}))
-  useHotkeys('9', createNumberHandler({ router, key: '9'}))
+  useHotkeys('1', createNumberHandler({ router, key: '1' }))
+  useHotkeys('2', createNumberHandler({ router, key: '2' }))
+  useHotkeys('3', createNumberHandler({ router, key: '3' }))
+  useHotkeys('4', createNumberHandler({ router, key: '4' }))
+  useHotkeys('5', createNumberHandler({ router, key: '5' }))
+  useHotkeys('6', createNumberHandler({ router, key: '6' }))
+  useHotkeys('7', createNumberHandler({ router, key: '7' }))
+  useHotkeys('8', createNumberHandler({ router, key: '8' }))
+  useHotkeys('9', createNumberHandler({ router, key: '9' }))
   // 다이어리 전용
   useHotkeys('h', () => {
-    if (RE_IN_DIARY.test(pathname)) {
-      const href = document.querySelector<HTMLAnchorElement>('#prev-date')?.href
-      if (href) {
-        router.push(href)
-      }
+    const href = document.querySelector<HTMLAnchorElement>('#prev-date')?.href
+    if (href) {
+      router.push(href)
     }
   })
   useHotkeys('l', () => {
-    if (RE_IN_DIARY.test(pathname)) {
-      const href = document.querySelector<HTMLAnchorElement>('#next-date')?.href
-      if (href) {
-        router.push(href)
-      }
+    const href = document.querySelector<HTMLAnchorElement>('#next-date')?.href
+    if (href) {
+      router.push(href)
     }
   })
   // 화면 스크롤
@@ -84,8 +80,7 @@ export function HotKey(props) {
     container.scrollBy({ top: -half, left: 0, behavior: 'smooth' })
   })
 
-  return <OverlayTutorial />
+  return <OverlayTutorial/>
 }
 
-type Props = {
-}
+type Props = {}
