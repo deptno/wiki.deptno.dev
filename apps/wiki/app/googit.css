@@ -2,11 +2,11 @@
 * {
   font-family: "Spoqa Han Sans", "Spoqa Han Sans JP", "Sans-serif";
 }
+.chartreuse {
+  color: chartreuse;
+}
 .markdown a, code, h1 {
   word-wrap: break-word;
-}
-.markdown .chartreuse {
-  color: chartreuse;
 }
 .markdown blockquote::before {
   content: "“ ";
