@@ -68,6 +68,13 @@ export function HotKey(props) {
       router.push(href)
     }
   })
+  useHotkeys('t', () => {
+    const [_, wiki] = pathname.split('/')
+    if (wiki) {
+      const today = new Date().toLocaleDateString('sv-SE')
+      router.push(`/${wiki}/diary/${today}`)
+    }
+  })
   // 화면 스크롤
   useHotkeys('j', () => {
     const container = document.scrollingElement || document.documentElement
