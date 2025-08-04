@@ -14,6 +14,9 @@
   text-decoration: underline;
   color: chartreuse;
   border-radius: 0.5rem;
+  word-break: keep-all;
+  line-break: normal;
+  overflow-wrap: break-word;
 }
 
 .markdown strong {
