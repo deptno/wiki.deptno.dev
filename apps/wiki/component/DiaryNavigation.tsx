@@ -19,8 +19,19 @@ export const DiaryNavigation: FC<Props> = props => {
 
   return (
     <div className="flex flex-wrap gap-2 pb-2 m-0 leading-tight ml-auto">
-      {hasPrev && <Link className="text-blue-600 underline" href={prev}>이전({prev.slice(prefix.length)})</Link>}
-      {hasNext && <Link className="text-blue-600 underline" href={next}>다음({next.slice(prefix.length)})</Link>}
+      {hasPrev && (
+        <Link id="prev-date" className="text-blue-600 underline flex gap-1 opacity-70" href={prev}>
+          <div className="hidden md:inline text-center px-1 w-6 bg-gray-800 text-green-400 rounded-md">h</div>
+          이전({prev.slice(prefix.length)})
+        </Link>
+      )}
+      {hasNext && (
+
+        <Link id="next-date" className="text-blue-600 underline flex gap-1 opacity-70" href={next}>
+          <div className="hidden md:inline text-center px-1 w-6 bg-gray-800 text-green-400 rounded-md">l</div>
+          다음({next.slice(prefix.length)})
+        </Link>
+      )}
     </div>
   )
 }

@@ -13,3 +13,4 @@ export const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
 export const MEILI_MASTER_KEY = process.env.MEILI_MASTER_KEY
 export const URL_ME = process.env.URL_ME
 export const CURRENT_REVISION = '.CURRENT_REVISION'
+export const RE_IN_DIARY = /\/diary\/\d{4}-\d{2}-\d{2}(#.*)?$/

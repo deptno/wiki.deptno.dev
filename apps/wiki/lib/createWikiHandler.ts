@@ -1,12 +1,15 @@
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import { CONFIG } from '../constant'
 
-export function createNumberHandler (params: Params) {
+export function createWikiHandler (params: Params) {
   const { router, key } = params
+  const n = Number(key) - 1
 
   return (e: KeyboardEvent) => {
-    const element = document.querySelector<HTMLAnchorElement>(`a[data-search-result="${key}"]`)
-    if (element) {
-      router.push(element.href)
+    const config = CONFIG[n]
+
+    if (config) {
+      router.push(`/${config.dir}`)
     }
   }
 }

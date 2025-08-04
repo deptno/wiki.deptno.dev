@@ -13,8 +13,9 @@ export const Header: FC<Props> = props => {
         <Link
           href={`/${wiki}/diary/index`}
           className="text-white underline underline-offset-4 p-1"
+          id="diary"
         >
-          journal
+          diary
         </Link>
         <div className="ml-auto"/>
         <Breadcrumbs/>
