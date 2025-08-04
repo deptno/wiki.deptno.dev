@@ -14,7 +14,10 @@ export function HotKey(props) {
 
   // 도움말
   useHotkeys('f1', () => {
-    window.open(`https://github.com/deptno/wiki.deptno.dev/blob/${NEXT_PUBLIC_GIT_COMMIT}/apps/wiki/component/HotKey.tsx`)
+    window.open(
+      `https://github.com/deptno/wiki.deptno.dev/blob/${NEXT_PUBLIC_GIT_COMMIT}/apps/wiki/component/HotKey.tsx`,
+      'f1',
+    )
   })
   // 위키 목록
   useHotkeys('w', () => {

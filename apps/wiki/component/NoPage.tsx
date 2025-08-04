@@ -3,10 +3,10 @@ import { Header } from './Header'
 import { getGraph } from '../getGraph'
 import { LinkGraph } from './LinkGraph'
 import { NEXT_PUBLIC_GIT_BRANCH } from '../constant'
-import { GoBack } from './GoBack'
 import { tryToGetWiki } from '../lib/tryToGetWiki'
 import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 import { HotKey } from './HotKey'
+import { Footer } from './Footer'
 
 // @ts-ignore
 export const NoPage: FC<Props> = async (props) => {
@@ -21,7 +21,10 @@ export const NoPage: FC<Props> = async (props) => {
       <HotKey />
       <Header wiki={wiki} />
       <ChildrenWithSearchResult/>
-      <div className="w-full flex flex-col items-center justify-center h-screen">
+      <div className="min-h-32">
+        <LinkGraph wiki={wiki} graphData={g}/>
+      </div>
+      <div className="w-full flex flex-col items-center justify-center p-10">
         <span>존재하지 않는 문서입니다.</span>
         <a
           className="underline underline-offset-4"
@@ -31,9 +34,8 @@ export const NoPage: FC<Props> = async (props) => {
         >
           생성하기
         </a>
-        <LinkGraph wiki={wiki} graphData={g}/>
-        <GoBack/>
       </div>
+      <Footer wiki={wiki}/>
     </>
   )
 }
