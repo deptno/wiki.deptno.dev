@@ -19,7 +19,7 @@
 }
 
 .markdown strong {
-  background-color: #ebdbb2;
+  background-color: #e3e3e3;
   color: #cc231c;
   padding: 0 0.25rem;
   border-radius: 0.5rem;
@@ -31,24 +31,14 @@
   margin: 2rem 0;
 }
 
-/*.markdown pre {*/
-/*  top: -56px;*/
-/*  padding: .25rem 0;*/
-/*}*/
-/*@media (min-width: 720px) {*/
-/*  .markdown pre {*/
-/*    !* 예시: top을 0으로 리셋 *!*/
-/*    top: -65px;*/
-/*    !* 원하는 스타일 추가 가능 *!*/
-/*  }*/
-/*}*/
-
 .markdown code {
   font-weight: 100;
   overflow-x: scroll;
   word-break: keep-all;
   line-break: normal;
   white-space: pre;
+  padding: 0 0.25rem;
+  color: #a6e22e;
 }
 
 .markdown h1 {
