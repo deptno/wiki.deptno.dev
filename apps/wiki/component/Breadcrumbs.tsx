@@ -14,7 +14,7 @@ export const Breadcrumbs: FC<Props> = (props) => {
   const { refresh } = useRouter()
 
   return (
-    <div className="breadcrumbs flex gap-1 items-center max-w-full">
+    <div className="breadcrumbs flex gap-1 items-center max-w-full overflow-hidden">
       <ul className="flex gap-1 overflow-x-auto whitespace-nowrap max-w-full">
         {targets.map((p, i, a) => {
           const href = pathname.slice(0, i + 1).join('/') || '/'
