@@ -20,17 +20,17 @@ function _getAllList(wikiName: string) {
   }
 
   const dir = join(DIR_DATA, wiki.dir)
-  const files = getAllMd(dir)
-    .map((f: string) => f.replace(DIR_DATA, ''))
-    .map(stripExt)
-
-  const markdowns = toMarkdown(files)
+  const files = getAllMd(dir).map((f: string) => stripExt(f.replace(DIR_DATA, '')))
   const lastModified = getLastModifiedFiles(wiki)
 
   return {
     files,
-    markdowns,
-    lastModified: toMarkdown(lastModified.map(stripExt)),
+    getMarkdowns() {
+      return toMarkdown(files)
+    },
+    getLastModified() {
+      return toMarkdown(lastModified.map(stripExt))
+    },
     getRandomLatestModifiedFileName() {
       if (lastModified.length === 0) {
         return

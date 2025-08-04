@@ -16,9 +16,8 @@ export default async function Page(props: Props) {
 
   try {
     const { path, wiki } = getPath([params.wiki, 'index'])
-    const { markdowns, lastModified, getRandomLatestModifiedFileName } =
-      getAllList(wiki)
     const html = await getHtml({ wiki, path, currentPath: `/${wiki}` })
+    const { getMarkdowns, getLastModified, getRandomLatestModifiedFileName } = getAllList(wiki)
     const { parse } = getMarked({ wiki })
 
     return (
@@ -29,9 +28,9 @@ export default async function Page(props: Props) {
         </Markdown>
         <hr className="my-4"/>
         <div className="p-4 text-4xl">최근 수정</div>
-        <Markdown data={parse(lastModified)}/>
+        <Markdown data={parse(getLastModified())}/>
         <div className="p-4 text-lg">전체 파일</div>
-        <Markdown data={parse(markdowns)}/>
+        <Markdown data={parse(getMarkdowns())}/>
         <Footer wiki={wiki}/>
       </>
     )
