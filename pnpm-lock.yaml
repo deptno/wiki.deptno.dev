@@ -72,6 +72,9 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
+      react-hotkeys-hook:
+        specifier: ^5.1.0
+        version: 5.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-instantsearch:
         specifier: ^7.16.2
         version: 7.16.2(algoliasearch@5.34.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -2152,6 +2155,12 @@ packages:
     resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
     peerDependencies:
       react: ^19.1.0
+
+  react-hotkeys-hook@5.1.0:
+    resolution: {integrity: sha512-GCNGXjBzV9buOS3REoQFmSmE4WTvBhYQ0YrAeeMZI83bhXg3dRWsLHXDutcVDdEjwJqJCxk5iewWYX5LtFUd7g==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   react-instantsearch-core@7.16.2:
     resolution: {integrity: sha512-NJ7KN/JMEwNL6pztVWNj4qucSu9DXZOAPJ1c94lRSub5BiNPsKKDNNaC3CN+Yv7uH0PWllSNMHGyuxmkM6hGGg==}
@@ -5026,6 +5035,11 @@ snapshots:
     dependencies:
       react: 19.1.0
       scheduler: 0.26.0
+
+  react-hotkeys-hook@5.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   react-instantsearch-core@7.16.2(algoliasearch@5.34.1)(react@19.1.0):
     dependencies:

@@ -23,6 +23,7 @@
     "prismjs": "^1.30.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hotkeys-hook": "^5.1.0",
     "react-instantsearch": "^7.16.2",
     "ui": "workspace:*",
     "zx": "^8.7.1"
