@@ -4,4 +4,5 @@ type Wiki = {
   diaryDir: string
   url: string
   private?: Boolean
+  branch: string
 }

@@ -9,6 +9,7 @@ services:
       - "3001:3001"
     environment:
       - NEXT_PUBLIC_GIT_COMMIT=main
+      - NEXT_PUBLIC_GIT_BRANCH=main
       - NEXT_PUBLIC_ENDPOINT=http://localhost:3001
       - MEILISEARCH_HOST=http://search:7700
       - TURBO_TELEMETRY_DISABLED=1

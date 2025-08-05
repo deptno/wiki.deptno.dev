@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Header } from './Header'
 import { getGraph } from '../getGraph'
 import { LinkGraph } from './LinkGraph'
-import { NEXT_PUBLIC_GIT_BRANCH } from '../constant'
+import { CONFIG } from '../constant'
 import { tryToGetWiki } from '../lib/tryToGetWiki'
 import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 import { HotKey } from './HotKey'
@@ -11,6 +11,7 @@ import { Footer } from './Footer'
 // @ts-ignore
 export const NoPage: FC<Props> = async (props) => {
   const [wiki, ...paths] = props.name.split('/')
+  const branch = CONFIG.find(t => t.dir === wiki).branch
   const filename = getFilename(paths)
   const graph = getGraph(wiki)
   const g = graph.getLinkGraphData(decodeURIComponent(filename))
@@ -24,11 +25,11 @@ export const NoPage: FC<Props> = async (props) => {
       <div className="min-h-32">
         <LinkGraph wiki={wiki} graphData={g}/>
       </div>
-      <div className="w-full flex flex-col items-center justify-center p-10">
+      <div className="grow w-full flex flex-col items-end justify-center p-10">
         <span>존재하지 않는 문서입니다.</span>
         <a
           className="underline underline-offset-4"
-          href={`${cw.url}/new/${NEXT_PUBLIC_GIT_BRANCH}?filename=${filename}.md`}
+          href={`${cw.url}/new/${branch}?filename=${filename}.md`}
           target="_blank"
           rel="noreferrer"
         >

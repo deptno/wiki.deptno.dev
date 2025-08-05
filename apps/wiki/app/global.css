@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.min-h-dvh {
+  min-height: 100dvh;
+}
+
 .markdown {
   display: flex;
   flex-direction: column;

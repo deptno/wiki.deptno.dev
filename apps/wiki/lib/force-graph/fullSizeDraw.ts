@@ -1,0 +1,67 @@
+import ForceGraphInstance from 'force-graph'
+
+export function fullSizeDraw(args: Args): Promise<ForceGraphInstance> {
+  const { element, wiki, graphData, options } = args
+
+  return new Promise((resolve) => {
+    // window is not find 에러 발생에 대한 우회 처리
+    import('force-graph').then(({ default: ForceGraph }) => {
+      const { width, height, zoom } = options
+      // @ts-ignore
+      const instance = new ForceGraph()
+
+      resolve(instance)
+
+      requestAnimationFrame(() => {
+        // @ts-ignore
+        instance(element)
+          .nodeLabel('id')
+          .nodeAutoColorBy('group')
+          .width(width)
+          .height(height)
+          .zoom(zoom)
+          .graphData(graphData)
+          // TODO: router 가능한지 검토
+          .linkCanvasObjectMode(() => 'after').onNodeClick(node => location.href = `${location.origin}/${wiki}/${node.id}`)
+          .nodeCanvasObject((node, ctx, globalScale) => {
+            // compact path label
+            const parts = (node.id as string).split('/')
+            const label = parts.length > 1 ? parts.slice(0, -1).map(p => p[0]).join('/') + '/' + parts[parts.length - 1] : node.id
+            const fontSize = 16 / globalScale
+            ctx.font = `${fontSize}px Sans-Serif`
+            const textWidth = ctx.measureText(label as string).width
+            const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 0.2) // some padding
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
+            // @ts-ignore
+            ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions)
+
+            ctx.textAlign = 'center'
+            ctx.textBaseline = 'middle'
+            // @ts-ignore
+            ctx.fillStyle = node.color
+            // @ts-ignore
+            ctx.fillText(label, node.x, node.y)
+
+            // @ts-ignore
+            node.__bckgDimensions = bckgDimensions // to re-use in nodePointerAreaPaint
+          })
+          .nodePointerAreaPaint((node, color, ctx) => {
+            ctx.fillStyle = color
+            // @ts-ignore
+            const bckgDimensions = node.__bckgDimensions
+            // @ts-ignore
+            bckgDimensions && ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions)
+          })
+      })
+    })
+  })
+}
+
+type Args = {
+  element: HTMLElement
+  wiki: string
+  graphData: any
+  options: ForceGraphOption
+}
+type ForceGraphOption = { width, height, zoom }

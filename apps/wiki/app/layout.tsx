@@ -69,10 +69,8 @@ export default function RootLayout({ children }: {
   `,
       }}
     />
-    <body className="md:text-lg lg:flex justify-center m-0 md:min-w-lg bg-gray-100">
-      <main className="w-full max-w-screen-lg lg:border border-gray-800 min-h-screen">
-        {children}
-      </main>
+    <body className="md:text-lg m-0 md:min-w-lg bg-gray-100 min-h-dvh flex flex-col items-center">
+      {children}
     </body>
     </html>
   )

@@ -16,14 +16,14 @@ export default async function Page() {
     const { parse } = getMarked({ wiki })
 
     return (
-      <>
-        <HotKey />
+      <main className="grow w-full max-w-screen-lg lg:border border-gray-800 h-full flex flex-col">
+        <HotKey overlay/>
         <Header wiki={wiki}/>
         <ChildrenWithSearchResult />
         <div className="p-4 text-lg">위키</div>
         <Markdown data={parse(markdownWiki)} />
         <Footer wiki={wiki}/>
-      </>
+      </main>
     )
   } catch (err) {
     console.error({ file }, err.message)

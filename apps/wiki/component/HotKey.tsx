@@ -9,6 +9,7 @@ import { NEXT_PUBLIC_GIT_COMMIT } from '../constant'
 import { createWikiHandler } from '../lib/createWikiHandler'
 
 export function HotKey(props) {
+  const { overlay } = props
   const router = useRouter()
   const pathname = usePathname()
 
@@ -89,8 +90,20 @@ export function HotKey(props) {
     const half = window.innerHeight / 2
     container.scrollBy({ top: -half, left: 0, behavior: 'smooth' })
   })
+  // 그래프 페이지로 이동
+  useHotkeys('g', async () => {
+    const [_, wiki] = pathname.split('/')
+    if (wiki) {
+      router.push(`/${wiki}/$graph`)
+    }
+  })
 
-  return <OverlayTutorial/>
+  if (overlay) {
+    return <OverlayTutorial/>
+  }
+  return null
 }
 
-type Props = {}
+type Props = {
+  overlay?: boolean
+}
