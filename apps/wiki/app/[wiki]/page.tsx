@@ -22,19 +22,21 @@ export default async function Page(props: Props) {
     const { parse } = getMarked({ wiki })
 
     return (
-      <>
-        <HotKey />
+      <main className="grow w-full max-w-screen-lg lg:border border-gray-800 h-full flex flex-col">
+        <HotKey overlay/>
         <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()}/>
-        <Markdown data={html}>
-          <MarkdownAside data={html} wiki={wiki} path={path}/>
-        </Markdown>
+        <div className="grow">
+          <Markdown data={html}>
+            <MarkdownAside data={html} wiki={wiki} path={path}/>
+          </Markdown>
+        </div>
         <hr className="my-4"/>
         <div className="p-4 text-4xl">최근 수정</div>
         <Markdown data={parse(getLastModified())}/>
         <div className="p-4 text-lg">전체 파일</div>
         <Markdown data={parse(getMarkdowns())}/>
         <Footer wiki={wiki}/>
-      </>
+      </main>
     )
   } catch (err) {
     console.error({ file }, err.message)

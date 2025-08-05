@@ -24,21 +24,27 @@ export default async function Page(props: Props) {
     const { getRandomLatestModifiedFileName } = getAllList(wiki)
 
     return (
-      <>
-        <HotKey />
+      <main className="grow w-full max-w-screen-lg lg:border border-gray-800 h-full flex flex-col">
+        <HotKey overlay/>
         <Header wiki={wiki} placeholder={getRandomLatestModifiedFileName()}/>
-        <Markdown data={html}>
-          <MarkdownAside data={html} wiki={wiki} path={path}/>
-        </Markdown>
+        <div className="grow">
+          <Markdown data={html}>
+            <MarkdownAside data={html} wiki={wiki} path={path}/>
+          </Markdown>
+        </div>
         <Footer wiki={wiki}/>
-      </>
+      </main>
     )
   } catch (err) {
     if (!path.endsWith('index')) {
       return redirect(`/${path}/index`)
     }
 
-    return <NoPage name={path}/>
+    return (
+      <main className="grow w-full max-w-screen-lg lg:border border-gray-800 h-full flex flex-col">
+        <NoPage name={path}/>
+      </main>
+    )
   }
 }
 type Props = {

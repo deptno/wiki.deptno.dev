@@ -25,7 +25,7 @@ export const NoPage: FC<Props> = async (props) => {
       <div className="min-h-32">
         <LinkGraph wiki={wiki} graphData={g}/>
       </div>
-      <div className="w-full flex flex-col items-center justify-center p-10">
+      <div className="grow w-full flex flex-col items-end justify-center p-10">
         <span>존재하지 않는 문서입니다.</span>
         <a
           className="underline underline-offset-4"

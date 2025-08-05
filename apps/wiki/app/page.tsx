@@ -17,7 +17,7 @@ export default async function Page() {
 
     return (
       <>
-        <HotKey />
+        <HotKey overlay/>
         <Header wiki={wiki}/>
         <ChildrenWithSearchResult />
         <div className="p-4 text-lg">위키</div>

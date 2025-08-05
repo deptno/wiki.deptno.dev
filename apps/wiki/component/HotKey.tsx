@@ -9,6 +9,7 @@ import { NEXT_PUBLIC_GIT_COMMIT } from '../constant'
 import { createWikiHandler } from '../lib/createWikiHandler'
 
 export function HotKey(props) {
+  const { overlay } = props
   const router = useRouter()
   const pathname = usePathname()
 
@@ -93,4 +94,6 @@ export function HotKey(props) {
   return <OverlayTutorial/>
 }
 
-type Props = {}
+type Props = {
+  overlay?: boolean
+}
