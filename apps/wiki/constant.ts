@@ -4,7 +4,6 @@ export const CONFIG = config as Wiki[]
 export const IS_PROD = process.env.NODE_ENV === 'production'
 export const DIR_DATA = process.env.DIR_DATA
 export const NEXT_PUBLIC_ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT
-export const NEXT_PUBLIC_GIT_BRANCH = process.env.NEXT_PUBLIC_GIT_BRANCH ?? 'main'
 export const NEXT_PUBLIC_GIT_COMMIT = process.env.NEXT_PUBLIC_GIT_COMMIT
 export const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
 export const MS_CLARITY_ID = process.env.NEXT_PUBLIC_MS_CLARITY_ID

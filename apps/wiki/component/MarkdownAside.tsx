@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { NEXT_PUBLIC_GIT_BRANCH } from '../constant'
 import { TOC } from '../lib/TOC'
 import { LinkGraph } from './LinkGraph'
 import { getGraph } from '../getGraph'
@@ -7,13 +6,14 @@ import { LinkList } from './LinkList'
 import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 import { DiaryNavigation } from './DiaryNavigation'
 import { tryToGetWiki } from '../lib/tryToGetWiki'
+import { CONFIG } from '../constant'
 
 export const MarkdownAside: FC<Props> = props => {
   const { data, wiki, path = '' } = props
   const graph = getGraph(wiki)
   const wikiBasedPath = path.slice(wiki.length + 1)
   const g = graph.getLinkGraphData(decodeURIComponent(wikiBasedPath))
-  const branch = NEXT_PUBLIC_GIT_BRANCH
+  const branch = CONFIG.find(t => t.dir === wiki).branch
   const cw = tryToGetWiki(wiki)
 
   return (
