@@ -1,4 +1,5 @@
 import { cutAnchor } from './cutAnchor'
+import { basename, dirname } from 'node:path'
 
 export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
   const nodes: Set<N> = new Set()
@@ -54,6 +55,7 @@ export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
         ...ie.map((e: Edge<N>) => e.source),
       ]))
         .map((id) => {
+          basename(id)
           if (id === nodeId) {
             return {
               id,
@@ -78,11 +80,14 @@ export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
       }
     },
     getTotalLinkGraphData() {
-      const nodes = this.getNodes().map(id => ({
-        id,
-        name: id,
-        val: nodeMap.get(id),
-      }))
+      const nodes = this.getNodes().map(id => {
+        return {
+          id,
+          name: id,
+          val: nodeMap.get(id),
+          dir: dirname(id),
+        }
+      })
       const links = edges
 
       return { nodes, links }

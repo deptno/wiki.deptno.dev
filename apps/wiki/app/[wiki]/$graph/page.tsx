@@ -16,7 +16,7 @@ export default async function Page(props: Props) {
       <main className="grow w-dvw h-screen flex flex-col">
         <HotKey/>
         <Header wiki={wiki} placeholder={''}/>
-        <div className="overflow-hidden">
+        <div className="grow overflow-hidden">
           <GraphAside data={''} wiki={wiki}/>
         </div>
         <Footer wiki={wiki}/>

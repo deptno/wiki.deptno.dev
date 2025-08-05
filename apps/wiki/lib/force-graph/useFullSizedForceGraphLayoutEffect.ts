@@ -1,16 +1,16 @@
 import { RefObject, useLayoutEffect, useRef } from 'react'
 import ForceGraphInstance from 'force-graph'
-import { draw } from './draw'
+import { fullSizeDraw } from './fullSizeDraw'
 
 export function useFullSizedForceGraphLayoutEffect(elementRef: RefObject<HTMLElement>, wiki: string, graphData: any) {
   let ran = useRef(false)
+  const ref = useRef<ForceGraphInstance>(null)
 
   useLayoutEffect(() => {
     if (ran.current) {
       return
     }
     ran.current = true
-    let refGraph: ForceGraphInstance
 
     const element = elementRef.current
 
@@ -25,24 +25,24 @@ export function useFullSizedForceGraphLayoutEffect(elementRef: RefObject<HTMLEle
         zoom,
       }
     }
+
     function updateGraph() {
-      if (refGraph) {
+      if (ref) {
         requestAnimationFrame(() => {
           const { width, height, zoom } = getOptions()
-          console.log('option' , { width, height, zoom })
 
-          refGraph
+          ref.current
             .width(width)
             .height(height)
-            .zoom(zoom)
+            .centerAt(0, 0, 500)
         })
       }
     }
 
 
     const options = getOptions()
-    draw({ element, wiki, graphData, options }).then((instance) => {
-      refGraph = instance
+    fullSizeDraw({ element, wiki, graphData, options }).then((instance) => {
+      ref.current = instance
 
       window.addEventListener('resize', updateGraph)
     })
@@ -51,4 +51,6 @@ export function useFullSizedForceGraphLayoutEffect(elementRef: RefObject<HTMLEle
       window.removeEventListener('resize', updateGraph)
     }
   }, [elementRef, graphData, wiki])
+
+  return ref
 }
