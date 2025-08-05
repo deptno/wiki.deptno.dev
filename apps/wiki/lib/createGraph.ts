@@ -17,6 +17,9 @@ export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
       nodes.add(node)
     },
     addEdge(edge: Edge<N>) {
+      this.addNode(edge.source)
+      this.addNode(cutAnchor(edge.target as string) as N)
+
       const n = nodeMap.get(edge.source) ?? 0
       nodeMap.set(edge.source, n + 1)
 
@@ -74,6 +77,16 @@ export function createGraph<N = string, E = Edge<N>>(): Graph<N> {
         ],
       }
     },
+    getTotalLinkGraphData() {
+      const nodes = this.getNodes().map(id => ({
+        id,
+        name: id,
+        val: nodeMap.get(id),
+      }))
+      const links = edges
+
+      return { nodes, links }
+    }
   }
 }
 
@@ -85,6 +98,7 @@ export type Graph<N> = {
   getNodes(): readonly N[]
   getStats(): { nodeCount: number, edgeCount: number }
   getLinkGraphData(node: N): { nodes, links }
+  getTotalLinkGraphData(): { nodes, links }
 }
 type Edge<N> = {
   source: N
