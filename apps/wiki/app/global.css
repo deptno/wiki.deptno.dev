@@ -44,6 +44,9 @@
   padding: 0 0.25rem;
   color: #a6e22e;
 }
+.markdown pre code {
+  padding: 0;
+}
 
 .markdown h1 {
   font-size: 2rem;
