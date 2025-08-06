@@ -1,5 +1,5 @@
 @media (min-width: theme('screens.3xl')) {
-  aside {
+  aside.page {
     position: fixed;
     min-width: 384px;
     max-width: 384px;
@@ -10,5 +10,17 @@
     line-height: 1.5rem;
     white-space: pre-wrap;
     top: 0.9rem;
+  }
+  aside.full-page {
+    position: fixed;
+    min-width: 1200px;
+    max-width: 1200px;
+    max-height: 60dvh;
+    top: 6rem;
+    left: 1rem;
+    z-index: 50;
+    overflow-y: scroll;
+    line-height: 1.5rem;
+    white-space: pre-wrap;
   }
 }

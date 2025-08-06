@@ -23,7 +23,7 @@ export default async function Page(props: Props) {
         <HotKey/>
         <Header wiki={wiki} placeholder={''}/>
         <div className="grow overflow-hidden">
-          <GraphAside data={''} wiki={wiki}/>
+          <GraphAside wiki={wiki}/>
         </div>
         <Footer wiki={wiki}/>
       </main>

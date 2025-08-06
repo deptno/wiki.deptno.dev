@@ -4,18 +4,16 @@ import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 import { tryToGetWiki } from '../lib/tryToGetWiki'
 import { CONFIG } from '../constant'
 import { FullLinkGraph } from './FullLinkGraph'
+import { FullPageSearchResult } from './FullPageSearchResult'
 
 export const GraphAside: FC<Props> = props => {
-  const { data, wiki, path = '' } = props
+  const { wiki } = props
   const graph = getGraph(wiki)
-  const wikiBasedPath = path.slice(wiki.length + 1)
   const g = graph.getTotalLinkGraphData()
-  const branch = CONFIG.find(t => t.dir === wiki).branch
-  const cw = tryToGetWiki(wiki)
 
   return (
     <>
-      <ChildrenWithSearchResult />
+      <FullPageSearchResult />
       <FullLinkGraph wiki={wiki} graphData={g}/>
     </>
   )
@@ -23,8 +21,6 @@ export const GraphAside: FC<Props> = props => {
 
 type Props = {
   wiki: string
-  data: string
-  path?: string
 }
 
 const file = import.meta.url
