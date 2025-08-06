@@ -9,20 +9,22 @@ export function OverlayTutorial(props) {
   const [scrollOverlay, setScrollOverlay] = useState(true)
 
   // 화면 스크롤
-  useHotkeys('j', () => {
-    setScrollOverlay(false)
-  })
-  useHotkeys('k', () => {
+  useHotkeys('j,k,b', () => {
     setScrollOverlay(false)
   })
 
   if (scrollOverlay) {
     if (scrollable) {
       return (
-        <div className="hidden md:flex flex-col fixed top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none select-none justify-center opacity-70">
-          <div className="text-center p-1 w-6 bg-gray-800 text-green-400 rounded-md">k</div>
-          <div className="text-center p-1 w-6 bg-gray-800 text-green-400 rounded-md">j</div>
-        </div>
+        <>
+          <div className="hidden md:flex flex-col fixed bottom-8 left-8 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none select-none justify-center opacity-70">
+            <div className="text-center p-1 w-6 bg-gray-800 text-green-400 rounded-md">b</div>
+          </div>
+          <div className="hidden md:flex flex-col fixed top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none select-none justify-center opacity-70">
+            <div className="text-center p-1 w-6 bg-gray-800 text-green-400 rounded-md">k</div>
+            <div className="text-center p-1 w-6 bg-gray-800 text-green-400 rounded-md">j</div>
+          </div>
+        </>
       )
     }
   }

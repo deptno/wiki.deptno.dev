@@ -83,12 +83,18 @@ export function HotKey(props) {
   useHotkeys('j', () => {
     const container = document.scrollingElement || document.documentElement
     const half = window.innerHeight / 2
-    container.scrollBy({ top: half, left: 0, behavior: 'smooth' })
+    container.scrollBy({ top: half, left: 0 })
   })
   useHotkeys('k', () => {
     const container = document.scrollingElement || document.documentElement
     const half = window.innerHeight / 2
-    container.scrollBy({ top: -half, left: 0, behavior: 'smooth' })
+    container.scrollBy({ top: -half, left: 0 })
+  })
+  useHotkeys('b', () => {
+    const target = document.querySelector('.markdown')
+    if (target) {
+      target.scrollIntoView({ block: 'start' })
+    }
   })
   // 그래프 페이지로 이동
   useHotkeys('g', async () => {
