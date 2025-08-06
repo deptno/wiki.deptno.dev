@@ -2,12 +2,20 @@ import React, { FC } from 'react'
 import Link from 'next/link'
 import { getAllList } from '../lib/getAllList'
 import { RE_YYYYMMDD } from '../constant'
+import { getDiaryIndex } from '../lib/getDiaryIndex'
 
 export const DiaryNavigation: FC<Props> = props => {
-  const { wiki, path } = props
+  let { path } = props
+  const { wiki } = props
   const prefix = `/${wiki}/diary/`
 
+  if (path.endsWith('/index')) {
+    path = path.slice(0, -'/index'.length)
+  }
   if (!path.startsWith(prefix.slice(1))) {
+    return null
+  }
+  if (!RE_YYYYMMDD.test(path.slice(prefix.length - 1))) {
     return null
   }
 
@@ -17,7 +25,10 @@ export const DiaryNavigation: FC<Props> = props => {
       return RE_YYYYMMDD.test(t.slice(prefix.length))
     }
   })
-  const index = diaries.findIndex((f) => f.slice(1) === path)
+  const index = getDiaryIndex({
+    items: diaries,
+    item: `/${path}`
+  })
   const prev = diaries[index - 1]
   const next = diaries[index + 1]
   const hasPrev = prev?.startsWith(prefix) && !prev?.startsWith(`${prefix}index`)

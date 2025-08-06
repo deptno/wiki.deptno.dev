@@ -7,6 +7,7 @@ import { tryToGetWiki } from '../lib/tryToGetWiki'
 import { ChildrenWithSearchResult } from './ChildrenWithSearchResult'
 import { HotKey } from './HotKey'
 import { Footer } from './Footer'
+import { DiaryNavigation } from './DiaryNavigation'
 
 // @ts-ignore
 export const NoPage: FC<Props> = async (props) => {
@@ -36,6 +37,7 @@ export const NoPage: FC<Props> = async (props) => {
           생성하기
         </a>
       </div>
+      <DiaryNavigation wiki={wiki} path={props.name} />
       <Footer wiki={wiki}/>
     </>
   )
