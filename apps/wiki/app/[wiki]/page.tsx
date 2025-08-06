@@ -10,13 +10,20 @@ import { Metadata } from 'next'
 import { getMarked } from '../../lib/getMarked'
 import { Footer } from '../../component/Footer'
 import { HotKey } from '../../component/HotKey'
+import { CONFIG } from '../../constant'
+import { UnknownWiki } from '../../error/UnknownWiki'
 
 export const dynamic = 'force-static'
 export default async function Page(props: Props) {
   const params = await props.params
+  const { wiki } = params
+
+  if (CONFIG.every(w => w.dir !== wiki)) {
+    throw new UnknownWiki(wiki)
+  }
 
   try {
-    const { path, wiki } = getPath([params.wiki, 'index'])
+    const { path } = getPath([wiki, 'index'])
     const html = await getHtml({ wiki, path, currentPath: `/${wiki}` })
     const { getMarkdowns, getLastModified, getRandomLatestModifiedFileName } = getAllList(wiki)
     const { parse } = getMarked({ wiki })
