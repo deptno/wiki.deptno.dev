@@ -4,6 +4,7 @@ import { basename, join } from 'node:path'
 import { CONFIG, DIR_DATA } from '../constant'
 import { random } from './random'
 import { prodCache } from './prodCache'
+import { UnknownWiki } from '../error/UnknownWiki'
 
 function _getAllList(wikiName: string) {
   const toMarkdown = (files: string[]) => {
@@ -16,7 +17,7 @@ function _getAllList(wikiName: string) {
 
   const wiki = CONFIG.find(w => w.dir === wikiName)
   if (!wiki) {
-    throw new Error(`Unknown wiki(${wikiName})`)
+    throw new UnknownWiki(wikiName)
   }
 
   const dir = join(DIR_DATA, wiki.dir)

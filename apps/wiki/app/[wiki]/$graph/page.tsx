@@ -6,7 +6,7 @@ import { Footer } from '../../../component/Footer'
 import { HotKey } from '../../../component/HotKey'
 import { GraphAside } from '../../../component/GraphAside'
 import { CONFIG } from '../../../constant'
-import { UnknownWiki } from '../../../error/UnknownWiki'
+import { notFound } from 'next/navigation'
 
 export const dynamic = 'force-static'
 export default async function Page(props: Props) {
@@ -14,7 +14,7 @@ export default async function Page(props: Props) {
   const { wiki } = params
 
   if (CONFIG.every(w => w.dir !== wiki)) {
-    throw new UnknownWiki(wiki)
+    return notFound()
   }
 
   try {

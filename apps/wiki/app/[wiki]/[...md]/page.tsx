@@ -1,5 +1,5 @@
 import React from 'react'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { Header } from '../../../component/Header'
 import { NoPage } from '../../../component/NoPage'
 import { Markdown } from '../../../component/Markdown'
@@ -11,7 +11,6 @@ import { getPath } from '../../../lib/getPath'
 import { Footer } from '../../../component/Footer'
 import { HotKey } from '../../../component/HotKey'
 import { CONFIG } from '../../../constant'
-import { UnknownWiki } from '../../../error/UnknownWiki'
 
 export const dynamic = 'force-static'
 export default async function Page(props: Props) {
@@ -19,7 +18,7 @@ export default async function Page(props: Props) {
   const { wiki, md } = params
 
   if (CONFIG.every(w => w.dir !== wiki)) {
-    throw new UnknownWiki(wiki)
+    return notFound()
   }
 
   const { path, currentPath } = getPath([wiki, ...md])
