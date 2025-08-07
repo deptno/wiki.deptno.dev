@@ -34,7 +34,7 @@ export async function updateMeilisearchDocuments(params: Params) {
       {
         action: 'upsert',
         index,
-        documents: allUpserts.slice(0, 2),
+        documents: allUpserts,
         task: upsertJson,
       },
       { depth: null, maxArrayLength: 2, maxStringLength: 80 }

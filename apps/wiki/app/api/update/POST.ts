@@ -4,6 +4,7 @@ import { CONFIG, GITHUB_WEBHOOK_SECRET } from '../../../constant'
 import { revalidatePath } from 'next/cache'
 import { $ } from 'zx'
 import { updateMeilisearchDocuments } from '../../../lib/updateMeilisearchDocuments'
+import { recreateMeilisearchIndex } from '../../../lib/recreateMeilisearchIndex'
 
 export async function POST(req: Request) {
   try {
@@ -24,20 +25,35 @@ export async function POST(req: Request) {
     const payload = JSON.parse(text)
     const repoFullName = payload.repository?.full_name
     const config = CONFIG.find(t => t.url.endsWith(repoFullName))
+
     if (!config) {
       throw new Error(`unknown repo: ${repoFullName}`)
     }
 
-    await $`git -C /mnt/data/${config.dir} pull --ff`
+    if (payload.forced) {
+      console.log('reset hard')
 
-    revalidatePath('/[wiki]', 'layout')
-    console.log('revalidated path: /[wiki]')
+      await $`git -C /mnt/data/${config.dir} fetch origin`
+      await $`git -C /mnt/data/${config.dir} reset --hard origin/main`
 
-    if (payload.commits) {
-      updateMeilisearchDocuments({ index: config.dir, commits: payload.commits }).catch(err => {
+      console.log('recreate index')
+      recreateMeilisearchIndex({ index: config.dir }).catch(err => {
         console.error({ file, err })
       })
+    } else {
+      if (payload.commits) {
+        console.log('pull --ff-only')
+        await $`git -C /mnt/data/${config.dir} pull --ff-only`
+
+        updateMeilisearchDocuments({ index: config.dir, commits: payload.commits }).catch(err => {
+          console.log('update documents')
+          console.error({ file, err })
+        })
+      }
     }
+
+    console.log('revalidated path: /[wiki]')
+    revalidatePath('/[wiki]', 'layout')
 
     return new Response(undefined, { status: 200 })
   } catch (err) {
