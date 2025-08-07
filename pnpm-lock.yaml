@@ -46,10 +46,10 @@ importers:
         specifier: ^5.1.2
         version: 5.1.2
       marked-gfm-heading-id:
-        specifier: ^3.1.2
+        specifier: ^3.2.0
         version: 3.2.0(marked@5.1.2)
       marked-highlight:
-        specifier: ^2.1.0
+        specifier: ^2.2.2
         version: 2.2.2(marked@5.1.2)
       mermaid:
         specifier: ^10
