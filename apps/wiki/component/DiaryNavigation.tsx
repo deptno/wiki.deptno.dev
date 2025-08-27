@@ -27,27 +27,41 @@ export const DiaryNavigation: FC<Props> = props => {
   })
   const index = getDiaryIndex({
     items: diaries,
-    item: `/${path}`
+    item: `/${path}`,
   })
   const prev = diaries[index - 1]
   const next = diaries[index + 1]
   const hasPrev = prev?.startsWith(prefix) && !prev?.startsWith(`${prefix}index`)
   const hasNext = next?.startsWith(prefix) && !next?.startsWith(`${prefix}index`)
+  const today = new Date().toLocaleDateString('sv-SE')
+  const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleDateString('sv-SE')
 
   return (
-    <div className="flex flex-wrap gap-2 pb-2 m-0 leading-tight ml-auto">
-      {hasPrev && (
-        <Link id="prev-date" className="text-blue-600 underline flex gap-1 opacity-70" href={prev}>
-          <div className="hidden md:inline text-center px-1 w-6 bg-gray-800 text-green-400 rounded-md">h</div>
-          이전({prev.slice(prefix.length)})
+    <div className="flex">
+      <div className="flex flex-wrap gap-2 pb-2 m-0 leading-tight">
+        <Link id="today-date" className="text-blue-600 underline flex gap-1 opacity-70" href={`/${wiki}/diary/${today}`}>
+          <div className="hidden md:inline text-center px-1 w-6 bg-gray-800 text-green-400 rounded-md">t</div>
+          오늘
         </Link>
-      )}
-      {hasNext && (
-        <Link id="next-date" className="text-blue-600 underline flex gap-1 opacity-70" href={next}>
-          <div className="hidden md:inline text-center px-1 w-6 bg-gray-800 text-green-400 rounded-md">l</div>
-          다음({next.slice(prefix.length)})
+        <Link id="tomorrow-date" className="text-blue-600 underline flex gap-1 opacity-70" href={`/${wiki}/diary/${tomorrow}`}>
+          <div className="hidden md:inline text-center px-1 w-6 bg-gray-800 text-green-400 rounded-md">m</div>
+          내일
         </Link>
-      )}
+      </div>
+      <div className="flex flex-wrap gap-2 pb-2 m-0 leading-tight ml-auto">
+        {hasPrev && (
+          <Link id="prev-date" className="text-blue-600 underline flex gap-1 opacity-70" href={prev}>
+            <div className="hidden md:inline text-center px-1 w-6 bg-gray-800 text-green-400 rounded-md">h</div>
+            이전({prev.slice(prefix.length)})
+          </Link>
+        )}
+        {hasNext && (
+          <Link id="next-date" className="text-blue-600 underline flex gap-1 opacity-70" href={next}>
+            <div className="hidden md:inline text-center px-1 w-6 bg-gray-800 text-green-400 rounded-md">l</div>
+            다음({next.slice(prefix.length)})
+          </Link>
+        )}
+      </div>
     </div>
   )
 }
