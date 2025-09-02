@@ -110,6 +110,38 @@ export function HotKey(props) {
       router.push(`/${wiki}/$graph`)
     }
   })
+  useHotkeys('f', async () => {
+    const nodes = document.querySelectorAll('pre > code[class^="language-"]')
+    const visible = []
+
+    // 화면에 보이는 엘리먼트만
+    nodes.forEach(node => {
+      const rect = node.getBoundingClientRect()
+      if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        visible.push(node)
+      }
+    })
+
+    // centerY 가 중앙으로 부터 가까운 엘리먼트 순 정렬
+    const centerY = window.innerHeight / 2
+    visible.sort((a, b) => {
+      const rectA = a.getBoundingClientRect()
+      const rectB = b.getBoundingClientRect()
+      const centerA = (rectA.top + rectA.bottom) / 2
+      const centerB = (rectB.top + rectB.bottom) / 2
+      return Math.abs(centerA - centerY) - Math.abs(centerB - centerY)
+    })
+
+    const [el] = visible
+    if (!el) {
+      return
+    }
+
+    const pre = el.closest('pre')
+    if (pre && pre.requestFullscreen) {
+      pre.requestFullscreen()
+    }
+  })
 
   if (overlay) {
     return <OverlayTutorial/>

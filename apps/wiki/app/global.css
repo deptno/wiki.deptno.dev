@@ -193,6 +193,12 @@ code.language-mermaid {
   background-color: #d79920;
   color: #3c3735;
 }
+
+pre:fullscreen::backdrop,
+code:fullscreen::backdrop {
+  background: #f3f4f6;
+}
+
 /* 사용편의성을 위한 팔레트 */
 .palette {
   background-color: #ebdbb2;
