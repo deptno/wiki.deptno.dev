@@ -52,5 +52,7 @@ module.exports = {
     'block',
     'h-16',
     'z-10',
+    'overflow-auto',
+    'max-h-screen'
   ],
 }

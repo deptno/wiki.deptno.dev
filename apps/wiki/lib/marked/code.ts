@@ -7,7 +7,7 @@ export function code(code: string, infoString: string , escaped: boolean) {
 
   if (infoString === 'mermaid') {
     // mermaid render 에서 로딩을 위해그대로 피스
-    return `<pre><code class="language-${lang}">${code}</code></pre>`
+    return `<pre class="max-h-screen overflow-auto"><code class="language-${lang}">${code}</code></pre>`
   }
 
   return `<div class="relative pt-2"><span class="absolute bg-gray-900 top-5 right-0 text-xs rounded-md px-4 capitalize chartreuse z-10">${lang}</span><pre class="relative w-full language-${lang} jsx m-0"><code class="language-${lang}">${sanitized}</code></pre></div>`
