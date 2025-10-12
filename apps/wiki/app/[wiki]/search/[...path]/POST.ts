@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { MEILISEARCH_API_KEY, MEILISEARCH_HOST } from '../../../../constant'
+import { MEILI_MASTER_KEY, MEILISEARCH_HOST } from '../../../../constant'
 
 export async function POST(req: Request, context: Context) {
   const params = await context.params
@@ -8,8 +8,8 @@ export async function POST(req: Request, context: Context) {
   try {
     const api = `${MEILISEARCH_HOST}/${path.join('/')}`
     const headers = new Headers(req.headers)
-    if (MEILISEARCH_API_KEY) {
-      headers.set('authorization', `Bearer ${MEILISEARCH_API_KEY}`)
+    if (MEILI_MASTER_KEY) {
+      headers.set('authorization', `Bearer ${MEILI_MASTER_KEY}`)
     }
 
     const response = await fetch(api, {
