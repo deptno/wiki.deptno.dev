@@ -17,7 +17,7 @@
     "marked-gfm-heading-id": "^3.2.0",
     "marked-highlight": "^2.2.2",
     "mermaid": "^10",
-    "next": "^15.4.3",
+    "next": "^15.5.7",
     "parser-vimwiki": "workspace:^",
     "prismjs": "^1.30.0",
     "react": "^19.1.0",
