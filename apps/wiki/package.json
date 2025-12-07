@@ -20,6 +20,7 @@
     "mermaid": "^10",
     "next": "^15.5.7",
     "parser-vimwiki": "workspace:^",
+    "pg": "^8.16.3",
     "prismjs": "^1.30.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
