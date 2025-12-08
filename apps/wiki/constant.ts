@@ -15,3 +15,20 @@ export const URL_ME = process.env.URL_ME
 export const CURRENT_REVISION = '.CURRENT_REVISION'
 export const RE_YYYYMMDD = /^\d{4}-\d{2}-\d{2}$/
 export const PG_MAX_CONNECTION = Number(process.env.PG_MAX_CONNECTION ?? 1)
+export type DynamicMarkdownTable = {
+  db: string
+  table: string
+  idColumn: string
+  markdownColumn: string
+  schema?: string
+  wiki?: string
+}
+export const DYNAMIC_MARKDOWN_TABLES: DynamicMarkdownTable[] = [
+  {
+    db: 'n8n',
+    table: 'gmail_summary',
+    idColumn: 'id',
+    markdownColumn: 'text',
+    schema: 'public',
+  },
+]

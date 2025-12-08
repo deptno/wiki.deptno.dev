@@ -11,6 +11,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 COPY ./packages/ui/package.json ./packages/ui/package.json
+COPY ./packages/db/package.json ./packages/db/package.json
 COPY ./packages/parser-vimwiki/package.json ./packages/parser-vimwiki/package.json
 COPY ./packages/tsconfig/package.json ./packages/tsconfig/package.json
 

@@ -1,9 +1,11 @@
-import { Pool } from 'pg'
 import process from 'node:process'
 import { fileURLToPath } from 'url'
+import { createPool } from 'db/createPool'
 import { PG_MAX_CONNECTION } from '../constant'
 
 export async function pg(params: Params = {}) {
+  console.debug({ file, params })
+
   try {
     return await pool.connect()
   } catch (err) {
@@ -23,7 +25,7 @@ export async function pg(params: Params = {}) {
 
 type Params = Record<string, never>
 
-const pool = new Pool({
+const pool = createPool({
   max: PG_MAX_CONNECTION
 })
 
