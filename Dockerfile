@@ -18,7 +18,7 @@ COPY ./apps/meilisearch-updater/package.json ./apps/meilisearch-updater/package.
 COPY ./apps/wiki/package.json ./apps/wiki/package.json
 
 RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
-    pnpm install
+    pnpm install --ignore-scripts
 
 COPY . .
 
