@@ -55,7 +55,7 @@ importers:
         specifier: ^10
         version: 10.9.3
       next:
-        specifier: ~15.5.16
+        specifier: ~15.5.18
         version: 15.5.18(react-dom@19.1.7(react@19.1.7))(react@19.1.7)
       parser-vimwiki:
         specifier: workspace:^
